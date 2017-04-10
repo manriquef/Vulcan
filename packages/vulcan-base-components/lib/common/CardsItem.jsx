@@ -8,7 +8,7 @@ import Posts from "meteor/vulcan:posts";
 class CardsItem extends Component {
 
   renderCategories() {
-    return this.props.post.categories && this.props.post.categories.length > 0 ? <Components.PostsCategories post={this.props.post} /> : "";
+    return this.props.post.categories && this.props.post.categories.length > 0 ? <Components.CardsCategories post={this.props.post} /> : "";
   }
   renderCommenters() {
     return this.props.post.commenters && this.props.post.commenters.length > 0 ? <Components.PostsCommenters post={this.props.post}/> : "";

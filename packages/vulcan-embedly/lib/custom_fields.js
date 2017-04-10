@@ -17,7 +17,8 @@ Posts.addField([
       insertableBy: ['members'],
       editableBy: ['members'],
       viewableBy: ['guests'],
-      control: ThumbnailURL
+      control: ThumbnailURL,
+      defaultValue: '/packages/vulcan_getting-started/content/images/telescope.png'
     }
   },
   {

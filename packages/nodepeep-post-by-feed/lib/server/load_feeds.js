@@ -12,7 +12,7 @@ import Feeds from '../collection.js';
       // todo: accept more than one category
       if (feed.categorySlug) {
         const category = Categories.findOne({ slug: feed.categorySlug });
-        feed.categories = [category._id];
+        feed.categories = [category._id];//if it doesn't exist it fails
         console.log("What is in feed.categories ", feed.categories);
       }
 

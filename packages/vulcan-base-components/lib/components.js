@@ -19,6 +19,7 @@ import './common/RightBar.jsx';
 // posts
 
 import './posts/CardsThumbnail.jsx';
+import './posts/CardsCategories.jsx';
 import './posts/PostsHome.jsx';
 import './posts/PostsSingle.jsx';
 import './posts/PostsNewButton.jsx';
