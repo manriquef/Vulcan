@@ -1,5 +1,6 @@
 import { registerComponent } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Users from 'meteor/vulcan:users';
 import { Link } from 'react-router';
 
@@ -23,9 +24,9 @@ const UsersAvatar = ({user, size, link}) => {
 }
 
 UsersAvatar.propTypes = {
-  user: React.PropTypes.object.isRequired,
-  size: React.PropTypes.string,
-  link: React.PropTypes.bool
+  user: PropTypes.object.isRequired,
+  size: PropTypes.string,
+  link: PropTypes.bool
 }
 
 UsersAvatar.defaultProps = {

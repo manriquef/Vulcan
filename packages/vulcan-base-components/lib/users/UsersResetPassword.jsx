@@ -34,8 +34,8 @@ UsersResetPassword.contextTypes = {
 }
 
 UsersResetPassword.propsTypes = {
-  currentUser: React.PropTypes.object,
-  params: React.PropTypes.object,
+  currentUser: PropTypes.object,
+  params: PropTypes.object,
 };
 
 UsersResetPassword.displayName = 'UsersResetPassword';

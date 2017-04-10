@@ -59,7 +59,8 @@ You can extend a Nova base component (like in this [screencast](https://www.yout
 
 ```
 import Telescope from 'meteor/vulcan:lib';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/std:accounts-ui';
@@ -170,8 +171,8 @@ class UsersMenuWithFeed extends Telescope.components.UsersMenu {
 }
 
 UsersMenuWithFeed.propTypes = {
-  currentUser: React.PropTypes.object,
-  user: React.PropTypes.object
+  currentUser: PropTypes.object,
+  user: PropTypes.object
 };
 
 export default UsersMenuWithFeed;

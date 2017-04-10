@@ -1,5 +1,6 @@
 import { Components, registerComponent, withCurrentUser, withMessages } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { intlShape, FormattedMessage, FormattedRelative } from 'react-intl';
 import Comments from 'meteor/vulcan:comments';
 
@@ -122,12 +123,12 @@ class CommentsItem extends Component{
 }
 
 CommentsItem.propTypes = {
-  comment: React.PropTypes.object.isRequired, // the current comment
-  currentUser: React.PropTypes.object,
+  comment: PropTypes.object.isRequired, // the current comment
+  currentUser: PropTypes.object,
 };
 
 CommentsItem.contextTypes = {
-  events: React.PropTypes.object,
+  events: PropTypes.object,
   intl: intlShape
 };
 

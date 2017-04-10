@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Components, registerComponent, withList, withCurrentUser } from 'meteor/vulcan:core';
 import { intlShape } from 'react-intl';
 import NovaForm from "meteor/vulcan:forms";
@@ -53,14 +54,14 @@ class FeedsItem extends Component {
 }
 
 FeedsItem.propTypes = {
-  feed: React.PropTypes.object.isRequired,
+  feed: PropTypes.object.isRequired,
 };
 
 FeedsItem.contextTypes = {
-  currentUser: React.PropTypes.object,
-  actions: React.PropTypes.object,
-  events: React.PropTypes.object,
-  messages: React.PropTypes.object,
+  currentUser: PropTypes.object,
+  actions: PropTypes.object,
+  events: PropTypes.object,
+  messages: PropTypes.object,
   intl: intlShape
 };
 

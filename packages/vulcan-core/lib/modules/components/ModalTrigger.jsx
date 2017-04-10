@@ -1,5 +1,6 @@
 import { registerComponent } from 'meteor/vulcan:lib';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Modal } from 'react-bootstrap';
 
 class ModalTrigger extends Component {
@@ -49,10 +50,10 @@ class ModalTrigger extends Component {
 }
 
 ModalTrigger.propTypes = {
-  className: React.PropTypes.string,
-  label: React.PropTypes.string,
-  component: React.PropTypes.object,
-  size: React.PropTypes.string
+  className: PropTypes.string,
+  label: PropTypes.string,
+  component: PropTypes.object,
+  size: PropTypes.string
 }
 
 ModalTrigger.defaultProps = {

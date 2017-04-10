@@ -4,7 +4,8 @@ An item in the pics list.
 
 */
 
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Components, registerComponent } from 'meteor/vulcan:core';
 
 import PicsDetail from './PicsDetails.jsx';

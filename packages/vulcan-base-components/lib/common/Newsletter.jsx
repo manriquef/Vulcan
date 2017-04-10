@@ -1,5 +1,6 @@
 import { Components, registerComponent, withCurrentUser, withMutation, withMessages, Utils } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
 import Formsy from 'formsy-react';
 import { Input } from 'formsy-react-components';
@@ -90,7 +91,7 @@ class Newsletter extends Component {
 }
 
 Newsletter.contextTypes = {
-  actions: React.PropTypes.object,
+  actions: PropTypes.object,
   intl: intlShape
 };
 

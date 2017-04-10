@@ -1,5 +1,6 @@
 import { registerComponent, withCurrentUser } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, FormControl } from 'react-bootstrap';
 import { Accounts } from 'meteor/std:accounts-ui';
 import { withApollo } from 'react-apollo';

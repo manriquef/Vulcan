@@ -1,5 +1,6 @@
 import { Components, registerComponent } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Dropdown } from 'react-bootstrap';
 

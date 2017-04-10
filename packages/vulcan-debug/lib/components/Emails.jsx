@@ -1,5 +1,6 @@
 import { Components, registerComponent } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import VulcanEmail from 'meteor/vulcan:email';
 
@@ -49,8 +50,8 @@ class Email extends Component {
 }
 
 Email.propTypes = {
-  email: React.PropTypes.object,
-  name: React.PropTypes.string
+  email: PropTypes.object,
+  name: PropTypes.string
 }
 
 const Emails = props => {

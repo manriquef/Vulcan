@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { registerComponent, Utils, getSetting, Headtags } from 'meteor/vulcan:core';
 
@@ -56,10 +57,10 @@ class HeadTags extends Component {
 }
 
 HeadTags.propTypes = {
-	url: React.PropTypes.string,
-	title: React.PropTypes.string,
-	description: React.PropTypes.string,
-	image: React.PropTypes.string,
+	url: PropTypes.string,
+	title: PropTypes.string,
+	description: PropTypes.string,
+	image: PropTypes.string,
 };
 
 registerComponent('HeadTags', HeadTags);

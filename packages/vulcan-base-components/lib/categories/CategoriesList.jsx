@@ -1,5 +1,6 @@
 import { ModalTrigger, Components, registerComponent, withList, Utils } from "meteor/vulcan:core";
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { ButtonToolbar, Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import { withRouter } from 'react-router'
@@ -70,7 +71,7 @@ class CategoriesList extends Component {
 }
 
 CategoriesList.propTypes = {
-  results: React.PropTypes.array,
+  results: PropTypes.array,
 };
 
 

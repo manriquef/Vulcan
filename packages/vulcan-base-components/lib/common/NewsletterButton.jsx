@@ -1,5 +1,6 @@
 import { Components, registerComponent, withMutation, withCurrentUser, withMessages, Utils } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
 import { Button } from 'react-bootstrap';
 

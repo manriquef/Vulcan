@@ -37,14 +37,14 @@ const FeedsList = (props) => {
 FeedsList.displayName = "FeedsList";
 
 FeedsList.propTypes = {
-  results: React.PropTypes.array,
-  terms: React.PropTypes.object,
-  hasMore: React.PropTypes.bool,
-  loading: React.PropTypes.bool,
-  count: React.PropTypes.number,
-  totalCount: React.PropTypes.number,
-  loadMore: React.PropTypes.func,
-  showHeader: React.PropTypes.bool,
+  results: PropTypes.array,
+  terms: PropTypes.object,
+  hasMore: PropTypes.bool,
+  loading: PropTypes.bool,
+  count: PropTypes.number,
+  totalCount: PropTypes.number,
+  loadMore: PropTypes.func,
+  showHeader: PropTypes.bool,
 };
 
 registerComponent('FeedsList', FeedsList);

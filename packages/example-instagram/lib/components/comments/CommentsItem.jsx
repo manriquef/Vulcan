@@ -9,7 +9,8 @@ should be displayed.
 
 */
 
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Components, registerComponent } from 'meteor/vulcan:core';
 
 import Comments from '../../modules/comments/collection.js';

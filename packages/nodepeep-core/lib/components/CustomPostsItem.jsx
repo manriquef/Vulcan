@@ -6,7 +6,8 @@ Added comment icon next to comments.
 Test commit
 */
 import { Components, getRawComponent, replaceComponent } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage, FormattedRelative } from 'react-intl';
 import { Link } from 'react-router';
 import Posts from "meteor/vulcan:posts";

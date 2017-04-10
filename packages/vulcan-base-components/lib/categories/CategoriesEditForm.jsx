@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import { Components, registerComponent, getFragment, withMessages } from 'meteor/vulcan:core';
 import Categories from "meteor/vulcan:categories";
@@ -31,14 +32,14 @@ const CategoriesEditForm = (props, context) => {
 };
 
 CategoriesEditForm.propTypes = {
-  category: React.PropTypes.object.isRequired,
-  closeModal: React.PropTypes.func,
-  flash: React.PropTypes.func,
+  category: PropTypes.object.isRequired,
+  closeModal: PropTypes.func,
+  flash: PropTypes.func,
 }
 
 CategoriesEditForm.contextTypes = {
   intl: intlShape,
-  // events: React.PropTypes.object,
+  // events: PropTypes.object,
 };
 
 registerComponent('CategoriesEditForm', CategoriesEditForm, withMessages);

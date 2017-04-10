@@ -62,7 +62,7 @@ export class AccountsField extends React.Component {
   }
 }
 AccountsField.propTypes = {
-  onChange: React.PropTypes.func
+  onChange: PropTypes.func
 };
 
 registerComponent('AccountsField', AccountsField)

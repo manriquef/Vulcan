@@ -1,5 +1,6 @@
 import { Components, registerComponent, Button, ModalTrigger } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage, FormattedRelative } from 'react-intl';
 import { Link } from 'react-router';
 import Posts from "meteor/vulcan:posts";
@@ -88,9 +89,9 @@ class CardsItem extends Component {
 CardsItem.displayName = "CardsItem";
 
 CardsItem.propTypes = {
-  currentUser: React.PropTypes.object,
-  post: React.PropTypes.object.isRequired,
-  terms: React.PropTypes.object,
+  currentUser: PropTypes.object,
+  post: PropTypes.object.isRequired,
+  terms: PropTypes.object,
 };
 
 registerComponent('CardsItem', CardsItem);

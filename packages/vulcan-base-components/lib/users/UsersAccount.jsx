@@ -8,7 +8,7 @@ const UsersAccount = (props, context) => {
 };
 
 UsersAccount.propTypes = {
-  currentUser: React.PropTypes.object
+  currentUser: PropTypes.object
 };
 
 UsersAccount.displayName = "UsersAccount";

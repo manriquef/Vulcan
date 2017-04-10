@@ -4,7 +4,8 @@ A component to configure the "edit pic" form.
 
 */
 
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Components, registerComponent, getFragment } from "meteor/vulcan:core";
 
 import Pics from '../../modules/pics/collection.js';

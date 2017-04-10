@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Components, registerComponent, getFragment} from 'meteor/vulcan:core';
 import { intlShape } from 'react-intl';
 import NovaForm from "meteor/vulcan:forms";
@@ -24,8 +25,8 @@ const FeedsNewForm = (props, context) => {
 };
 
 FeedsNewForm.contextTypes = {
-  currentUser: React.PropTypes.object,
-  messages: React.PropTypes.object,
+  currentUser: PropTypes.object,
+  messages: PropTypes.object,
   intl: intlShape
 };
 

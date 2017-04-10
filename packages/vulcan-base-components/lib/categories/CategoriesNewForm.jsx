@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import { Components, registerComponent, getFragment, withMessages } from 'meteor/vulcan:core';
 import Categories from "meteor/vulcan:categories";
@@ -7,7 +8,7 @@ const CategoriesNewForm = (props, context) => {
 
   return (
     <div className="categories-new-form">
-      <Components.SmartForm 
+      <Components.SmartForm
         collection={Categories}
         mutationFragment={getFragment('CategoriesList')}
         successCallback={category => {
@@ -22,8 +23,8 @@ const CategoriesNewForm = (props, context) => {
 CategoriesNewForm.displayName = "CategoriesNewForm";
 
 CategoriesNewForm.propTypes = {
-  closeCallback: React.PropTypes.func,
-  flash: React.PropTypes.func,
+  closeCallback: PropTypes.func,
+  flash: PropTypes.func,
 };
 
 CategoriesNewForm.contextTypes = {

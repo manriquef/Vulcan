@@ -1,5 +1,6 @@
 import { Components, registerComponent, withMessages } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withVote, hasUpvoted, hasDownvoted } from 'meteor/vulcan:voting';
 import { FormattedMessage, intlShape } from 'react-intl';
@@ -104,10 +105,10 @@ class Vote extends Component {
 }
 
 Vote.propTypes = {
-  document: React.PropTypes.object.isRequired, // the document to upvote
-  collection: React.PropTypes.object.isRequired, // the collection containing the document
-  vote: React.PropTypes.func.isRequired, // mutate function with callback inside
-  currentUser: React.PropTypes.object, // user might not be logged in, so don't make it required
+  document: PropTypes.object.isRequired, // the document to upvote
+  collection: PropTypes.object.isRequired, // the collection containing the document
+  vote: PropTypes.func.isRequired, // mutate function with callback inside
+  currentUser: PropTypes.object, // user might not be logged in, so don't make it required
 };
 
 Vote.contextTypes = {

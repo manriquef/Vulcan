@@ -9,7 +9,8 @@ displayed in the form, as is the case here
 
 */
 
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Components, registerComponent, getFragment } from 'meteor/vulcan:core';
 
 import Comments from '../../modules/comments/collection.js';

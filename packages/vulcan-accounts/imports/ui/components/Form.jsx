@@ -40,11 +40,11 @@ export class AccountsForm extends React.Component {
   }
 }
 AccountsForm.propTypes = {
-  oauthServices: React.PropTypes.object,
-  fields: React.PropTypes.object.isRequired,
-  buttons: React.PropTypes.object.isRequired,
-  error: React.PropTypes.string,
-  ready: React.PropTypes.bool
+  oauthServices: PropTypes.object,
+  fields: PropTypes.object.isRequired,
+  buttons: PropTypes.object.isRequired,
+  error: PropTypes.string,
+  ready: PropTypes.bool
 };
 
 registerComponent('AccountsForm', AccountsForm);

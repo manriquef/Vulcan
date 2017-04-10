@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import FormComponent from "./FormComponent.jsx";
 
 class FormGroup extends Component {
@@ -13,11 +14,11 @@ class FormGroup extends Component {
 }
 
 FormGroup.propTypes = {
-  name: React.PropTypes.string,
-  label: React.PropTypes.string,
-  order: React.PropTypes.number,
-  fields: React.PropTypes.array,
-  updateCurrentValues: React.PropTypes.func
+  name: PropTypes.string,
+  label: PropTypes.string,
+  order: PropTypes.number,
+  fields: PropTypes.array,
+  updateCurrentValues: PropTypes.func
 }
 
 export default FormGroup;

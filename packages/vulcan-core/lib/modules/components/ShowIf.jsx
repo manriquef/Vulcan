@@ -8,10 +8,10 @@ const ShowIf = props => {
 };
 
 ShowIf.propTypes = {
-  check: React.PropTypes.func.isRequired,
-  currentUser: React.PropTypes.object,
-  document: React.PropTypes.object,
-  failureComponent: React.PropTypes.object,
+  check: PropTypes.func.isRequired,
+  currentUser: PropTypes.object,
+  document: PropTypes.object,
+  failureComponent: PropTypes.object,
 };
 
 ShowIf.displayName = "ShowIf";

@@ -1,5 +1,6 @@
 import { Components, registerComponent, withCurrentUser } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
 import { Button } from 'react-bootstrap';
 
@@ -17,11 +18,11 @@ const PostsNewButton = (props, context) => {
 PostsNewButton.displayName = "PostsNewButton";
 
 PostsNewButton.propTypes = {
-  currentUser: React.PropTypes.object,
+  currentUser: PropTypes.object,
 };
 
 PostsNewButton.contextTypes = {
-  messages: React.PropTypes.object,
+  messages: PropTypes.object,
   intl: intlShape
 };
 

@@ -28,7 +28,7 @@ export class AccountsButton extends React.Component {
   }
 }
 AccountsButton.propTypes = {
-  onClick: React.PropTypes.func
+  onClick: PropTypes.func
 };
 
 registerComponent('AccountsButton', AccountsButton);

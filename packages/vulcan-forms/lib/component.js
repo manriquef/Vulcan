@@ -7,42 +7,42 @@ var React = require('react');
 module.exports = {
 
     propTypes: {
-        layout: React.PropTypes.string,
-        validatePristine: React.PropTypes.bool,
-        rowClassName: React.PropTypes.oneOfType([
-            React.PropTypes.string,
-            React.PropTypes.array,
-            React.PropTypes.object
+        layout: PropTypes.string,
+        validatePristine: PropTypes.bool,
+        rowClassName: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.array,
+            PropTypes.object
         ]),
-        labelClassName: React.PropTypes.oneOfType([
-            React.PropTypes.string,
-            React.PropTypes.array,
-            React.PropTypes.object
+        labelClassName: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.array,
+            PropTypes.object
         ]),
-        elementWrapperClassName: React.PropTypes.oneOfType([
-            React.PropTypes.string,
-            React.PropTypes.array,
-            React.PropTypes.object
+        elementWrapperClassName: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.array,
+            PropTypes.object
         ])
     },
 
     contextTypes: {
-        layout: React.PropTypes.string,
-        validatePristine: React.PropTypes.bool,
-        rowClassName: React.PropTypes.oneOfType([
-            React.PropTypes.string,
-            React.PropTypes.array,
-            React.PropTypes.object
+        layout: PropTypes.string,
+        validatePristine: PropTypes.bool,
+        rowClassName: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.array,
+            PropTypes.object
         ]),
-        labelClassName: React.PropTypes.oneOfType([
-            React.PropTypes.string,
-            React.PropTypes.array,
-            React.PropTypes.object
+        labelClassName: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.array,
+            PropTypes.object
         ]),
-        elementWrapperClassName: React.PropTypes.oneOfType([
-            React.PropTypes.string,
-            React.PropTypes.array,
-            React.PropTypes.object
+        elementWrapperClassName: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.array,
+            PropTypes.object
         ])
     },
 

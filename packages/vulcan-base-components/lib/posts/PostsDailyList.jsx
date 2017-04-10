@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { FormattedMessage } from 'react-intl';
 import Posts from 'meteor/vulcan:posts';
@@ -98,9 +99,9 @@ class PostsDailyList extends Component{
 }
 
 PostsDailyList.propTypes = {
-  currentUser: React.PropTypes.object,
-  days: React.PropTypes.number,
-  increment: React.PropTypes.number
+  currentUser: PropTypes.object,
+  days: PropTypes.number,
+  increment: PropTypes.number
 };
 
 PostsDailyList.defaultProps = {

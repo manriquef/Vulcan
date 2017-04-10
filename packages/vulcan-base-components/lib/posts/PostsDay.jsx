@@ -1,5 +1,6 @@
 import { Components, registerComponent } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class PostsDay extends Component {
 
@@ -26,9 +27,9 @@ class PostsDay extends Component {
 }
 
 PostsDay.propTypes = {
-  currentUser: React.PropTypes.object,
-  date: React.PropTypes.object,
-  number: React.PropTypes.number
+  currentUser: PropTypes.object,
+  date: PropTypes.object,
+  number: PropTypes.number
 }
 
 registerComponent('PostsDay', PostsDay);

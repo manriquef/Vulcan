@@ -1,5 +1,6 @@
 import { Components, withMessages } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 
 // this component is used as a custom controller in user's account edit (cf. ./custom_fields.js)
@@ -63,7 +64,7 @@ class NewsletterSubscribe extends Component {
 }
 
 NewsletterSubscribe.contextTypes = {
-  addToAutofilledValues: React.PropTypes.func,
+  addToAutofilledValues: PropTypes.func,
   intl: intlShape
 };
 

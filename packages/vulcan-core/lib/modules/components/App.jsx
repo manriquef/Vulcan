@@ -1,5 +1,6 @@
 import { Components, registerComponent, getSetting, Strings } from 'meteor/vulcan:lib';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { IntlProvider, intlShape} from 'react-intl';
 import withCurrentUser from '../containers/withCurrentUser.js';
 
@@ -37,7 +38,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  loading: React.PropTypes.bool,
+  loading: PropTypes.bool,
 }
 
 App.childContextTypes = {

@@ -1,5 +1,6 @@
 import { Components, registerComponent, getFragment, withMessages } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import Posts from "meteor/vulcan:posts";
 import { withRouter } from 'react-router'
@@ -51,9 +52,9 @@ class PostsEditForm extends Component {
 }
 
 PostsEditForm.propTypes = {
-  closeModal: React.PropTypes.func,
-  flash: React.PropTypes.func,
-  post: React.PropTypes.object.isRequired,
+  closeModal: PropTypes.func,
+  flash: PropTypes.func,
+  post: PropTypes.object.isRequired,
 }
 
 PostsEditForm.contextTypes = {
