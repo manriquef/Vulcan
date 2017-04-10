@@ -389,7 +389,14 @@
 //////////////////////////////////////////////////////
 // Card Item                                        //
 //////////////////////////////////////////////////////
-
+.cards-item{
+  .posts-thumbnail{
+    img{
+    height: 80px;
+    width: 100px;
+   }
+  }
+}
 .cards-item-content{
   display: inline-block;
   height: 100%;
