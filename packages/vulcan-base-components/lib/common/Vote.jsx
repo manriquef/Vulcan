@@ -9,6 +9,7 @@ class Vote extends Component {
   constructor() {
     super();
     this.upvote = this.upvote.bind(this);
+    this.downvote = this.downvote.bind(this);
     this.getActionClass = this.getActionClass.bind(this);
     // this.startLoading = this.startLoading.bind(this);
     // this.stopLoading = this.stopLoading.bind(this);
@@ -21,7 +22,7 @@ class Vote extends Component {
 
   note: with optimisitc UI, loading functions are not needed
   also, setState triggers issues when the component is unmounted
-  before the vote mutation returns. 
+  before the vote mutation returns.
 
   */
 
@@ -50,7 +51,26 @@ class Vote extends Component {
       this.props.vote({document, voteType, collection, currentUser: this.props.currentUser}).then(result => {
         // this.stopLoading();
       });
-    } 
+    }
+  }
+
+  downvote(e) {
+    e.preventDefault();
+
+  //  this.startLoading();
+    const document = this.props.document;
+    const collection = this.props.collection;
+    const user = this.props.currentUser;
+
+    if(!user){
+      this.props.flash("Please log in first");
+    //  this.stopLoading();
+    } else {
+      const voteType = this.hasDownvoted(user, document) ? "cancelDownvote" : "downvote";
+      this.props.vote({document, voteType, collection, currentUser: this.props.currentUser}).then(result => {
+      //  this.stopLoading();
+      });
+    }
   }
 
   getActionClass() {
@@ -60,7 +80,7 @@ class Vote extends Component {
     const isUpvoted = hasUpvoted(user, document);
     const isDownvoted = hasDownvoted(user, document);
     const actionsClass = classNames(
-      'vote', 
+      'vote',
       {voted: isUpvoted || isDownvoted},
       {upvoted: isUpvoted},
       {downvoted: isDownvoted}

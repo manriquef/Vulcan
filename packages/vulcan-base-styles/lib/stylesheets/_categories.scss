@@ -11,13 +11,13 @@
   text-align: center;
   padding: $vmargin/2;
   button{
-    display: inline-block;
+  //  display: inline-block;
   }
 }
 
-.categories-node .categories-node{
-  border-left: 10px $lightest-border solid;
-  padding-left: $hmargin;
+.categories-item{
+  display: inline-block;
+  padding-left: 3px;
 }
 
 .categories-edit-form-admin{

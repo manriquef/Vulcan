@@ -1,12 +1,20 @@
+/* Modified 23DEC2016
+
+   Changes: Specified search form width of 250
+
+*/
+
 .footer{
   text-align: center;
   margin-bottom: $vmargin;
 }
 
 .search-form{
+  max-width: 250px;
   .form-group{
     margin-bottom: 0;
   }
+  padding-bottom: $vmargin;
 }
 
 .modal-form-title{

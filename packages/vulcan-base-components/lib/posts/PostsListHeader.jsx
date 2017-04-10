@@ -6,11 +6,7 @@ const PostsListHeader = () => {
   return (
     <div>
       <div className="posts-list-header">
-        <div className="posts-list-header-categories">
-          <Components.CategoriesList />
-        </div>
         <Components.PostsViews />
-        <Components.SearchForm/>
       </div>
     </div>
   )

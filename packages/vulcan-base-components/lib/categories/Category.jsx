@@ -1,7 +1,7 @@
 import { ModalTrigger, Components, registerComponent } from 'meteor/vulcan:core';
 import React, { PropTypes, Component } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { MenuItem } from 'react-bootstrap';
+import { Button, MenuItem } from 'react-bootstrap';
 import { withRouter } from 'react-router'
 import Categories from 'meteor/vulcan:categories';
 
@@ -20,22 +20,23 @@ class Category extends Component {
     const {category, index, router} = this.props;
 
     // const currentQuery = router.location.query;
+    <Components.ShowIf check={Categories.options.mutations.edit.check} document={category}>{this.renderEdit()}</Components.ShowIf>
     const currentCategorySlug = router.location.query.cat;
     const newQuery = _.clone(router.location.query);
     newQuery.cat = category.slug;
 
     return (
-      <div className="category-menu-item dropdown-item">
+      <div className="category-button-item">
         <LinkContainer to={{pathname:"/", query: newQuery}}>
-          <MenuItem
-            eventKey={index+1}
+          <Button
+            bsStyle="primary"
+            bsSize="small"
             key={category._id}
           >
             {currentCategorySlug === category.slug ? <Components.Icon name="voted"/> :  null}
             {category.name}
-          </MenuItem>
+          </Button>
         </LinkContainer>
-        <Components.ShowIf check={Categories.options.mutations.edit.check} document={category}>{this.renderEdit()}</Components.ShowIf>
       </div>
     )
   }

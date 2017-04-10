@@ -12,6 +12,7 @@ Package.onUse(function (api) {
   api.use([
     'vulcan:core@1.3.2',
     'vulcan:posts@1.3.2',
+    'vulcan:forms-tags@1.3.2',
   ]);
 
   api.mainModule("lib/server.js", "server");

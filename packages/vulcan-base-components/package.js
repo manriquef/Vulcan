@@ -17,6 +17,8 @@ Package.onUse(function (api) {
     'vulcan:voting@1.3.2',
     'vulcan:accounts@1.3.2',
     'vulcan:categories@1.3.2',
+    // Nodepeep packages
+    'nodepeep-report@1.3.2',
   ]);
 
   api.mainModule("lib/server.js", "server");

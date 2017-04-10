@@ -1,11 +1,82 @@
+/*
+   Last Modified: 24MAR2017
+
+   Purpose: Make a central location of variables site wide in this
+   file to easily manipulate the site visuals
+*/
+
 $hmargin: 10px;
 $vmargin: 15px;
+$vmarginPostPadding: 5px;
 
+$smallest-font: 0.7rem;
 $smaller-font: 0.8rem;
+$smaller1-font: 0.85rem;
 $small-font: 0.9rem;
 $medium-font: 1rem;
 $large-font: 1.25rem;
 $larger-font: 1.35rem;
+
+// Colors
+$color-lightgrey: #888888;
+
+// Icons
+// upvote located at posts.scss
+$upvoteIconColor: #911818;
+$upvoteIconHoverColor: #f15050;
+$downvoteIconColor: #911818;
+$downvoteIconHoverColor: #f15050;
+$upvotedColor: #047036;
+$downvoteColor: #6e3d0a;
+$commentIconColor: #0c70f4;
+$replyIconColor: #0c70f4;
+$deleteIconColor: #0c70f4;
+
+//Avatar comment size is in UserAvatar.jsx
+
+// Posts
+$postItemBorder: 0px solid #6a1a1a;
+$borderTopComment: 1px solid #6a1a1a;
+$postSponsored: #2e53f1;
+
+// Comments
+$borderCommentsBody: 0px solid #6a1a1a;
+$leftCommentBorderNode: #dad5d5;
+$hmarginComment: 3px;
+$vmarginComment: 7px;
+$lcommentText: 10px;
+$cmtDeleteColor: #f50a0a;
+$cmtEditColor: #f17612;
+$bottomNodeMargin: 5px;
+
+// Button Colors
+$btnPriNormal: #2d6cac;
+$btnPriHover: #3f79b3;
+
+$btnSecHover: #3f79b3;
+$btnBorderColor: #adadad;
+$btnSecActiveHover: #90ddb6;
+
+$btnSecMenuItem: #123456;
+$btnSecMenuItemHover: #234567;
+
+$reportIcon: #ff6300;
+
+// Button Font Size
+$btnFontSize: 1rem;
+
+.users-name{
+  color: #c62d57;
+}
+
+.posts-commenters-comments-count{
+  color: #541255;
+}
+
+.report a {
+  color: $reportIcon;
+  margin-left: 5px;
+}
 
 $border: 1px solid $light-border;
 
@@ -29,4 +100,3 @@ $border: 1px solid $light-border;
 @mixin border{
   border: $border;
 }
-

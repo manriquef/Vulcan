@@ -12,8 +12,8 @@ const UsersProfile = (props) => {
   } else if (!props.document) {
 
     console.log(`// missing user (_id/slug: ${props.documentId || props.slug})`);
-    return <div className="page users-profile"><FormattedMessage id="app.404"/></div> 
-  
+    return <div className="page users-profile"><FormattedMessage id="app.404"/></div>
+
   } else {
 
     const user = props.document;

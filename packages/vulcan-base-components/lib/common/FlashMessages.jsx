@@ -8,6 +8,7 @@ const FlashMessages = ({messages, clear, markAsSeen}) => {
         .filter(message => message.show)
         .map(message => <Components.Flash key={message._id} message={message} clear={clear} markAsSeen={markAsSeen} />)}
     </div>
+
   );
 }
 

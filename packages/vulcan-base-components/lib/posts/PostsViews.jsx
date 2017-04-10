@@ -1,7 +1,7 @@
 import { registerComponent, withCurrentUser } from 'meteor/vulcan:core';
 import React, { PropTypes, Component } from 'react';
 import { FormattedMessage, intlShape } from 'react-intl';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
+import { Button, MenuItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { withRouter } from 'react-router'
 import Users from 'meteor/vulcan:users';
@@ -19,25 +19,18 @@ const PostsViews = (props, context) => {
 
   return (
     <div className="posts-views">
-      <DropdownButton
-        bsStyle="default"
-        className="views btn-secondary"
-        title={context.intl.formatMessage({id: "posts.view"})}
-        id="views-dropdown"
-      >
         {views.map(view =>
-          <LinkContainer key={view} to={{pathname: "/", query: {...query, view: view}}} className="dropdown-item">
-            <MenuItem>
+          <LinkContainer key={view} to={{pathname: "/", query: {...query, view: view}}} className="button-item">
+            <Button bsStyle="primary" bsSize="small">
               <FormattedMessage id={"posts."+view}/>
-            </MenuItem>
+            </Button>
           </LinkContainer>
         )}
-        <LinkContainer to={"/daily"} className="dropdown-item">
-          <MenuItem className={"bar"}>
+        <LinkContainer to={"/daily"} className="button-item">
+          <Button bsStyle="primary" bsSize="small" >
             <FormattedMessage id="posts.daily"/>
-          </MenuItem>
+          </Button>
         </LinkContainer>
-      </DropdownButton>
     </div>
   )
 }

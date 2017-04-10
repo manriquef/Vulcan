@@ -21,7 +21,7 @@ vulcan:users                      # user management and permissions
  vulcan:categories
  vulcan:voting
  vulcan:events
- #vulcan:embedly
+ vulcan:embedly
  vulcan:api
  vulcan:rss
  vulcan:subscribe
@@ -42,14 +42,15 @@ accounts-password@1.3.4
 # accounts-twitter
 # accounts-facebook
 
-#framework-demo
-#nodepeep-core
-#nodepeep-report
-#nodepeep:post-by-feed
-
-############ Your Packages ############
+############ Demo Packages ############
 
 # example-movies
 # example-movies-full
-example-customization
-example-forum
+# example-customization
+# example-forum
+
+############ Your Packages ############
+
+nodepeep-core
+nodepeep-report
+nodepeep:post-by-feed

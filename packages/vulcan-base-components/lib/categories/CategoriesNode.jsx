@@ -23,7 +23,7 @@ class CategoriesNode extends Component {
     const children = this.props.category.childrenResults;
 
     return (
-      <div className="categories-node">
+      <div className="categories-item">
         {this.renderCategory(category)}
         {children ? this.renderChildren(children) : null}
       </div>

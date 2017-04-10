@@ -14,7 +14,7 @@ div.ReactTags__tagInput {
   border-radius: 2px;
   display: inline-block;
 }
-div.ReactTags__tagInput input, 
+div.ReactTags__tagInput input,
 div.ReactTags__tagInput input:focus {
   // height: 31px;
   // margin: 0;
@@ -39,7 +39,7 @@ div.ReactTags__selected {
   float: left;
   display: flex;
   align-items: center;
-  margin-left: -5px;
+  //margin-left: -5px;
 }
 div.ReactTags__selected span.ReactTags__tag {
   border: 1px solid #ddd;

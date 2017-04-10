@@ -1,12 +1,68 @@
+/* Modified: 23DEC2016
+
+   Changes: Split up the main, header & footer
+*/
+
 body{
   font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", sans-serif;
 }
 
-.main, .footer, .header{
+.main{
   margin-left: auto;
   margin-right: auto;
   padding: 0 $hmargin;
   max-width: 1200px;
+}
+ .footer{
+   margin-left: auto;
+   margin-right: auto;
+   padding: 0 $hmargin;
+   max-width: 1200px;
+ }
+
+ .header{
+   margin-left: auto;
+   margin-right: auto;
+   padding: 0 $hmargin;
+   max-width: 1200px;
+ }
+
+ .cards-item{
+   display: inline-flex;
+   border: 1px solid #0F0;
+   border-radius: 3px;
+   //position: sticky;
+   @include small{
+     width: 150px;
+   }
+   min-width: 150px;
+   max-width: 15%;
+   height: 200px;
+   margin-bottom: 10px;
+   margin-right: 10px;
+ }
+
+ .cards-item-list{
+   text-align: center;
+ }
+
+ .rightbar{
+   max-width: 25%;
+   border: 1px solid #F00;
+   border-radius: 3px;
+   float: right;
+   position: sticky;
+   width: 25%;
+ }
+
+ .rightbar-categories{
+   height: 100px;
+   overflow-y: scroll;
+ }
+
+.sidemenu{
+
+
 }
 
 .main{

@@ -58,8 +58,7 @@ class CommentsItem extends Component{
       <div className="comments-item-text">
         <div dangerouslySetInnerHTML={htmlBody}></div>
         { showReplyButton ?
-          <a className="comments-item-reply-link" onClick={this.showReply}>
-            <Components.Icon name="reply"/> <FormattedMessage id="comments.reply"/>
+          <a className="comments-item-reply-link" onClick={this.showReply}><Components.Icon name="reply"/> <FormattedMessage id="comments.reply"/>
           </a> : null}
       </div>
     )
@@ -107,9 +106,12 @@ class CommentsItem extends Component{
             <div className="comments-item-date"><FormattedRelative value={comment.postedAt}/></div>
             <Components.ShowIf check={Comments.options.mutations.edit.check} document={this.props.comment}>
               <div>
+                <span className="comments-edit-item" title="Edit this comment">
                 <a className="comment-edit" onClick={this.showEdit}><FormattedMessage id="comments.edit"/></a>
+                </span>
               </div>
             </Components.ShowIf>
+            {this.props.currentUser && comment.user._id == this.props.currentUser._id ? null : <Components.Reporting collection={Comments} document={this.props.comment} currentUser={this.props.currentUser} />}
           </div>
           {this.state.showEdit ? this.renderEdit() : this.renderComment()}
         </div>
@@ -117,7 +119,6 @@ class CommentsItem extends Component{
       </div>
     )
   }
-
 }
 
 CommentsItem.propTypes = {

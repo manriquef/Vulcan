@@ -9,6 +9,17 @@ const PostsCommenters = ({post}) => {
       <div className="posts-commenters-avatars">
         {_.take(post.commenters, 4).map(user => <Components.UsersAvatar key={user._id} user={user}/>)}
       </div>
+    </div>
+  );
+};
+
+/*
+const PostsCommenters = ({post}) => {
+  return (
+    <div className="posts-commenters">
+      <div className="posts-commenters-avatars">
+        {_.take(post.commenters, 4).map(user => <Components.UsersAvatar key={user._id} user={user}/>)}
+      </div>
       <div className="posts-commenters-discuss">
         <Link to={Posts.getPageUrl(post)}>
           <Components.Icon name="comment" />
@@ -19,7 +30,7 @@ const PostsCommenters = ({post}) => {
     </div>
   );
 };
-
+*/
 PostsCommenters.displayName = "PostsCommenters";
 
 registerComponent('PostsCommenters', PostsCommenters);
