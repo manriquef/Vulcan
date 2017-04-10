@@ -6,6 +6,8 @@ addStrings('en', {
   "feeds.userId": "Feed User",
   "feeds.categories": "Feed Categories",
   "feeds.created_message": "Feed successfuly created!",
+  "posts.feeds" : "Post Feeds",
+  "posts.feeds.new" : " New Post Feeds",
 });
 
 addStrings('fr', {

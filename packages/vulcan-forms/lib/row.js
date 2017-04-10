@@ -3,32 +3,34 @@
 'use strict';
 
 var React = require('react');
+var createReactClass = require('create-react-class');
+
 var classNames = require('classnames/dedupe');
 
-var Row = React.createClass({
+var Row = createReactClass({
 
     propTypes: {
-        label: PropTypes.node,
-        rowClassName: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.array,
-            PropTypes.object
+        label: React.PropTypes.node,
+        rowClassName: React.PropTypes.oneOfType([
+          React.PropTypes.string,
+            React.PropTypes.array,
+            React.PropTypes.object
         ]),
-        labelClassName: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.array,
-            PropTypes.object
+        labelClassName: React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.array,
+            React.PropTypes.object
         ]),
-        elementWrapperClassName: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.array,
-            PropTypes.object
+        elementWrapperClassName: React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.array,
+            React.PropTypes.object
         ]),
-        required: PropTypes.bool,
-        hasErrors: PropTypes.bool,
-        fakeLabel: PropTypes.bool,
-        layout: PropTypes.oneOf(['horizontal', 'vertical', 'elementOnly']),
-        htmlFor: PropTypes.string
+        required: React.PropTypes.bool,
+        hasErrors: React.PropTypes.bool,
+        fakeLabel: React.PropTypes.bool,
+        layout: React.PropTypes.oneOf(['horizontal', 'vertical', 'elementOnly']),
+        htmlFor: React.PropTypes.string
     },
 
     getDefaultProps: function() {

@@ -1,5 +1,6 @@
 import { Components, getRawComponent, registerComponent, withList, withCurrentUser } from 'meteor/vulcan:core';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Posts from 'meteor/vulcan:posts';
 import { Alert } from 'react-bootstrap';
 

@@ -48,10 +48,9 @@ class CardsItem extends Component {
     return (
       <div className={cardClass}>
 
-        {post.thumbnailUrl ? <Components.PostsThumbnail post={post}/> : null}
-
         <div className="cards-item-content">
 
+          {post.thumbnailUrl ? <Components.CardsThumbnail post={post}/> : null}
           <div className="cards-item-title">
             <Link to={Posts.getLink(post)} className="cards-item-title-link" target={Posts.getLinkTarget(post)}>
               {this.renderTitle()}

@@ -19,6 +19,8 @@ Package.onUse(function (api) {
     'vulcan:categories@1.3.2',
     // Nodepeep packages
     'nodepeep-report@1.3.2',
+    // third party
+    'fortawesome:fontawesome@4.7.0',
   ]);
 
   api.mainModule("lib/server.js", "server");

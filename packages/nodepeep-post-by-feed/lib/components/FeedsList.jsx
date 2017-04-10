@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Components, getRawComponent, registerComponent, withList, withCurrentUser } from 'meteor/vulcan:core';
 import Feeds from '../collection.js';
 

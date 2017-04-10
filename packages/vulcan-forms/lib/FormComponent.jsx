@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 import Formsy from 'formsy-react';
 import FRC from 'formsy-react-components';
 import { intlShape } from 'react-intl';
@@ -111,7 +112,7 @@ export default FormComponent;
 import ComponentMixin from './component';
 import Row from './row';
 
-const CheckboxGroup = React.createClass({
+const CheckboxGroup = createReactClass({
 
     mixins: [Formsy.Mixin, ComponentMixin],
 
