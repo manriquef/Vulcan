@@ -50,14 +50,13 @@ class CardsItem extends Component {
 
         <div className="cards-item-content">
 
-          {post.thumbnailUrl ? <Components.CardsThumbnail post={post}/> : null}
-          <div className="cards-item-title">
-            <Link to={Posts.getLink(post)} className="cards-item-title-link" target={Posts.getLinkTarget(post)}>
-              {this.renderTitle()}
-            </Link>
+            {post.thumbnailUrl ? <Components.CardsThumbnail post={post}/> : <div className="cards-item-thumbnail"></div>}
+            <div className="cards-item-title">
+              <Link to={Posts.getLink(post)} className="cards-item-title-link" target={Posts.getLinkTarget(post)}>
+                {this.renderTitle()}
+              </Link>
+            </div>
             {this.renderCategories()}
-          </div>
-
             {post.user? <div className="cards-item-user"><Components.UsersAvatar user={post.user} size="small"/></div> : null}
             <div className="cards-item-date">{post.postedAt ? <FormattedRelative value={post.postedAt}/> : <FormattedMessage id="posts.dateNotDefined"/>}</div>
             <div className="cards-item-comments">
