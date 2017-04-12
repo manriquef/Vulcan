@@ -21,7 +21,7 @@ vulcan:users                      # user management and permissions
  vulcan:categories
  vulcan:voting
  vulcan:events
- vulcan:embedly
+ vulcan:embedapi
  vulcan:api
  vulcan:rss
  vulcan:subscribe

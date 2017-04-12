@@ -12,6 +12,18 @@ registerFragment(`
   }
 `);
 
+// ------------------------------ Reporting ------------------------------ //
+
+// note: fragment used by default on the Reporting fragment
+registerFragment(`
+  fragment ReportedItem on Report {
+    # nodepeep-report
+    itemId
+    power
+    reportedAt
+  }
+`);
+
 // ------------------------------ Users ------------------------------ //
 
 // note: fragment used by default on UsersProfile, PostsList & CommentsList fragments
@@ -59,6 +71,12 @@ registerFragment(`
     }
     upvotedPosts {
       ...VotedItem
+    }
+    reportedPosts{
+      ...ReportedItem
+    }
+    reportedComments{
+      ...ReportedItem
     }
   }
 `);
@@ -112,8 +130,8 @@ registerFragment(`
     user {
       ...UsersMinimumInfo
     }
-    # vulcan:embedly
-    thumbnailUrl
+    # vulcan:embedAPI
+     thumbnailUrl
     # vulcan:categories
     categories {
       ...CategoriesMinimumInfo
@@ -134,6 +152,12 @@ registerFragment(`
     downvotes
     baseScore
     score
+    reports
+    reporters {
+      _id
+    }
+    reportBaseScore
+    reportScore
   }
 `);
 
@@ -180,5 +204,49 @@ registerFragment(`
     downvotes
     baseScore
     score
+    reports
+    reporters {
+      _id
+    }
+    reportBaseScore
+    reportScore
+  }
+`);
+
+// ------------------------------ Feeds ------------------------------ //
+
+registerFragment(`
+  fragment FeedsList on Feed {
+    # vulcan:posts
+    _id
+    title
+    url
+    slug
+    postedAt
+    createdAt
+    sticky
+    status
+    body
+    htmlBody
+    excerpt
+    viewCount
+    clickCount
+    # vulcan:users
+    userId
+    user {
+      ...UsersMinimumInfo
+    }
+    # vulcan:embedly
+     thumbnailUrl
+    # vulcan:categories
+    categories {
+      ...CategoriesMinimumInfo
+    }
+  }
+`);
+
+registerFragment(`
+  fragment FeedsPage on Feed {
+    ...FeedsList
   }
 `);

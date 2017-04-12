@@ -30,7 +30,7 @@ const resolvers = {
 
     resolver(root, {terms}, context, info) {
       let {selector, options} = context.Posts.getParameters(terms);
-      options.limit = (terms.limit < 1 || terms.limit > 100) ? 100 : terms.limit;
+      options.limit = (terms.limit < 1 || terms.limit > 100) ? 100000 : terms.limit;
       options.skip = terms.offset;
       options.fields = context.getViewableFields(context.currentUser, context.Posts);
 
@@ -42,7 +42,7 @@ const resolvers = {
   },
 
   single: {
-    
+
     name: 'postsSingle',
 
     check(user, document, collection) {
@@ -60,18 +60,18 @@ const resolvers = {
 
       return context.Users.keepViewableFields(context.currentUser, context.Posts, post);
     },
-  
+
   },
 
   total: {
-    
+
     name: 'postsTotal',
-    
+
     resolver(root, {terms}, context) {
       const {selector} = context.Posts.getParameters(terms);
       return context.Posts.find(selector).count();
     },
-  
+
   }
 };
 

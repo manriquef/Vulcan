@@ -37,7 +37,7 @@ const resolvers = {
     resolver(root, {terms}, context) {
       let {selector, options} = context.Comments.getParameters(terms);
 
-      options.limit = (terms.limit < 1 || terms.limit > 100) ? 100 : terms.limit;
+      options.limit = (terms.limit < 1 || terms.limit > 100) ? 100000 : terms.limit;
       options.skip = terms.offset;
       options.fields = context.getViewableFields(context.currentUser, context.Comments);
 
@@ -47,23 +47,23 @@ const resolvers = {
   },
 
   single: {
-    
+
     name: 'commentsSingle',
-    
+
     resolver(root, {documentId}, context) {
       return context.Comments.findOne({_id: documentId}, { fields: context.getViewableFields(context.currentUser, context.Comments) });
     },
-  
+
   },
 
   total: {
-    
+
     name: 'commentsTotal',
     // broken because it doesn't take any arguments in the query
     resolver(root, {terms}, context) {
       return context.Comments.find({postId: terms.postId}).count();
     },
-  
+
   }
 };
 
