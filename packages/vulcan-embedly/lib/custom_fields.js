@@ -14,7 +14,6 @@ Posts.addField([
     fieldSchema: {
       type: String,
       optional: true,
-      defaultValue: "/packages/vulcan_getting-started/content/images/telescope.png",
       insertableBy: ['members'],
       editableBy: ['members'],
       viewableBy: ['guests'],

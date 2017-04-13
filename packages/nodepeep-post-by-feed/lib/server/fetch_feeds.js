@@ -38,6 +38,19 @@ const normalizeEncoding = function (contentBuffer) {
   return content;
 };
 
+const extractThumbnail = function (body) {
+
+  var n, thumbnail;
+
+  var n = body.search(/\b((?:png|jpe?g|gif))\b/);
+
+  thumbnail = body.slice(10,n+3)
+
+  console.log("POST THUMBNAIL: ", thumbnail);
+  return thumbnail;
+
+};
+
 const feedHandler = {
   getStream(content) {
     let stream = new Readable();
@@ -100,6 +113,8 @@ const feedHandler = {
     feedParser.on('readable', Meteor.bindEnvironment(function () {
       let s = this, item;
 
+      var postBody;
+
       while (item = s.read()) {
 
         // if item has no guid, use the URL to give it one
@@ -121,6 +136,7 @@ const feedHandler = {
           feedId: feedId,
           feedItemId: item.guid,
           userId: userId,
+          thumbnailUrl: extractThumbnail(item.description),
           categories: self.getItemCategories(item, feedCategories)
         };
 
@@ -135,6 +151,8 @@ const feedHandler = {
         if(!post.body && item.link.indexOf('youtube') > 0) {
             post.body = toMarkdown(he.decode(item["media:group"]["media:description"]['#']));
         }
+
+        //post.thumbnailUrl = extractThumbnail(post.body);
 
         // if RSS item link is a 301 or 302 redirect, follow the redirect
         const get = HTTP.get(item.link, {followRedirects: false});
