@@ -40,11 +40,12 @@ const normalizeEncoding = function (contentBuffer) {
 
 const extractThumbnail = function (body) {
 
-  var n, thumbnail;
+  var x,n, thumbnail;
 
+  var x = body.search(/\b(https?:\/\/\S*?\.(?:png|jpe?g|gif))\b/);
   var n = body.search(/\b((?:png|jpe?g|gif))\b/);
 
-  thumbnail = body.slice(10,n+3)
+  thumbnail = body.slice(x,n+3)
 
   console.log("POST THUMBNAIL: ", thumbnail);
   return thumbnail;
