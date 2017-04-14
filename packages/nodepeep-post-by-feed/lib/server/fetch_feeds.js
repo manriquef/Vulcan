@@ -47,7 +47,7 @@ const extractThumbnail = function (body) {
 
   thumbnail = body.slice(x,n+3)
 
-  console.log("POST THUMBNAIL: ", thumbnail);
+  //console.log("POST THUMBNAIL: ", thumbnail);
   return thumbnail;
 
 };

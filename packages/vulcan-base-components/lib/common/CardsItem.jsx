@@ -17,7 +17,7 @@ class CardsItem extends Component {
   renderTitle()
   {
     var title, limit;
-    limit = 70;
+    limit = 64;
     var dots = "...";
 
     this.props.post.title.length > limit ? title = this.props.post.title.substring(0,limit) + dots : title = this.props.post.title;
@@ -49,7 +49,6 @@ class CardsItem extends Component {
       <div className={cardClass}>
 
         <div className="cards-item-content">
-
             {post.thumbnailUrl ? <Components.CardsThumbnail post={post}/> : <div className="cards-item-thumbnail"></div>}
             <div className="cards-item-title">
               <Link to={Posts.getLink(post)} className="cards-item-title-link" target={Posts.getLinkTarget(post)}>
@@ -72,9 +71,7 @@ class CardsItem extends Component {
 
             {this.renderCommenters()}
             {Posts.options.mutations.edit.check(this.props.currentUser, post) ? this.renderActions() : null}
-            <div className="cards-item-post-stats">
-            {this.props.currentUser && this.props.currentUser.isAdmin ? <Components.PostsStats post={post} /> : null}
-            </div>
+            {this.props.currentUser && this.props.currentUser.isAdmin ? <Components.CardsStats post={post} /> : null}
 
         </div>
 

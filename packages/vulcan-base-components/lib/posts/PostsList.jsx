@@ -19,8 +19,8 @@ const PostsList = (props) => {
 
       return (
         <div className="posts-page">
+          {showHeader ? <Components.PostsListHeader/> : null}
             <div className="cards-item-list">
-              {showHeader ? <Components.PostsListHeader/> : null}
               {error ? <Error error={error} /> : null }
               {totalCount >=5 ? results.slice(0, topCards).map(post => <Components.CardsItem post={post} key={post._id} currentUser={currentUser} terms={terms}/>) :
                 results.map(post => <Components.PostsItem post={post} key={post._id} currentUser={currentUser} terms={terms} />)}

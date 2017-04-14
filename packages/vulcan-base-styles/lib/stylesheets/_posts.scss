@@ -315,7 +315,7 @@
   img{
     display: block;
     height: 50px;
-    width: 60px; //width: auto;
+    width: 75px; //width: auto;
   }
 }
 
@@ -392,8 +392,12 @@
 
 
 .cards-item-content{
+  position: absolute;
   display: inline-block;
-  height: 100%;
+  height: 250px;
+  width: 14%;
+  min-width: 200px;
+  margin-left: -1px;
   .posts-commenters-avatars {
     .avatar{
       position: relative;
@@ -412,44 +416,47 @@
   img{
    max-width: 100%;
    max-height: 50%;
-   width: inherit;
+   width: auto;
   }
 }
 
 .cards-item-title{
-  display: inline-block;
+  display: flex;
   height: 80px;
   max-height: 80px;
+  width: 15%;
+  min-width: 200px;
   @include small{
     font-size: $smaller1-font;
   }
   @include medium-large{
-    @include flex-center;
     font-size: $small-font;
   }
-  .cards-item-title-link{
-    height: 80px;
-    @include small{
-      display: block;
-    }
-    color: $black;
-    &, &:active, &:hover{
-      text-decoration: none;
-    }
+}
+.cards-item-title-link {
+  word-wrap: break-word;
+  height: 80px;
+  width: 15%;
+  min-width: 200px;
+  @include small{
+  }
+  color: $black;
+  &, &:active, &:hover{
+    text-decoration: none;
   }
 }
 
 .cards-item-categories{
+  display: inline-flex;
   position: relative;
   flex-wrap: wrap;
-  top: -150px;
+  top: -10px;
+  left: 20px;
   @include medium-large{
     margin-left: 5px;
   }
-  @include flex-center;
   a{
     background: #ffffff;
-    display: block;
     font-size: $smallest-font;
     @include border;
     @include border-radius;
@@ -484,22 +491,20 @@
 }
 
 .cards-item-vote{
+  display: flex;
   position: relative;
   bottom: 10px;
-  @include small{
-    float: left;
-  }
-  @include medium-large{
-    float: left;
-  }
 }
 
 .cards-item-comments{
-//  display: inline;
-  position: relative;
-  top: -15px;
+//  display: flex;
   text-align: right;
-  margin-right: 2px;
+  width: 15%;
+  min-width: 200px;
+//  position: relative;
+//  top: -15px;
+//  left: 20px;
+  margin-left: -2px;
   font-size: $smallest-font;
 }
 
@@ -507,19 +512,30 @@
 
 }
 
-.cards-actions{
-  position: relative;
-  top: -30px;
-  left: -10px;
-}
-
 .cards-item-edit{
+  display: flex;
+  position: relative;
+  top: -117px;
+  left: 170px;
   color: #ffa100;
   font-size: $smallest-font;
 }
 
-.cards-item-post-stats{
+.cards-stats{
+  display: flex;
   position: relative;
-  top: -30px;
-  font-size: $smallest-font;
+  top: 25px;
+  @include small{
+    margin-bottom: $vmargin/2;
+  }
+  @include border;
+  @include border-radius;
+  font-size: $smaller-font;
+  .cards-stats-item{
+    border-right: $border;
+    padding: 2px 5px;
+    &:last-child{
+      border: none;
+    }
+  }
 }
