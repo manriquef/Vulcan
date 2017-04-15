@@ -18,6 +18,7 @@ vulcan:users                      # user management and permissions
  vulcan:notifications
  vulcan:getting-started
  vulcan:forms-tags
+ vulcan:forms-upload
  vulcan:categories
  vulcan:voting
  vulcan:events

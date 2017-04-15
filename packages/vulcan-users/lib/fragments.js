@@ -7,6 +7,7 @@ registerFragment(`
   fragment UsersCurrent on User {
     _id
     username
+    avatar
     createdAt
     isAdmin
     displayName

@@ -35,6 +35,7 @@ registerFragment(`
     username
     displayName
     emailHash
+    avatar
   }
 `);
 

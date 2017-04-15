@@ -2,7 +2,8 @@ import Posts from "meteor/vulcan:posts";
 import Users from "meteor/vulcan:users";
 import { getCategoriesAsOptions } from 'meteor/vulcan:categories';
 import Tags from 'meteor/vulcan:forms-tags';
-
+import { getComponent, getSetting } from 'meteor/vulcan:lib';
+;
 /*
 Modified 07FEB2017
 
@@ -15,6 +16,18 @@ const formGroups = {
     name: "admin",
     order: 2
   }
+};
+
+const originalAvatarConstructor = Users.avatar;
+
+// extends the Users.avatar function
+Users.avatar = {
+  ...originalAvatarConstructor,
+  getUrl(user) {
+    url = originalAvatarConstructor.getUrl(user);
+
+    return !!user && user.avatar ? user.avatar : url;
+  },
 };
 
 Posts.addField([
@@ -57,7 +70,25 @@ Posts.addField([
 ]);
 
 /*******************************************************************/
+
+// extends Users schema with a new field: 'avatar' 👁
 Users.addField([
+  {
+  fieldName: 'avatar',
+  fieldSchema: {
+    type: String,
+    optional: true,
+    control: getComponent('Upload'),
+    insertableBy: ['members'],
+    editableBy: ['members'],
+    viewableBy: ['guests'],
+    form: {
+      options: {
+        preset: getSetting('cloudinaryPresets').avatar // this setting refers to the transformation you want to apply to the image
+      },
+    }
+   }
+ },
   {
     fieldName: 'ppdLimit',
     fieldSchema: {
