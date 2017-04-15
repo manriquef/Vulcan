@@ -46,8 +46,9 @@ const extractThumbnail = function (body) {
   var n = body.search(/\b((?:png|jpe?g|gif))\b/);
 
   isJpeg = body.slice(n,n+4);
-  isJpeg = "jpeg" ? thumbnail = body.slice(x,n+4) : thumbnail = body.slice(x,n+3);
-  
+  console.log(isJpeg);
+  isJpeg == "jpeg" ? thumbnail = body.slice(x,n+4) : thumbnail = body.slice(x,n+3);
+
   return thumbnail;
 
 };
