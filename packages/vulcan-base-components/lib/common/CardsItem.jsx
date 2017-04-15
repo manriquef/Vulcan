@@ -67,9 +67,9 @@ class CardsItem extends Component {
               <Components.Vote collection={Posts} document={post} currentUser={this.props.currentUser}/>
             </div>
             {Posts.options.mutations.edit.check(this.props.currentUser, post) ? this.renderActions() : null}
-            {this.props.currentUser && this.props.currentUser.isAdmin ? <Components.CardsStats post={post} /> : null}
             {this.renderCategories()}
             {this.renderCommenters()}
+            {this.props.currentUser && this.props.currentUser.isAdmin ? <Components.CardsStats post={post} /> : null}
         </div>
 
 

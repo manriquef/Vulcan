@@ -26,11 +26,11 @@ const PostsCommentsThread = (props, context) => {
 
     return (
       <div className="posts-comments-thread">
-        <h5 className="posts-comments-thread-title"><FormattedMessage id="comments.comments"/></h5>
+        <div className="posts-comments-thread-title"><FormattedMessage id="comments.comments"/></div>
         <Components.CommentsList comments={nestedComments} commentCount={totalCount}/>
         {!!props.currentUser ?
           <div className="posts-comments-thread-new">
-            <h5><FormattedMessage id="comments.new"/></h5>
+            <FormattedMessage id="comments.new"/>
             <Components.CommentsNewForm
               postId={postId}
               type="comment"
