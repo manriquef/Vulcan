@@ -40,12 +40,16 @@ const normalizeEncoding = function (contentBuffer) {
 
 const extractThumbnail = function (body) {
 
-  var x,n, thumbnail;
+  var x,n, thumbnail, isJpeg;
 
   var x = body.search(/\b(https?:\/\/\S*?\.(?:png|jpe?g|gif))\b/);
   var n = body.search(/\b((?:png|jpe?g|gif))\b/);
 
-  thumbnail = body.slice(x,n+3)
+  isJpeg = body.slice(n,n+4);
+  console.log(isJpeg);
+  isJpeg = "jpeg" ? thumbnail = body.slice(x,n+4) : thumbnail = body.slice(x,n+3);
+
+  //special case for .jpeg extensions
 
   //console.log("POST THUMBNAIL: ", thumbnail);
   return thumbnail;

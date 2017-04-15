@@ -11,7 +11,7 @@ class CardsItem extends Component {
     return this.props.post.categories && this.props.post.categories.length > 0 ? <Components.CardsCategories post={this.props.post} /> : "";
   }
   renderCommenters() {
-    return this.props.post.commenters && this.props.post.commenters.length > 0 ? <Components.PostsCommenters post={this.props.post}/> : "";
+    return this.props.post.commenters && this.props.post.commenters.length > 0 ? <Components.CardsCommenters post={this.props.post}/> : "";
   }
 
   renderTitle()
@@ -47,7 +47,6 @@ class CardsItem extends Component {
 
     return (
       <div className={cardClass}>
-
         <div className="cards-item-content">
             {post.thumbnailUrl ? <Components.CardsThumbnail post={post}/> : <div className="cards-item-thumbnail"></div>}
             <div className="cards-item-title">
@@ -55,7 +54,6 @@ class CardsItem extends Component {
                 {this.renderTitle()}
               </Link>
             </div>
-            {this.renderCategories()}
             {post.user? <div className="cards-item-user"><Components.UsersAvatar user={post.user} size="small"/></div> : null}
             <div className="cards-item-date">{post.postedAt ? <FormattedRelative value={post.postedAt}/> : <FormattedMessage id="posts.dateNotDefined"/>}</div>
             <div className="cards-item-comments">
@@ -68,11 +66,10 @@ class CardsItem extends Component {
             <div className="cards-item-vote">
               <Components.Vote collection={Posts} document={post} currentUser={this.props.currentUser}/>
             </div>
-
-            {this.renderCommenters()}
             {Posts.options.mutations.edit.check(this.props.currentUser, post) ? this.renderActions() : null}
             {this.props.currentUser && this.props.currentUser.isAdmin ? <Components.CardsStats post={post} /> : null}
-
+            {this.renderCategories()}
+            {this.renderCommenters()}
         </div>
 
 

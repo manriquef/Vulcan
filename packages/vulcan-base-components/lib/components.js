@@ -20,6 +20,7 @@ import './common/RightBar.jsx';
 
 import './posts/CardsThumbnail.jsx';
 import './posts/CardsCategories.jsx';
+import './posts/CardsCommenters.jsx';
 import './posts/CardsStats.jsx';
 import './posts/PostsHome.jsx';
 import './posts/PostsSingle.jsx';
