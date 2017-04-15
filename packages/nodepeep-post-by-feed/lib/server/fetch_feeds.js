@@ -46,12 +46,8 @@ const extractThumbnail = function (body) {
   var n = body.search(/\b((?:png|jpe?g|gif))\b/);
 
   isJpeg = body.slice(n,n+4);
-  console.log(isJpeg);
   isJpeg = "jpeg" ? thumbnail = body.slice(x,n+4) : thumbnail = body.slice(x,n+3);
-
-  //special case for .jpeg extensions
-
-  //console.log("POST THUMBNAIL: ", thumbnail);
+  
   return thumbnail;
 
 };
