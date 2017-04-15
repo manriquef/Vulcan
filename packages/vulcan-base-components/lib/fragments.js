@@ -32,10 +32,10 @@ registerFragment(`
     # vulcan:users
     _id
     slug
+    avatar
     username
     displayName
     emailHash
-    avatar
   }
 `);
 

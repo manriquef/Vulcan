@@ -22,6 +22,9 @@
 }
 
 .upload-state {
+  position: absolute;
+  left: 350px;
+  top: -26px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
