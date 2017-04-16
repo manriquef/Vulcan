@@ -125,7 +125,7 @@ const feedHandler = {
 
         // check if post already exists
         if (!!Posts.findOne({ feedItemId: item.guid })) {
-          console.log('// Feed item already imported');
+          //console.log('// Feed item already imported');
           continue;
         }
 
@@ -153,8 +153,6 @@ const feedHandler = {
             post.body = toMarkdown(he.decode(item["media:group"]["media:description"]['#']));
         }
 
-        //post.thumbnailUrl = extractThumbnail(post.body);
-
         // if RSS item link is a 301 or 302 redirect, follow the redirect
         const get = HTTP.get(item.link, {followRedirects: false});
         if (!!get.statusCode && (get.statusCode === 301 || get.statusCode === 302) &&
@@ -174,6 +172,7 @@ const feedHandler = {
           newMutation({
             collection: Posts,
             document: post,
+            currentUser: userName._id,
             validate: false,
           });
         } catch (error) {

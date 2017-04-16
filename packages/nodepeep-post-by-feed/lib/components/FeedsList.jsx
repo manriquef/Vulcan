@@ -8,6 +8,7 @@ const FeedsList = (props) => {
   const {results, loading, count, totalCount, loadMore, showHeader = true, networkStatus, currentUser, error, terms} = props;
   const loadingMore = networkStatus === 2;
 
+  console.log("Feeds List props: " + props);
   if (results && results.length) {
     return (
       <div className="feeds-list">

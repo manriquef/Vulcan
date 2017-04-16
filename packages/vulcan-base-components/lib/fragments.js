@@ -225,20 +225,14 @@ registerFragment(`
     slug
     postedAt
     createdAt
-    sticky
-    status
     body
     htmlBody
     excerpt
-    viewCount
-    clickCount
     # vulcan:users
     userId
     user {
       ...UsersMinimumInfo
     }
-    # vulcan:embedly
-     thumbnailUrl
     # vulcan:categories
     categories {
       ...CategoriesMinimumInfo

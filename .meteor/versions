@@ -86,7 +86,7 @@ vulcan:comments@1.3.2
 vulcan:core@1.3.2
 vulcan:email@1.3.2
 vulcan:email-templates@1.3.2
-vulcan:embedly@1.3.2
+vulcan:embedapi@1.3.2
 vulcan:events@1.3.2
 vulcan:forms@1.3.2
 vulcan:forms-tags@1.3.2

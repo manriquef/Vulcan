@@ -42,7 +42,7 @@
   "mailUrl": "smtp://postmaster%40foo.mailgun.org:foo123@smtp.mailgun.org:587/",
   "scoreUpdateInterval": "30",
 
-  "embedAPIKey": "CISCO9LYkhwdKaSEA4f2yH",
+  
   "mailChimpAPIKey": "123foo",
   "mailChimpListId": "123foo",
   "newsletterFrequency": [1,2,3,4,5,6,7],

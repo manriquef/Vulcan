@@ -85,7 +85,7 @@ addCallback("cancelDownvote.async", updateItemScore);
  * @param {string} operation - The operation being performed
  */
 function updateUser(item, user, collection, operation, context) {
-  
+
   // uncomment for debug
   // console.log(item);
   // console.log(user);
@@ -99,7 +99,7 @@ function updateUser(item, user, collection, operation, context) {
     votedAt: new Date(),
     power: votePower
   };
-  
+
   const collectionName = Utils.capitalize(collection._name);
 
   switch (operation) {

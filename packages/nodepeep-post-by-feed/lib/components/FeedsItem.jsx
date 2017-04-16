@@ -27,7 +27,8 @@ class FeedsItem extends Component {
 
   render() {
     const {feed} = this.props;
-    console.log("ZOMG THIS FEED", feed);
+    console.log("ZOMG THIS FEED", this.props);
+
     const {currentUser, messages} = this.context;
     return (
       <div className="posts-item">
