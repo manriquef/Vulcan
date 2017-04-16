@@ -20,9 +20,8 @@ const PostsList = (props) => {
       return (
         <div className="posts-page">
           {showHeader ? <Components.PostsListHeader/> : null}
-            <div className="cards-item-list">
               {error ? <Error error={error} /> : null }
-              {totalCount >=5 ? results.slice(0, topCards).map(post => <Components.CardsItem post={post} key={post._id} currentUser={currentUser} terms={terms}/>) :
+              {totalCount >=5 ? <div className="cards-item-list">{results.slice(0, topCards).map(post => <Components.CardsItem post={post} key={post._id} currentUser={currentUser} terms={terms}/>)}</div> :
                 results.map(post => <Components.PostsItem post={post} key={post._id} currentUser={currentUser} terms={terms} />)}
              <div className="posts-list">
               <Components.RightBar/>
@@ -30,7 +29,6 @@ const PostsList = (props) => {
                 {hasMore ? (loadingMore ? <Components.PostsLoading/> : <Components.PostsLoadMore loadMore={loadMore} count={count} totalCount={totalCount} />) : <Components.PostsNoMore/>}
               </div> : null}
              </div>
-            </div>
         </div>
       )
       } else if (loading) {

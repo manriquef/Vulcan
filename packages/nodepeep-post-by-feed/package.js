@@ -1,6 +1,6 @@
 Package.describe({
   name: "nodepeep:post-by-feed",
-  summary: "Auto post via RSS to Nova, additional feature not part of core",
+  summary: "Auto post via RSS to nodepeep",
   version: "1.3.2",
 });
 

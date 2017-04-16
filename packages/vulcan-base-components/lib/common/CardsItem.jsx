@@ -68,11 +68,9 @@ class CardsItem extends Component {
             </div>
             {Posts.options.mutations.edit.check(this.props.currentUser, post) ? this.renderActions() : null}
             {this.renderCategories()}
-            {this.renderCommenters()}
+            {/*this.renderCommenters()*/}
             {this.props.currentUser && this.props.currentUser.isAdmin ? <Components.CardsStats post={post} /> : null}
         </div>
-
-
       </div>
     )
   }

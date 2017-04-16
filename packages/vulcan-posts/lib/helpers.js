@@ -38,7 +38,7 @@ Posts.getLinkTarget = function (post) {
  */
 Posts.getPageUrl = function(post, isAbsolute = false){
   const prefix = isAbsolute ? Utils.getSiteUrl().slice(0,-1) : "";
-  return `${prefix}/posts/${post._id}/${post.slug}`;
+  return `${prefix}/n/${post._id}/${post.slug}`;
 };
 
 ///////////////////

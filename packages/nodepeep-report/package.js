@@ -1,5 +1,5 @@
 Package.describe({
-  name: "nodepeep-report",
+  name: "nodepeep:report",
   summary: "Nodepeep reporting package.",
   version: "1.3.2",
 });

@@ -1,5 +1,6 @@
 import { registerComponent } from 'meteor/vulcan:lib';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import withCurrentUser from '../containers/withCurrentUser.js';
 
 const ShowIf = props => {

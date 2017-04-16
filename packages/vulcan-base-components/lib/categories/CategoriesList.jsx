@@ -34,7 +34,8 @@ class CategoriesList extends Component {
 
   render() {
 
-    const currentQuery = _.clone(this.props.router.location.query);
+    const allCategoriesQuery = _.clone(this.props.router.location.query);
+    delete allCategoriesQuery.cat;
     const nestedCategories = this.getNestedCategories();
 
     return (
@@ -47,7 +48,7 @@ class CategoriesList extends Component {
           </div>
         </Components.ShowIf>
           <div className="categories-item">
-            <LinkContainer className="category-menu-item-title-btn" to={{pathname:"/", query: null}}>
+            <LinkContainer className="categories-all-button" to={{pathname:"/", allCategoriesQuery: null}}>
             <Button bsStyle="primary" bsSize="small">
                 <FormattedMessage id="categories.all"/>
             </Button>

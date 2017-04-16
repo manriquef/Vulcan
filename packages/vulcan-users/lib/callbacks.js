@@ -68,7 +68,7 @@ function setupUser (user, options) {
   user.slug = Utils.getUnusedSlug(Users, basicSlug);
 
   // if this is not a dummy account, and is the first user ever, make them an admin
-  user.isAdmin = (!user.profile.isDummy && Users.find({'profile.isDummy': {$ne: true}}).count() === 0) ? true : false;
+  user.isAdmin = (!user.profile.isFeed && Users.find({'profile.isFeed': {$ne: true}}).count() === 0) ? true : false;
 
   // Events.track('new user', {username: user.displayName, email: user.email});
 
@@ -77,17 +77,17 @@ function setupUser (user, options) {
 addCallback("users.new.sync", setupUser);
 
 /**
- * @summary Copy over profile.isDummy to isDummy on user creation
+ * @summary Copy over profile.isFeed to isFeed on user creation
  * @param {Object} user – the user object being iterated on and returned
  * @param {Object} options – user options
  */
-function copyDummyProperty (user, options) {
-  if (typeof user.profile.isDummy !== "undefined") {
-    user.isDummy = user.profile.isDummy;
+function copyFeedProperty (user, options) {
+  if (typeof user.profile.isFeed !== "undefined") {
+    user.isFeed = user.profile.isFeed;
   }
   return user;
 }
-addCallback("users.new.sync", copyDummyProperty);
+addCallback("users.new.sync", copyFeedProperty);
 
 
 function hasCompletedProfile (user) {
@@ -152,4 +152,3 @@ function usersCheckCompletion (newUser, oldUser) {
   }
 }
 addCallback("users.edit.async", usersCheckCompletion);
-

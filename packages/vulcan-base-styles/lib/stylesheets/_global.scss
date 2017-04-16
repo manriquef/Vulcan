@@ -27,6 +27,22 @@ body{
    max-width: 1200px;
  }
 
+ .nav-user{
+  .dropdown-menu{
+    .dropdown-menu-right{
+      
+    }
+  }
+ }
+
+ .cards-item-list{
+   position: relative;
+   max-height: 300px;
+   top: 20px;
+   text-align: center;
+   overflow: hidden;
+ }
+
  .cards-item{
    display: inline-flex;
    border: 1px solid #0F0;
@@ -40,12 +56,6 @@ body{
    height: 250px;
    margin-bottom: 50px;
    margin-right: 10px;
- }
-
- .cards-item-list{
-   position: relative;
-   top: 20px;
-   text-align: center;
  }
 
  .rightbar{
@@ -63,8 +73,7 @@ body{
    overflow-y: scroll;
  }
 
-.sidemenu{
-
+.rightbar-categories-info{
 
 }
 

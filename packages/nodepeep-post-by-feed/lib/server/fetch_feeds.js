@@ -46,7 +46,6 @@ const extractThumbnail = function (body) {
   var n = body.search(/\b((?:png|jpe?g|gif))\b/);
 
   isJpeg = body.slice(n,n+4);
-  console.log(isJpeg);
   isJpeg == "jpeg" ? thumbnail = body.slice(x,n+4) : thumbnail = body.slice(x,n+3);
 
   return thumbnail;
@@ -87,7 +86,7 @@ const feedHandler = {
     return itemCategories;
   },
 
-  handle(contentBuffer, userId, feedCategories, feedId) {
+  handle(contentBuffer, userName, feedCategories, feedId) {
     const self = this;
     const content = normalizeEncoding(contentBuffer);
     const stream = this.getStream(content);
@@ -97,7 +96,7 @@ const feedHandler = {
     stream.pipe(feedParser);
 
     feedParser.on('meta', Meteor.bindEnvironment(function (meta) {
-      console.log('// Parsing RSS feed: '+ meta.title);
+      console.log('*** Parsing RSS feed: '+ meta.title);
 
       const currentFeed = Feeds.findOne({ _id: feedId }, { fields: { _id: 1, title: 1 } });
       if (!currentFeed.title || currentFeed.title !== meta.title) {
@@ -108,7 +107,7 @@ const feedHandler = {
 
     feedParser.on('error', Meteor.bindEnvironment(function (error) {
       console.log(error);
-      console.log(`// ------ ERROR Parsing Feed \nFeed Id ${feedId} is causing an issue, you may want to remove it.`);
+      console.log(`=== ERROR Parsing Feed \nFeed Id ${feedId} is causing an issue, you may want to remove it.`);
       stream.unpipe();
     }));
 
@@ -137,7 +136,7 @@ const feedHandler = {
           url: item.link,
           feedId: feedId,
           feedItemId: item.guid,
-          userId: userId,
+          userId: userName._id,
           thumbnailUrl: extractThumbnail(item.description),
           categories: self.getItemCategories(item, feedCategories)
         };
@@ -198,13 +197,14 @@ export const fetchFeeds = function() {
   Feeds.find().forEach(function(feed) {
 
     // if feed doesn't specify a user, default to admin
-    const userId = !!feed.userId ? feed.userId : getFirstAdminUser()._id;
+    const feedName = !!feed.userName ? feed.userName : null;
+    const userName = Users.findOne({username: feedName.trim()});
     const feedCategories = feed.categories;
     const feedId = feed._id;
 
     try {
       contentBuffer = HTTP.get(feed.url, { responseType: 'buffer' }).content;
-      feedHandler.handle(contentBuffer, userId, feedCategories, feedId);
+      feedHandler.handle(contentBuffer, userName, feedCategories, feedId);
     } catch (error) {
       console.log(error);
       return true; // just go to next feed URL

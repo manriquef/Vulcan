@@ -11,6 +11,9 @@ class RightBar extends Component {
         <div className="rightbar-categories">
           <Components.CategoriesList />
         </div>
+        <div className="rightbar-category-info">
+          <Components.CategoryInfo />
+        </div>
       </div>
     )
   }

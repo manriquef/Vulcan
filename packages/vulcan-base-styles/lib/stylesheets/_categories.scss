@@ -11,13 +11,22 @@
   text-align: center;
   padding: $vmargin/2;
   button{
-  //  display: inline-block;
+    display: inline-block;
   }
 }
 
+.category-button-item{
+  display: inline-flex;
+  margin: 1px;
+}
+
 .categories-item{
-  display: inline-block;
+  display: inline-flex;
   padding-left: 3px;
+}
+
+.categories-children{
+
 }
 
 .categories-edit-form-admin{

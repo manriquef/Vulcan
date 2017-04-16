@@ -1,11 +1,12 @@
 import Posts from "meteor/vulcan:posts";
 import Users from "meteor/vulcan:users";
+import Categories from "meteor/vulcan:categories";
 import { getCategoriesAsOptions } from 'meteor/vulcan:categories';
 import Tags from 'meteor/vulcan:forms-tags';
 import { getComponent, getSetting } from 'meteor/vulcan:lib';
 ;
 /*
-Modified 07FEB2017
+Modified 18APR2017
 
 Let's assign a color to each post (why? cause we want to, that's why).
 We'll do that by adding a custom field to the Posts collection.
@@ -29,6 +30,26 @@ Users.avatar = {
     return !!user && user.avatar ? user.avatar : url;
   },
 };
+
+
+Categories.addField([
+  {
+    fieldName: 'rules',
+    fieldSchema: {
+      type: String,
+      control: "textarea",
+      max: 1000,
+      optional: true,
+      insertableBy: ['admins'],
+      editableBy: ['admins','supermods'],
+      viewableBy: ['guests'],
+    }//fieldSchema
+  },
+]);
+
+/*******************************************************************/
+// Posts
+/*******************************************************************/
 
 Posts.addField([
   {
@@ -70,8 +91,9 @@ Posts.addField([
 ]);
 
 /*******************************************************************/
+// Users
+/*******************************************************************/
 
-// extends Users schema with a new field: 'avatar' 👁
 Users.addField([
   {
   fieldName: 'avatar',

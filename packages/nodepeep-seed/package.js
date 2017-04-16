@@ -1,8 +1,7 @@
 Package.describe({
-  name: "vulcan:getting-started",
-  summary: "Getting started posts",
+  name: "nodepeep:seed",
+  summary: "Seed nodepeep with initial data",
   version: '1.3.2',
-  git: "https://github.com/TelescopeJS/telescope-getting-started.git"
 });
 
 Npm.depends({

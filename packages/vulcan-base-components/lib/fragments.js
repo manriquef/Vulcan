@@ -17,7 +17,7 @@ registerFragment(`
 // note: fragment used by default on the Reporting fragment
 registerFragment(`
   fragment ReportedItem on Report {
-    # nodepeep-report
+    # nodepeep:report
     itemId
     power
     reportedAt

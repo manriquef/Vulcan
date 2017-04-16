@@ -56,6 +56,7 @@ import './comments/CommentsLoadMore.jsx';
 
 // categories
 
+import './categories/CategoryInfo.jsx';
 import './categories/CategoriesList.jsx';
 import './categories/CategoriesNode.jsx';
 import './categories/Category.jsx';

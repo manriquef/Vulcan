@@ -18,7 +18,7 @@
 }
 
 .posts-no-more{
-//  display: block;
+  text-align: center;
 }
 
 .posts-list-header{
@@ -209,17 +209,18 @@
 
 .posts-categories{
   flex-wrap: wrap;
+  white-space: nowrap;
   @include medium-large{
     margin-left: 5px;
   }
   @include flex-center;
   a{
-    display: block;
-    font-size: $small-font;
+    display: inline-flex;
+    font-size: $smallest-font;
     @include border;
     @include border-radius;
-    margin-right: 5px;
-    padding: 2px 6px;
+    margin-right: 4px;
+    padding: 1px 3px;
     @include activeHover;
   }
 }

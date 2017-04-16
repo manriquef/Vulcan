@@ -1,5 +1,5 @@
 Package.describe({
-  name: "nodepeep-core",
+  name: "nodepeep:core",
   version: '1.3.2'
 });
 

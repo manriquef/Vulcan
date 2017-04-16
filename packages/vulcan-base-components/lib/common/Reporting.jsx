@@ -2,7 +2,7 @@ import { Components, registerComponent, withMessages } from 'meteor/vulcan:core'
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withReport, hasReported } from 'meteor/nodepeep-report';
+import { withReport, hasReported } from 'meteor/nodepeep:report';
 import { FormattedMessage, intlShape } from 'react-intl';
 
 class Reporting extends Component {

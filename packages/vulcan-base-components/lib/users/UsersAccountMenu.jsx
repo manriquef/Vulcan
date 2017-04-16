@@ -11,7 +11,7 @@ const UsersAccountMenu = () => {
       <Dropdown.Toggle>
         <FormattedMessage id="users.log_in"/>
       </Dropdown.Toggle>
-      <Dropdown.Menu>
+      <Dropdown.Menu className="dropdown-menu-right">
         <Components.AccountsLoginForm />
       </Dropdown.Menu>
     </Dropdown>

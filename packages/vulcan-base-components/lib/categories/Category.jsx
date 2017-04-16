@@ -21,7 +21,6 @@ class Category extends Component {
     const {category, index, router} = this.props;
 
     // const currentQuery = router.location.query;
-    <Components.ShowIf check={Categories.options.mutations.edit.check} document={category}>{this.renderEdit()}</Components.ShowIf>
     const currentCategorySlug = router.location.query.cat;
     const newQuery = _.clone(router.location.query);
     newQuery.cat = category.slug;
@@ -38,6 +37,7 @@ class Category extends Component {
             {category.name}
           </Button>
         </LinkContainer>
+        <Components.ShowIf check={Categories.options.mutations.edit.check} document={category}>{this.renderEdit()}</Components.ShowIf>
       </div>
     )
   }
