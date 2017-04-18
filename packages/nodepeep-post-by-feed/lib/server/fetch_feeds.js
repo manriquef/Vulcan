@@ -69,7 +69,7 @@ const feedHandler = {
     if (item.categories && item.categories.length > 0) {
       item.categories.forEach(function(name) {
 
-        // if the RSS category corresponds to a Nova cateogry, add it
+        // if the RSS category corresponds to a category, add it
         const category = Categories.findOne({ name: name }, { fields: {_id: 1 } });
         if (category) {
           itemCategories.push(category._id);

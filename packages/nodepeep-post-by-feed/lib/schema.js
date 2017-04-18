@@ -20,6 +20,11 @@ import Tags from 'meteor/vulcan:forms-tags';
  }
 
 const schema = {
+   _id: {
+     type: String,
+     optional: true,
+     viewableBy: ['guests'],
+   },
    url: {
      type: String,
      regEx: SimpleSchema.RegEx.Url,
@@ -52,12 +57,12 @@ const schema = {
      viewableBy: ['guests'],
      insertableBy: ['admins'],
      editableBy: ['admins'],
-     form: {
-       noselect: true,
-       order: 50,
-       options: formProps => getCategoriesAsOptions(formProps.client)
-     },
-     resolveAs: 'categories: [Category]',//categoriesArray
+    // form: {
+    //   noselect: true,
+    //   order: 50,
+    //   options: formProps => getCategoriesAsOptions(formProps.client)
+    // },
+     resolveAs: 'categories: [Category]',
    },
    createdFromSettings: {
      type: Boolean,

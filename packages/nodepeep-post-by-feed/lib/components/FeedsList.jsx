@@ -38,15 +38,4 @@ const FeedsList = (props) => {
 
 FeedsList.displayName = "FeedsList";
 
-FeedsList.propTypes = {
-  results: PropTypes.array,
-  terms: PropTypes.object,
-  hasMore: PropTypes.bool,
-  loading: PropTypes.bool,
-  count: PropTypes.number,
-  totalCount: PropTypes.number,
-  loadMore: PropTypes.func,
-  showHeader: PropTypes.bool,
-};
-
 registerComponent('FeedsList', FeedsList);

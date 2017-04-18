@@ -1,42 +1,24 @@
-import { GraphQLSchema, Utils } from 'meteor/vulcan:core';
-import Users from 'meteor/vulcan:users';
-
 /*
-const specificResolvers = {
-  Post: {
-    user(post, args, context) {
-      return context.Users.findOne({ _id: post.userId }, { fields: context.getViewableFields(context.currentUser, context.Users) });
-    },
-  },
-  Mutation: {
-    increasePostViewCount(root, { postId }, context) {
-      return context.Posts.update({_id: postId}, { $inc: { viewCount: 1 }});
-    }
-  }
-};
 
-GraphQLSchema.addResolvers(specificResolvers);
+Three resolvers are defined:
+
+- list (e.g.: moviesList(terms: JSON, offset: Int, limit: Int) )
+- single (e.g.: moviesSingle(_id: String) )
+- listTotal (e.g.: moviesTotal )
+
 */
+
+import { addGraphQLResolvers } from 'meteor/vulcan:core';
+
+// basic list, single, and total query resolvers
 const resolvers = {
 
   list: {
 
     name: 'feedsList',
 
-    check(user, terms, collection) {
-      const {selector} = collection.getParameters(terms);
-      const status = _.findWhere(collection.statuses, {value: selector.status || 2});
-      return Users.canDo(user, `feeds.view.${status.label}.all`);
-    },
-
-    resolver(root, {terms}, context, info) {
-      let {selector, options} = context.Feeds.getParameters(terms);
-      options.limit = (terms.limit < 1 || terms.limit > 100) ? 100000 : terms.limit;
-      options.skip = terms.offset;
-      options.fields = context.getViewableFields(context.currentUser, context.Feeds);
-
-      Utils.performCheck(this, context.currentUser, terms, context.Feeds);
-
+    resolver(root, {terms = {}}, context, info) {
+      let {selector, options} = context.Feeds.getParameters(terms, {}, context.currentUser);
       return context.Feeds.find(selector, options).fetch();
     },
 
@@ -46,20 +28,9 @@ const resolvers = {
 
     name: 'feedsSingle',
 
-    check(user, document, collection) {
-      if (!document) return false;
-      const status = _.findWhere(collection.statuses, {value: document.status});
-      return Users.owns(user, document) ? Users.canDo(user, `feeds.view.${status.label}.own`) : Users.canDo(user, `feeds.view.${status.label}.all`);
-    },
-
-    resolver(root, {documentId, slug}, context) {
-
-      const selector = documentId ? {_id: documentId} : {'slug': slug};
-      const feed = context.Feeds.findOne(selector);
-
-      Utils.performCheck(this, context.currentUser, feed, context.Feeds);
-
-      return context.Users.keepViewableFields(context.currentUser, context.Feeds, feed);
+    resolver(root, {documentId}, context) {
+      const document = context.Feeds.findOne({_id: documentId});
+      return context.Users.keepViewableFields(context.currentUser, context.Feeds, document);
     },
 
   },
@@ -68,12 +39,22 @@ const resolvers = {
 
     name: 'feedsTotal',
 
-    resolver(root, {terms}, context) {
-      const {selector} = context.Feeds.getParameters(terms);
-      return context.Feeds.find(selector).count();
+    resolver(root, {terms = {}}, context) {
+      const {selector, options} = context.Feeds.getParameters(terms, {}, context.currentUser);
+      return context.Feeds.find(selector, options).count();
     },
 
   }
 };
+
+// add the "user" resolver for the Movie type separately
+const feedUserResolver = {
+  Feed: {
+    user(feed, args, context) {
+      return context.Users.findOne({ _id: feed.userId }, { fields: context.Users.getViewableFields(context.currentUser, context.Users) });
+    },
+  },
+};
+addGraphQLResolvers(feedUserResolver);
 
 export default resolvers;

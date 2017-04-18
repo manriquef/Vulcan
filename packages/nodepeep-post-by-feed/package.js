@@ -23,7 +23,6 @@ Package.onUse(function(api) {
     'vulcan:users@1.3.2',
     'vulcan:categories@1.3.2',
     'vulcan:events@1.3.2',
-    'vulcan:base-components@1.3.2',
   ]);
 
   api.mainModule('lib/client.js', 'client');

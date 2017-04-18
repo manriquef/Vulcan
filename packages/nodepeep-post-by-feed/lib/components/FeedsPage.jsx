@@ -1,41 +1,24 @@
-import { Components, registerComponent, withDocument, withCurrentUser, Loading } from 'meteor/vulcan:core';
-import Feeds from '../collection.js';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { Components, withList, withCurrentUser, Loading } from 'meteor/vulcan:core';
+import Feeds from '../collection.js';
 
-class FeedsPage extends Component {
+const FeedsPage = ({results = [], currentUser, loading, loadMore, count, totalCount}) =>
 
-  render() {
-    if (this.props.loading) {
-      return <Components.Loading />
-    } else if (!this.props.document) {
+<div className="feeds-list">
+    {loading ?  <Loading /> : results.map(feed => <Components.FeedsItem key={feed._id} feed={feed} currentUser={currentUser} />)}
 
-      console.log(`// Missing feed (_id: ${this.props.document})`);
-      return <div className="feeds-page"><FormattedMessage id="app.404"/></div>
+    {totalCount > results.length ?
+      <a href="#" onClick={e => {e.preventDefault(); loadMore();}}>Load More ({count}/{totalCount})</a> :
+      <p>No more items.</p>
+    }
 
-    } else {
-        const feed = this.props.document;
-        return (
-              <div className="feeds-list">
-                {results.map(feed => <FeedsItem key={feed.id} feed={feed} currentUser={currentUser} />)}
-              </div>
-        );
-     }
-   }
-}
+  </div>
 
-FeedsPage.displayName = "FeedsPage";
 
-FeedsPage.propTypes = {
-  documentId: PropTypes.string,
-  document: PropTypes.object,
-}
-
-const queryOptions = {
+const options = {
   collection: Feeds,
-  queryName: 'feedsSingleQuery',
   fragmentName: 'FeedsPage',
 };
 
-registerComponent('FeedsPage', FeedsPage, withCurrentUser, [withDocument, queryOptions]);
+export default withList(options)(withCurrentUser(FeedsPage));

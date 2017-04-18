@@ -42,7 +42,7 @@
   "mailUrl": "smtp://postmaster%40foo.mailgun.org:foo123@smtp.mailgun.org:587/",
   "scoreUpdateInterval": "30",
 
-  
+
   "mailChimpAPIKey": "123foo",
   "mailChimpListId": "123foo",
   "newsletterFrequency": [1,2,3,4,5,6,7],
@@ -92,31 +92,37 @@
     {
       "name": "News",
       "description": "Default News",
-      "order": 4,
+      "order": 1,
       "slug": "news"
     },
     {
       "name": "World News",
       "description": "World News",
-      "order": 7,
+      "order": 2,
       "slug": "worldnews"
     },
     {
       "name": "Sports",
       "description": "Sports",
-      "order": 10,
+      "order": 3,
       "slug": "sports"
     },
     {
       "name": "Politics",
       "description": "Politics",
-      "order": 7,
+      "order": 4,
       "slug": "politics"
+    },
+    {
+      "name": "Science",
+      "description": "Science",
+      "order": 5,
+      "slug": "science"
     },
     {
       "name": "Tech News",
       "description": "Get your tech news fix",
-      "order": 7,
+      "order": 6,
       "slug": "technews"
     }
   ],

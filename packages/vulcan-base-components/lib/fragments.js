@@ -213,35 +213,3 @@ registerFragment(`
     reportScore
   }
 `);
-
-// ------------------------------ Feeds ------------------------------ //
-
-registerFragment(`
-  fragment FeedsList on Feed {
-    # vulcan:posts
-    _id
-    title
-    url
-    slug
-    postedAt
-    createdAt
-    body
-    htmlBody
-    excerpt
-    # vulcan:users
-    userId
-    user {
-      ...UsersMinimumInfo
-    }
-    # vulcan:categories
-    categories {
-      ...CategoriesMinimumInfo
-    }
-  }
-`);
-
-registerFragment(`
-  fragment FeedsPage on Feed {
-    ...FeedsList
-  }
-`);

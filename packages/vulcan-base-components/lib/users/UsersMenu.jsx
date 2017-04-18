@@ -7,6 +7,7 @@ import { Button, Dropdown, MenuItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import Users from 'meteor/vulcan:users';
 import { withApollo } from 'react-apollo';
+import FeedsNewForm from 'meteor/nodepeep:post-by-feed';
 
 class UsersMenu extends Component {
 
@@ -29,7 +30,7 @@ class UsersMenu extends Component {
               <MenuItem className="dropdown-item" eventKey="2"><FormattedMessage id="users.edit_account"/></MenuItem>
             </LinkContainer>
             {currentUser.isAdmin ? <ModalTrigger title={<FormattedMessage id="posts.feeds.new"/>} component={<MenuItem className="dropdown-item" eventKey="3"><FormattedMessage id="posts.feeds.new"/></MenuItem>}>
-              <Components.FeedsNewForm/></ModalTrigger> : null}
+              <Components.FeedsNewForm user={currentUser}/></ModalTrigger> : null}
             {currentUser.isAdmin ? <LinkContainer to={`/feeds`}><MenuItem className="dropdown-item" eventKey="4"><FormattedMessage id="posts.feeds"/></MenuItem></LinkContainer>: null}
             <MenuItem className="dropdown-item" eventKey="4" onClick={() => Meteor.logout(() => client.resetStore())}><FormattedMessage id="users.log_out"/></MenuItem>
           </Dropdown.Menu>

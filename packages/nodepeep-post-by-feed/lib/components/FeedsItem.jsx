@@ -33,12 +33,12 @@ class FeedsItem extends Component {
     return (
       <div className="posts-item">
               {Feeds.options.mutations.edit.check(this.props.currentUser, feed) ? this.renderActions() : null}
-              <div className="post-item-content">
+              <div className="posts-item-content">
                 <div className="posts-item-title">
                   <a className="posts-item-title-link" href={ feed.url }>{ feed.title ? feed.title : "Feed not fetched yet" }</a>
                   { this.renderCategories() }
                 </div>
-                <div className="feeds-item-link"><a href={ feed.url }>{feed.url }</a></div>
+                <div className="posts-item-link"><a href={ feed.url }>{feed.url }</a></div>
 
                 <div className="posts-item-meta">
                   { feed.user ? ( <div className="posts-item-user">
