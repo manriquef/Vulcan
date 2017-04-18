@@ -22,6 +22,7 @@ import './posts/CardsThumbnail.jsx';
 import './posts/CardsCategories.jsx';
 import './posts/CardsCommenters.jsx';
 import './posts/CardsStats.jsx';
+import './posts/FeedsEditForm.jsx';
 import './posts/PostsHome.jsx';
 import './posts/PostsSingle.jsx';
 import './posts/PostsNewButton.jsx';

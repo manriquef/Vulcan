@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Components, registerComponent, withList, withCurrentUser } from 'meteor/vulcan:core';
-import { intlShape } from 'react-intl';
+import { Components, registerComponent, withList, withCurrentUser, ModalTrigger } from 'meteor/vulcan:core';
+import { FormattedMessage, intlShape } from 'react-intl';
 import NovaForm from "meteor/vulcan:forms";
 import Feeds from '../collection.js';
 
@@ -15,13 +15,12 @@ class FeedsItem extends Component {
   renderActions() {
     return this.props.feed.createdFromSettings
           ? <span>This feed has been added from your settings.json file, you cannot edit or remove it the client. Please make your modifications in your settings file.</span>
-          : <div className="post-stats">
-              <Components.ShowIf check={Feeds.options.mutations.edit.check}>
-                <span className="posts-stats-item" title="Edit"><a onClick={this.editFeed}><Components.Icon name="pencil"/><span className="sr-only">Edit</span></a></span>
-              </Components.ShowIf>
-              <Components.ShowIf check={Feeds.options.mutations.remove.check}>
-                <span className="posts-stats-item" title="Delete"><a onClick={this.removeFeed}><Components.Icon name="close"/><span className="sr-only">Delete</span></a></span>
-              </Components.ShowIf>
+          : <div className="feed-actions">
+            <span className="feeds-item-edit" title="Edit this post">
+              <ModalTrigger title="Edit Post" component={<a className="feeds-action-edit"><FormattedMessage id="posts.edit"/></a>}>
+                <Components.FeedsEditForm feed={this.props.feed} />
+              </ModalTrigger>
+           </span>
             </div>
   }
 
@@ -32,7 +31,6 @@ class FeedsItem extends Component {
     const {currentUser, messages} = this.context;
     return (
       <div className="posts-item">
-              {Feeds.options.mutations.edit.check(this.props.currentUser, feed) ? this.renderActions() : null}
               <div className="posts-item-content">
                 <div className="posts-item-title">
                   <a className="posts-item-title-link" href={ feed.url }>{ feed.title ? feed.title : "Feed not fetched yet" }</a>
@@ -46,7 +44,7 @@ class FeedsItem extends Component {
                         <Components.UsersName user={feed.user}/>
                       </div>
                     ) : null }
-                  { this.renderActions() }
+                  {Feeds.options.mutations.edit.check(this.props.currentUser, feed) ? this.renderActions() : null}
                 </div>
               </div>
       </div>
