@@ -8,7 +8,7 @@ Users.groups.guests.can(guestsActions);
 const adminActions = [
   'feeds.view',
   'feeds.new',
-  'feeds.edit',
-  'feeds.delete',
+  'feeds.edit.all',
+  'feeds.remove.all',
 ];
 Users.groups.admins.can(adminActions);

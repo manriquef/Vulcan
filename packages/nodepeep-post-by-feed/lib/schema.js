@@ -57,12 +57,16 @@ const schema = {
      viewableBy: ['guests'],
      insertableBy: ['admins'],
      editableBy: ['admins'],
-    // form: {
-    //   noselect: true,
+     form: {
+       noselect: true,
     //   order: 50,
-    //   options: formProps => getCategoriesAsOptions(formProps.client)
-    // },
+       options: formProps => getCategoriesAsOptions(formProps.client)
+     },
      resolveAs: 'categories: [Category]',
+   },
+  　'categories.$': {
+    type: String,
+    optional: true,
    },
    createdFromSettings: {
      type: Boolean,
