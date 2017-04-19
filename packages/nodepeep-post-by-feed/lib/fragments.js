@@ -17,6 +17,10 @@ registerFragment(`
       _id
       name
       slug
+      description
+      order
+      image
+      parentId
     }
   }
 `);

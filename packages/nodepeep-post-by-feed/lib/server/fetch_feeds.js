@@ -93,8 +93,8 @@ const feedHandler = {
     const feedParser = new FeedParser();
     let newItemsCount = 0;
 
-    stream.pipe(feedParser);
 
+    stream.pipe(feedParser);
     feedParser.on('meta', Meteor.bindEnvironment(function (meta) {
       console.log('*** Parsing RSS feed: '+ meta.title);
 
@@ -102,6 +102,7 @@ const feedHandler = {
       if (!currentFeed.title || currentFeed.title !== meta.title) {
         Feeds.update({ _id: feedId }, { $set: { title: meta.title } });
         console.log('// Feed title updated');
+
       }
     }));
 

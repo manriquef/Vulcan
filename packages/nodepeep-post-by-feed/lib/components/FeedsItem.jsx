@@ -26,8 +26,6 @@ class FeedsItem extends Component {
 
   render() {
     const {feed} = this.props;
-    console.log("ZOMG THIS FEED", this.props);
-
     const {currentUser, messages} = this.context;
     return (
       <div className="posts-item">
@@ -40,8 +38,7 @@ class FeedsItem extends Component {
 
                 <div className="posts-item-meta">
                   { feed.user ? ( <div className="posts-item-user">
-                        <Components.UsersAvatar user={feed.user} size="small"/>
-                        <Components.UsersName user={feed.user}/>
+                        <Components.UsersName user={feed.userName}/>
                       </div>
                     ) : null }
                   {Feeds.options.mutations.edit.check(this.props.currentUser, feed) ? this.renderActions() : null}

@@ -19,6 +19,20 @@ import Feeds from '../collection.js';
         }
       }
 
+      /*
+      if (feed.categorySlug && feed.categorySlug.length > 0) {
+        feed.categorySlug.forEach(function(slug) {
+          // if the RSS category corresponds to a category, add it
+          const category = Categories.findOne({ slug: slug });
+          try {
+            feed.categories = [category._id];//if it doesn't exist it fails
+          } catch (e) {
+            console.log(e);
+          }
+        });
+      }
+      */
+
       if (existingFeed) {
         // if feed exists, update it with settings data except url
         delete feed.url;
@@ -26,15 +40,15 @@ import Feeds from '../collection.js';
         Feeds.update(existingFeed._id, {$set: feed});
       } else {
         // if not, create it only if there is an admin user
-        if (!feed.userId) {
-          const firstAdminUser = getFirstAdminUser();
+        if (feed.userId) {
+          const AdminUser = feed.userId;
+        } else {
+          const AdminUser = getFirstAdminUser();
+        }
 
-          if (typeof firstAdminUser !== 'undefined') {
-            feed.userId = firstAdminUser._id;
-          } else {
+          if (typeof AdminUser == 'undefined') {
             console.log('// No userId defined and no admin found, cannot create feed');
           }
-        }
 
         feed.createdFromSettings = true;
 

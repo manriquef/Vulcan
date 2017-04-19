@@ -213,3 +213,21 @@ registerFragment(`
     reportScore
   }
 `);
+
+registerFragment(`
+  fragment FeedsList on Feed {
+    # vulcan:posts
+    _id
+    title
+    url
+    categories{
+      ...CategoriesMinimumInfo
+    }
+  }
+`);
+
+registerFragment(`
+  fragment FeedsPage on Feed {
+    ...FeedsList
+  }
+`);

@@ -48,7 +48,7 @@ class CategoriesList extends Component {
           </div>
         </Components.ShowIf>
           <div className="categories-item">
-            <LinkContainer className="categories-all-button" to={{pathname:"/", allCategoriesQuery: null}}>
+            <LinkContainer className="categories-all-button" to={{pathname:"/", query: allCategoriesQuery}}>
             <Button bsStyle="primary" bsSize="small">
                 <FormattedMessage id="categories.all"/>
             </Button>
