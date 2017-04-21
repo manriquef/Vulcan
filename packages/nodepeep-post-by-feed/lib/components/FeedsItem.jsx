@@ -9,7 +9,7 @@ class FeedsItem extends Component {
 
 
   renderCategories() {
-    return this.props.feed.categories ? <Components.PostsCategories post={ this.props.feed } /> : "";
+    return this.props.feed.categories && this.props.feed.categories.length > 0 ? <Components.FeedsCategories feed={ this.props.feed } /> : "";
   }
 
   renderActions() {
@@ -27,11 +27,12 @@ class FeedsItem extends Component {
   render() {
     const {feed} = this.props;
     const {currentUser, messages} = this.context;
+    console.log("JDHHF: "+ feed);
     return (
       <div className="posts-item">
               <div className="posts-item-content">
                 <div className="posts-item-title">
-                  <a className="posts-item-title-link" href={ feed.url }>{ feed.title ? feed.title : "Feed not fetched yet" }</a>
+                  <a className="posts-item-title-link" href={ feed.url }>{ feed.title ? feed.title : "Feed " + feed.url + " not fetched yet" }</a>
                   { this.renderCategories() }
                 </div>
                 <div className="posts-item-link"><a href={ feed.url }>{feed.url }</a></div>

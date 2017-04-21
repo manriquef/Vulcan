@@ -53,7 +53,7 @@
   "feeds":[
     {
       "url": "http://www.theverge.com/rss/index.xml",
-      "categorySlug": "Technews",
+      "categorySlug": "technews",
       "title": "The Verge",
       "userName": "TechMaster"
     },

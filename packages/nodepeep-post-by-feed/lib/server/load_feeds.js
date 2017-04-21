@@ -36,8 +36,9 @@ import Feeds from '../collection.js';
       if (existingFeed) {
         // if feed exists, update it with settings data except url
         delete feed.url;
+        console.log("LOAD FEED: ", feed);
 
-        Feeds.update(existingFeed._id, {$set: feed});
+        Feeds.update(existingFeed._id, { $set: feed });
       } else {
         // if not, create it only if there is an admin user
         if (feed.userId) {
