@@ -1,28 +1,36 @@
-import { Components, registerComponent } from 'meteor/vulcan:core';
+import { Components, registerComponent, withDocument } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Categories from 'meteor/vulcan:categories';
+import { withRouter } from 'react-router';
 
 class CategoryInfo extends Component {
 
-  renderCategory(category) {
-    return (
-      <div></div>
-    )
-  }
-
   render() {
 
-    //const category = this.props.category;
+    const {category, index, router} = this.props;
 
+    const currentCategorySlug = this.props.router.location.query && this.props.router.location.query.cat;
+    const currentCategory = Categories.findOneInStore(this.props.client.store, {slug: currentCategorySlug});
+    const parentCategories = Categories.getParents(currentCategory, this.props.client.store);
+
+    //const category = this.props.category;
+    console.log("CatList: " + category);
     return (
-    <div></div>
+    <div>{}</div>
     )
   }
 
 }
 
 CategoryInfo.propTypes = {
-  category: PropTypes.object.isRequired, // the current category
+  category: PropTypes.array, // the current category
+  document: PropTypes.object,
 };
 
-registerComponent('CategoryInfo', CategoryInfo);
+const options = {
+  collection: Categories,
+  fragmentName: 'CategoriesList',
+};
+
+registerComponent('CategoryInfo', CategoryInfo, withRouter, [withDocument, options]);

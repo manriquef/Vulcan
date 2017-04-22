@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Button, MenuItem } from 'react-bootstrap';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
 import Categories from 'meteor/vulcan:categories';
 
 class Category extends Component {

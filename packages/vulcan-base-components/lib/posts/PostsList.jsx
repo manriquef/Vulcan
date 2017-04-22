@@ -72,6 +72,7 @@ const options = {
   collection: Posts,
   queryName: 'postsListQuery',
   fragmentName: 'PostsList',
+  limit: 30,
 };
 
 registerComponent('PostsList', PostsList, withCurrentUser, [withList, options]);

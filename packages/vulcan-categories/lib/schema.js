@@ -3,7 +3,7 @@ export function getCategories (apolloClient) {
 
   // get the current data of the store
   const apolloData = apolloClient.store.getState().apollo.data;
-  
+
   // filter these data based on their typename: we are interested in the categories data
   const categories = _.filter(apolloData, (object, key) => {
     return object.__typename === 'Category'
@@ -37,6 +37,16 @@ const schema = {
     editableBy: ['members'],
   },
   description: {
+    type: String,
+    optional: true,
+    viewableBy: ['guests'],
+    insertableBy: ['members'],
+    editableBy: ['members'],
+    form: {
+      rows: 3
+    }
+  },
+  rules: {
     type: String,
     optional: true,
     viewableBy: ['guests'],

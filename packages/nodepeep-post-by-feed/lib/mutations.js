@@ -23,7 +23,7 @@ const mutations = {
       return newMutation({
         collection: context.Feeds,
         document: document,
-        currentUser: user,
+        currentUser: context.currentUser,
         validate: true,
         context,
       });

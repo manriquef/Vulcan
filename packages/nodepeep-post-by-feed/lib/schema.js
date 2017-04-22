@@ -64,10 +64,10 @@ const schema = {
      },
      resolveAs: 'categories: [Category]',
    },
-//  　'categories.$': {
-//    type: String,
-//    optional: true,
-//   },
+  　'categories.$': {
+    type: String,
+    optional: true,
+   },
    createdFromSettings: {
      type: Boolean,
      optional: true,

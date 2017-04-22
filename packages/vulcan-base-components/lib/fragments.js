@@ -99,6 +99,7 @@ registerFragment(`
     # vulcan:categories
     ...CategoriesMinimumInfo
     description
+    rules
     order
     image
     parentId
@@ -220,6 +221,7 @@ registerFragment(`
     _id
     title
     url
+    userName
     categories{
       ...CategoriesMinimumInfo
     }

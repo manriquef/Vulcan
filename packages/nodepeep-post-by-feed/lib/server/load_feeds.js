@@ -1,6 +1,8 @@
 import { getFirstAdminUser } from './fetch_feeds';
 import Categories from 'meteor/vulcan:categories';
+import Users from 'meteor/vulcan:users';
 import Feeds from '../collection.js';
+import { newMutation } from 'meteor/vulcan:core';
 
 // Load feeds from settings, if there are any
 //Meteor.startup(() => {
@@ -14,6 +16,16 @@ import Feeds from '../collection.js';
         const category = Categories.findOne({ slug: feed.categorySlug });
         try {
           feed.categories = [category._id];//if it doesn't exist it fails
+        } catch (e) {
+          console.log(e);
+        }
+      }
+
+      if (feed.userName) {
+                                // What you want - What you have
+        const user = Users.findOne({ username: feed.userName });
+        try {
+          feed.userId = [user._id];//if it doesn't exist it fails
         } catch (e) {
           console.log(e);
         }
@@ -36,12 +48,10 @@ import Feeds from '../collection.js';
       if (existingFeed) {
         // if feed exists, update it with settings data except url
         delete feed.url;
-        console.log("LOAD FEED: ", feed);
-
         Feeds.update(existingFeed._id, { $set: feed });
       } else {
         // if not, create it only if there is an admin user
-        if (feed.userId) {
+        if (feed.userName) {
           const AdminUser = feed.userId;
         } else {
           const AdminUser = getFirstAdminUser();
@@ -53,12 +63,23 @@ import Feeds from '../collection.js';
 
         feed.createdFromSettings = true;
 
+        newMutation({
+          collection: Feeds,
+          document: feed,
+          validate: false,
+        });
+
+        console.log(`// Creating feed “${feed.url}”`);
+
+        /*
         try {
           Feeds.insert(feed)
           console.log(`// Creating feed “${feed.url}”`);
         } catch (e) {
           console.log(e);
         }
+        */
+
       }
     });
   }

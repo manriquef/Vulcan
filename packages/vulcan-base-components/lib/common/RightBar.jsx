@@ -12,7 +12,7 @@ class RightBar extends Component {
           <Components.CategoriesList />
         </div>
         <div className="rightbar-category-info">
-          <Components.CategoryInfo />
+
         </div>
       </div>
     )
@@ -22,3 +22,4 @@ class RightBar extends Component {
 RightBar.displayName = "RightBar";
 
 registerComponent('RightBar', RightBar);
+//  <Components.CategoryInfo />
