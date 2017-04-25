@@ -1,36 +1,64 @@
-import { Components, registerComponent, withDocument } from 'meteor/vulcan:core';
+import { ModalTrigger, Components, registerComponent, withList, Utils } from "meteor/vulcan:core";
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { ButtonToolbar, Button, MenuItem } from 'react-bootstrap';
+import { withRouter } from 'react-router'
+import { LinkContainer } from 'react-router-bootstrap';
 import Categories from 'meteor/vulcan:categories';
-import { withRouter } from 'react-router';
+import { withApollo } from 'react-apollo';
 
 class CategoryInfo extends Component {
 
-  render() {
+  getCurrentCategory() {
+    const categories = this.props.results;
 
-    const {category, index, router} = this.props;
 
+    // check if a category is currently active in the route
     const currentCategorySlug = this.props.router.location.query && this.props.router.location.query.cat;
     const currentCategory = Categories.findOneInStore(this.props.client.store, {slug: currentCategorySlug});
     const parentCategories = Categories.getParents(currentCategory, this.props.client.store);
 
-    //const category = this.props.category;
-    console.log("CatList: " + category);
-    return (
-    <div>{}</div>
-    )
+    return currentCategorySlug;
   }
 
+  getCurrentCategoryRules() {
+
+    const defaultCategory = "Main";
+    if(this.props.router.location.query.cat) {
+      const currentCategory = Categories.findOneInStore(this.props.client.store, {slug: this.props.router.location.query.cat});
+      const currentCategoryRules = currentCategory.rules;
+      return currentCategoryRules;
+    }
+    else {
+      return defaultCategory;
+    }
+  }
+
+  render() {
+
+    return (
+      <div>
+          <div className="categories-info">
+            This feed is
+            {!!this.getCurrentCategory() ? this.getCurrentCategoryRules() : "LOL NA NIG"}
+          </div>
+
+      </div>
+    )
+
+  }
 }
 
 CategoryInfo.propTypes = {
-  category: PropTypes.array, // the current category
-  document: PropTypes.object,
+  results: PropTypes.array,
 };
+
 
 const options = {
   collection: Categories,
+  queryName: 'categoriesListQuery',
   fragmentName: 'CategoriesList',
 };
 
-registerComponent('CategoryInfo', CategoryInfo, withRouter, [withDocument, options]);
+registerComponent('CategoryInfo', CategoryInfo, withRouter, withApollo, [withList, options]);

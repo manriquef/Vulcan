@@ -45,10 +45,11 @@ const schema = {
      viewableBy: ['guests'],
      insertableBy: ['admins'],
      editableBy: ['admins'],
+     resolveAs: 'user: User',
      form: {
        options: formProps => getAdminAsOptions(formProps.client)
      },
-    resolveAs: 'user: User',
+  //  resolveAs: 'user: User',
    },
    categories: {
      type: Array,
@@ -62,12 +63,12 @@ const schema = {
     //   order: 50,
        options: formProps => getCategoriesAsOptions(formProps.client)
      },
-     resolveAs: 'categories: [Category]',
+     resolveAs: 'categories: Category',
    },
   　'categories.$': {
     type: String,
     optional: true,
-   },
+  },
    createdFromSettings: {
      type: Boolean,
      optional: true,

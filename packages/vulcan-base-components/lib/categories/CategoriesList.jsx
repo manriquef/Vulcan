@@ -2,7 +2,7 @@ import { ModalTrigger, Components, registerComponent, withList, Utils } from "me
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { ButtonToolbar, Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { ButtonToolbar, Button, MenuItem } from 'react-bootstrap';
 import { withRouter } from 'react-router'
 import { LinkContainer } from 'react-router-bootstrap';
 import Categories from 'meteor/vulcan:categories';

@@ -85,6 +85,4 @@ const mutations = {
 
 };
 
-GraphQLSchema.addMutation('increasePostViewCount(postId: String): Float');
-
 export default mutations;

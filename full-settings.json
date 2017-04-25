@@ -70,6 +70,12 @@
       "userName": "TechMaster"
     },
     {
+      "url": "http://wccftech.com/feed/",
+      "categorySlug": "technews",
+      "title": "WCCFTECH",
+      "userName": "TechMaster"
+    },
+    {
       "url": "http://feeds.reuters.com/Reuters/worldNews",
       "categorySlug": "worldnews",
       "title": "Reuters World News",

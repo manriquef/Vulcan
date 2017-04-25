@@ -6,6 +6,7 @@ import { newMutation } from 'meteor/vulcan:core';
 
 // Load feeds from settings, if there are any
 //Meteor.startup(() => {
+
   if (Meteor.settings && Meteor.settings.feeds) {
     Meteor.settings.feeds.forEach(feed => {
       // look for existing feed with same url
@@ -15,7 +16,7 @@ import { newMutation } from 'meteor/vulcan:core';
       if (feed.categorySlug) {
         const category = Categories.findOne({ slug: feed.categorySlug });
         try {
-          feed.categories = [category._id];//if it doesn't exist it fails
+          feed.categories = [category._id];
         } catch (e) {
           console.log(e);
         }
@@ -64,8 +65,10 @@ import { newMutation } from 'meteor/vulcan:core';
         feed.createdFromSettings = true;
 
         newMutation({
+          action: 'feeds.new',
           collection: Feeds,
           document: feed,
+          currentUser: feed.userId,
           validate: false,
         });
 

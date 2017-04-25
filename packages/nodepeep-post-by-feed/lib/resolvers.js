@@ -1,13 +1,3 @@
-/*
-
-Three resolvers are defined:
-
-- list (e.g.: moviesList(terms: JSON, offset: Int, limit: Int) )
-- single (e.g.: moviesSingle(_id: String) )
-- listTotal (e.g.: moviesTotal )
-
-*/
-
 import { addGraphQLResolvers } from 'meteor/vulcan:core';
 
 // basic list, single, and total query resolvers
@@ -46,15 +36,5 @@ const resolvers = {
 
   }
 };
-
-// add the "user" resolver for the Movie type separately
-const feedUserResolver = {
-  Feed: {
-    user(feed, args, context) {
-      return context.Users.findOne({ _id: feed.userId }, { fields: context.Users.getViewableFields(context.currentUser, context.Users) });
-    },
-  },
-};
-addGraphQLResolvers(feedUserResolver);
 
 export default resolvers;

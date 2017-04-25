@@ -4,7 +4,8 @@ Register the GraphQL fragment used to query for data
 
 */
 
-import { registerFragment, getFragment } from 'meteor/vulcan:core';
+import { registerFragment, getFragment  } from 'meteor/vulcan:core';
+
 
 
 registerFragment(`
@@ -13,15 +14,12 @@ registerFragment(`
     _id
     title
     url
+    userId
     categories{
-      _id
-      name
-      slug
-      description
-      order
-      image
-      parentId
+      ...CategoriesMinimumInfo
     }
+    createdFromSettings
+    subjectToParsingErrors
   }
 `);
 
@@ -30,3 +28,5 @@ registerFragment(`
     ...FeedsList
   }
 `);
+
+getFragment('CategoriesList');

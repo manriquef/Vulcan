@@ -1,7 +1,7 @@
 import Posts from 'meteor/vulcan:posts';
 
 // used to keep track of which feed a post was imported from
-Posts.addField[
+Posts.addField([
   {
     fieldName: 'feedId',
     fieldSchema: {
@@ -25,4 +25,4 @@ Posts.addField[
       }
     }
   }
-];
+]);

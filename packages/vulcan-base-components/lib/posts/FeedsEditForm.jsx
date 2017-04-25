@@ -2,7 +2,7 @@ import { Components, registerComponent, getFragment, withMessages } from 'meteor
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
-import Feeds from "meteor/nodepeep:post-by-feed";
+import Feeds from 'meteor/nodepeep:post-by-feed';
 import { withRouter } from 'react-router'
 
 class FeedsEditForm extends Component {

@@ -12,7 +12,7 @@ Picker.route('/out', ({ query}, req, res, next) => {
     even without the hash
     */
 
-    // decoce url just in case
+    // decode url just in case
     const decodedUrl = decodeURIComponent(query.url);
 
     try {
@@ -27,6 +27,7 @@ Picker.route('/out', ({ query}, req, res, next) => {
         res.end();
       } else {
         // don't redirect if we can't find a post for that link
+        res.writeHead(301, {'Location': query.url});
         res.end(`Invalid URL: ${query.url}`);
       }
     } catch (error) {
