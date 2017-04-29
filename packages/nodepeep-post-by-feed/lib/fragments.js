@@ -14,6 +14,11 @@ registerFragment(`
     url
     userId
     categories
+    {
+      _id
+      name
+      slug
+    }
     createdFromSettings
     subjectToParsingErrors
   }
