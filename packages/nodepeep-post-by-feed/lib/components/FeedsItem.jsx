@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Components, registerComponent, withList, withCurrentUser, ModalTrigger } from 'meteor/vulcan:core';
 import { FormattedMessage, intlShape } from 'react-intl';
-import NovaForm from "meteor/vulcan:forms";
+import NovaForm from 'meteor/vulcan:forms';
 import Feeds from '../collection.js';
 
  const FeedsItem = ({feed, currentUser}) =>

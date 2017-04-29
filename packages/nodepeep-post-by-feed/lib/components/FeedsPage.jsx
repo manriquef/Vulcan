@@ -18,7 +18,7 @@ const FeedsPage = ({results = [], currentUser, loading, loadMore, count, totalCo
 
 const options = {
   collection: Feeds,
-  fragmentName: 'FeedsPage'
+  fragmentName: 'FeedsPage',
 };
 
 export default withList(options)(withCurrentUser(FeedsPage));

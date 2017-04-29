@@ -6,8 +6,6 @@ Register the GraphQL fragment used to query for data
 
 import { registerFragment, getFragment  } from 'meteor/vulcan:core';
 
-
-
 registerFragment(`
   fragment FeedsList on Feed {
     # vulcan:posts
@@ -15,9 +13,7 @@ registerFragment(`
     title
     url
     userId
-    categories{
-      ...CategoriesMinimumInfo
-    }
+    categories
     createdFromSettings
     subjectToParsingErrors
   }
@@ -28,5 +24,3 @@ registerFragment(`
     ...FeedsList
   }
 `);
-
-getFragment('CategoriesList');

@@ -1,4 +1,4 @@
-import { registerFragment, getFragment } from 'meteor/vulcan:core';
+import { registerFragment } from 'meteor/vulcan:core';
 
 // ------------------------------ Vote ------------------------------ //
 
