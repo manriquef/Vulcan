@@ -26,8 +26,8 @@ import { newMutation } from 'meteor/vulcan:core';
                                 // What you want - What you have
         const user = Users.findOne({ username: feed.userName });
         try {
-          feed.userId._id = [user._id];//if it doesn't exist it fails
-          console.log("E :" + user._id);
+          feed.user._id = [user._id];//if it doesn't exist it fails
+          console.log("KJ: " + feed.user._id)
         } catch (e) {
           console.log(e);
         }
@@ -67,7 +67,7 @@ import { newMutation } from 'meteor/vulcan:core';
           action: 'feeds.new',
           collection: Feeds,
           document: feed,
-          currentUser: feed.userId,
+          currentUser: feed.user,
           validate: false,
         });
 

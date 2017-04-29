@@ -12,7 +12,7 @@ registerFragment(`
     _id
     title
     url
-    userId{
+    user{
       _id
       slug
       avatar
