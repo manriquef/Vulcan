@@ -18,7 +18,7 @@ import Feeds from '../collection.js';
 
                 <div className="posts-item-meta">
                   { feed.user ? ( <div className="posts-item-user">
-                        <Components.UsersName user={feed.user._id}/>
+                        <Components.UsersName user={feed.userId}/>
                       </div>
                     ) : null }
                   {Feeds.options.mutations.edit.check(currentUser, feed) ? (feed.createdFromSettings
