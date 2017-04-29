@@ -26,8 +26,7 @@ import { newMutation } from 'meteor/vulcan:core';
                                 // What you want - What you have
         const user = Users.findOne({ username: feed.userName });
         try {
-          feed.user._id = [user._id];//if it doesn't exist it fails
-          console.log("KJ: " + feed.user._id)
+          feed.userId = [user._id];//if it doesn't exist it fails
         } catch (e) {
           console.log(e);
         }
@@ -53,13 +52,15 @@ import { newMutation } from 'meteor/vulcan:core';
         Feeds.update(existingFeed._id, { $set: feed });
       } else {
         // if not, create it only if there is an admin user
-        if (!feed.userName) {
+        if (feed.userName) {
+          const AdminUser = feed.userId;
+        } else {
           const AdminUser = getFirstAdminUser();
+        }
 
           if (typeof AdminUser == 'undefined') {
-            console.log('// No feed user defined and no admin found, cannot create feed');
+            console.log('// No userId defined and no admin found, cannot create feed');
           }
-        }
 
         feed.createdFromSettings = true;
 
@@ -67,7 +68,7 @@ import { newMutation } from 'meteor/vulcan:core';
           action: 'feeds.new',
           collection: Feeds,
           document: feed,
-          currentUser: feed.user,
+          currentUser: feed.userId,
           validate: false,
         });
 

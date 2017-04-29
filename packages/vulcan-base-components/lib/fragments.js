@@ -47,7 +47,6 @@ registerFragment(`
     isAdmin
     bio
     htmlBio
-    isFeed
     twitterUsername
     website
     groups
