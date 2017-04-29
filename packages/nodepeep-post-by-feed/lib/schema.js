@@ -38,7 +38,7 @@ const schema = {
      insertableBy: ['admins'],
      editableBy: ['admins'],
    },
-   user: {
+   userId: {
      type: String,
      control: 'select',
      viewableBy: ['guests'],
