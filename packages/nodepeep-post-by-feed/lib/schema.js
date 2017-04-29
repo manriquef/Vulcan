@@ -49,6 +49,7 @@ const schema = {
      form: {
        options: formProps => getAdminAsOptions(formProps.client)
      },
+  //  resolveAs: 'user: User',
    },
    categories: {
      type: Array,
@@ -64,10 +65,6 @@ const schema = {
      },
      resolveAs: 'categories: [Category]',
    },
-//  　'categories.$': {
-//    type: String,
-//    optional: true,
-//  },
    createdFromSettings: {
      type: Boolean,
      optional: true,

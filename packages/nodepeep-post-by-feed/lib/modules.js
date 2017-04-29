@@ -7,6 +7,6 @@ import './mutations.js';
 import './permissions.js';
 import './schema.js';
 import './resolvers.js';
-import './routes.js';
+import './routes.jsx';
 
 export default Feeds;

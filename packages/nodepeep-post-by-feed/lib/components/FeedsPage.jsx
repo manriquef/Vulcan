@@ -1,3 +1,4 @@
+    {/*console.log(JSON.stringify(results))*/}
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Components, withList, withCurrentUser, Loading } from 'meteor/vulcan:core';
@@ -18,7 +19,7 @@ const FeedsPage = ({results = [], currentUser, loading, loadMore, count, totalCo
 
 const options = {
   collection: Feeds,
-  fragmentName: 'FeedsPage',
+  fragmentName: 'FeedsPage'
 };
 
 export default withList(options)(withCurrentUser(FeedsPage));
