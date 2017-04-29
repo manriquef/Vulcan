@@ -12,7 +12,15 @@ registerFragment(`
     _id
     title
     url
-    userId
+    user{
+      _id
+      slug
+      avatar
+      username
+      displayName
+      emailHash
+      isFeed
+    }
     categories
     {
       _id

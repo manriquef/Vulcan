@@ -86,7 +86,7 @@ const feedHandler = {
     return itemCategories;
   },
 
-  handle(contentBuffer, userName, feedCategories, feedId) {
+  handle(contentBuffer, feedUser, feedCategories, feedId) {
     const self = this;
     const content = normalizeEncoding(contentBuffer);
     const stream = this.getStream(content);
@@ -137,7 +137,7 @@ const feedHandler = {
           url: item.link,
           feedId: feedId,
           feedItemId: item.guid,
-          userId: userName._id,
+          userId: feedUser._id,
           thumbnailUrl: extractThumbnail(item.description),
           categories: self.getItemCategories(item, feedCategories)
         };
@@ -173,7 +173,7 @@ const feedHandler = {
           newMutation({
             collection: Posts,
             document: post,
-            currentUser: userName._id,
+            currentUser: feedUser._id,
             validate: false,
           });
         } catch (error) {
@@ -198,13 +198,13 @@ export const fetchFeeds = function() {
 
     // if feed doesn't specify a user, default to admin
     const feedName = !!feed.userName ? feed.userName.trim() : null;
-    const userName = Users.findOne({username: feedName});
+    const feedUser = Users.findOne({username: feedName});
     const feedCategories = feed.categories;
     const feedId = feed._id;
 
     try {
       contentBuffer = HTTP.get(feed.url, { responseType: 'buffer' }).content;
-      feedHandler.handle(contentBuffer, userName, feedCategories, feedId);
+      feedHandler.handle(contentBuffer, feedUser, feedCategories, feedId);
     } catch (error) {
       console.log(error);
       return true; // just go to next feed URL

@@ -10,8 +10,7 @@ import Tags from 'meteor/vulcan:forms-tags';
 
 
  export function getAdminAsOptions (apolloClient) {
-   // give the form component (here: checkboxgroup) exploitable data
-   return Users.find({ $or: [{ isAdmin: true }, { isOwner: true }] }).map((user) => {
+   return Users.find({ $or: [{ isFeed: true }, { isOwner: true }] }).map((user) => {
      return {
        value: user._id,
        label: Users.getDisplayName(user)
@@ -39,7 +38,7 @@ const schema = {
      insertableBy: ['admins'],
      editableBy: ['admins'],
    },
-   userId: {
+   user: {
      type: String,
      control: 'select',
      viewableBy: ['guests'],
@@ -64,10 +63,6 @@ const schema = {
      },
      resolveAs: 'categories: [Category]',
    },
-//  　'categories.$': {
-//    type: String,
-//    optional: true,
-//  },
    createdFromSettings: {
      type: Boolean,
      optional: true,
