@@ -137,10 +137,13 @@ const feedHandler = {
           url: item.link,
           feedId: feedId,
           feedItemId: item.guid,
+          isFeed: true,
           userId: userName._id,
           thumbnailUrl: extractThumbnail(item.description),
           categories: self.getItemCategories(item, feedCategories)
         };
+
+        //console.log(JSON.stringify(post));
 
         if (item.description) {
           post.body = toMarkdown(he.decode(item.description));
@@ -171,6 +174,7 @@ const feedHandler = {
 
         try {
           newMutation({
+          //  action: 'posts.new',
             collection: Posts,
             document: post,
             currentUser: userName._id,
@@ -178,7 +182,8 @@ const feedHandler = {
           });
         } catch (error) {
           // catch errors so they don't stop the loop
-          console.log(error);
+        //  console.log(error);
+        console.log(error + post);
         }
       }
 

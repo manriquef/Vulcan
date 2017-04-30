@@ -74,15 +74,6 @@ import { newMutation } from 'meteor/vulcan:core';
 
         console.log(`// Creating feed “${feed.url}”`);
 
-        /*
-        try {
-          Feeds.insert(feed)
-          console.log(`// Creating feed “${feed.url}”`);
-        } catch (e) {
-          console.log(e);
-        }
-        */
-
       }
     });
   }

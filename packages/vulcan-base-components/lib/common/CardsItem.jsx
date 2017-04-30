@@ -56,12 +56,12 @@ class CardsItem extends Component {
             </div>
             {post.user? <div className="cards-item-user"><Components.UsersAvatar user={post.user} size="small"/></div> : null}
             <div className="cards-item-date">{post.postedAt ? <FormattedRelative value={post.postedAt}/> : <FormattedMessage id="posts.dateNotDefined"/>}</div>
-            <div className="cards-item-comments">
+            {/*<div className="cards-item-comments">
               <Link to={Posts.getPageUrl(post)}>
                 <Components.Icon name="comment" />
                 <FormattedMessage id="comments.count" values={{count: post.commentCount}}/>
               </Link>
-            </div>
+            </div>*/}
 
             <div className="cards-item-vote">
               <Components.Vote collection={Posts} document={post} currentUser={this.props.currentUser}/>

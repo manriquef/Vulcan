@@ -36,6 +36,7 @@ registerFragment(`
     username
     displayName
     emailHash
+    feedAcount
   }
 `);
 
@@ -125,6 +126,7 @@ registerFragment(`
     status
     body
     htmlBody
+    isFeed
     excerpt
     viewCount
     clickCount

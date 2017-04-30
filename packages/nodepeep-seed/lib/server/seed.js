@@ -13,6 +13,8 @@ const feedFlag = {
     hidden: true
   }
 }
+
+
 Users.addField(feedFlag);
 Posts.addField(feedFlag);
 Comments.addField(feedFlag);
@@ -25,6 +27,16 @@ Posts.addField({
     hidden: true // never show this
   }
 });
+
+Users.addField({
+  fieldName: 'feedAccount',
+  fieldSchema: {
+    type: Boolean,
+    optional: true,
+    hidden: true // never show this
+  }
+});
+
 
 var toTitleCase = function (str) {
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -85,63 +97,72 @@ var createFeedUsers = function () {
     email: 'gamesmaster@nodepeep.com',
     profile: {
       isFeed: true
-    }
+    },
+    feedAccount: true
   });
   Accounts.createUser({
     username: 'NewsMaster',
     email: 'newsmaster@nodepeep.com',
     profile: {
       isFeed: true
-    }
+    },
+    feedAccount: true
   });
   Accounts.createUser({
     username: 'WorldNewsMaster',
     email: 'worldnewsmaster@nodepeep.com',
     profile: {
       isFeed: true
-    }
+    },
+    feedAccount: true
   });
   Accounts.createUser({
     username: 'SportsMaster',
     email: 'sportsmaster@nodepeep.com',
     profile: {
       isFeed: true
-    }
+    },
+    feedAccount: true
   });
   Accounts.createUser({
     username: 'ScienceMaster',
     email: 'science@nodepeep.com',
     profile: {
       isFeed: true
-    }
+    },
+    feedAccount: true
   });
   Accounts.createUser({
     username: 'TechMaster',
     email: 'techmaster@nodepeep.com',
     profile: {
       isFeed: true
-    }
+    },
+    feedAccount: true
   });
   Accounts.createUser({
     username: 'ArtsMaster',
     email: 'artsmaster@nodepeep.com',
     profile: {
       isFeed: true
-    }
+    },
+    feedAccount: true
   });
   Accounts.createUser({
     username: 'PoliticsMaster',
     email: 'politicsmaster@nodepeep.com',
     profile: {
       isFeed: true
-    }
+    },
+    feedAccount: true
   });
   Accounts.createUser({
     username: 'HealthMaster',
     email: 'healthmaster@nodepeep.com',
     profile: {
       isFeed: true
-    }
+    },
+    feedAccount: true
   });
 };
 
@@ -160,14 +181,15 @@ var createFeedPosts = function () {
 
 };
 
+/*
 var createFeedComments = function () {
   console.log('// inserting dummy comments…');
 
   createComment("read_this_first", "NewsMaster", "What an awesome app!");
-
   createComment("deploying", "PoliticsMaster", "Deploy to da choppah!");
 
 };
+*/
 
 const deleteFeedContent = function () {
   Users.remove({'profile.isFeed': true});
@@ -183,7 +205,7 @@ Meteor.startup(function () {
   if (!Posts.find().count()) {
     createFeedPosts();
   }
-  if (!Comments.find().count()) {
+/*  if (!Comments.find().count()) {
     createFeedComments();
-  }
+  }*/
 });

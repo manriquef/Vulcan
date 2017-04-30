@@ -42,7 +42,7 @@ class FeedsEditForm extends Component {
 FeedsEditForm.propTypes = {
   closeModal: PropTypes.func,
   flash: PropTypes.func,
-  post: PropTypes.object.isRequired,
+  feed: PropTypes.object.isRequired,
 }
 
 FeedsEditForm.contextTypes = {

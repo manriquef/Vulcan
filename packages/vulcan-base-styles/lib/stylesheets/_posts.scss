@@ -471,7 +471,7 @@
 
 .cards-item-user{
     position: absolute;
-    bottom: 30px;
+    bottom: 5px;
     width: 148px;
     max-height: 190px;
     .avatar{
@@ -488,7 +488,7 @@
 .cards-item-date{
   text-align: justify;
   position: absolute;
-  bottom: 35px;
+  bottom: 5px;
   left: 70px;
   font-size: $smallest-font;
   color: $color-lightgrey;
@@ -518,7 +518,7 @@
 .cards-actions{
   display: flex;
   position: absolute;
-  bottom: 35px;
+  bottom: 5px;
   left: 170px;
   color: #ffa100;
   font-size: $smallest-font;
