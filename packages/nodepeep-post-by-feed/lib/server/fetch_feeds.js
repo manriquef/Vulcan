@@ -204,7 +204,7 @@ export const fetchFeeds = function() {
     // if feed doesn't specify a user, default to admin
     const feedName = !!feed.userName ? feed.userName.trim() : null;
     const userName = Users.findOne({username: feedName});
-    const feedCategories = feed.categories;
+    const feedCategories = feed.categories._id;
     const feedId = feed._id;
 
     try {

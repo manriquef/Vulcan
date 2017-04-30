@@ -2,6 +2,7 @@ import SimpleSchema from 'simpl-schema';
 import Users from 'meteor/vulcan:users';
 import { getCategoriesAsOptions } from 'meteor/vulcan:categories';
 import Tags from 'meteor/vulcan:forms-tags';
+import Category from 'meteor/vulcan:categories';
 
 /**
  * @summary Users schema
@@ -57,12 +58,16 @@ const schema = {
      viewableBy: ['guests'],
      insertableBy: ['admins'],
      editableBy: ['admins'],
+     resolveAs: 'categories: [Category]',
      form: {
     //   noselect: true,
     //   order: 50,
        options: formProps => getCategoriesAsOptions(formProps.client)
      },
-     resolveAs: 'categories: [Category]',
+   },
+    'categories.$': {
+       type: String,
+       optional: true
    },
    createdFromSettings: {
      type: Boolean,
