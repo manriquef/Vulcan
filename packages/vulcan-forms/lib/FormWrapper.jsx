@@ -64,16 +64,12 @@ class FormWrapper extends Component{
       relevantFields = _.intersection(relevantFields, fields);
     }
 
-    // resolve any array field with resolveAs as fieldName{_id}
-    /* 
-    - string field with no resolver -> fieldName
-    - string field with a resolver  -> fieldName
-    - array field with no resolver  -> fieldName
-    - array field with a resolver   -> fieldName{_id}
-    */
+    // handle fields with resolvers that contain "[" 
+    // note: you can override the generated fragment with your own fragment given as a prop!
     relevantFields = relevantFields.map(fieldName => {
-      const field = this.getSchema()[fieldName]
-      return field.resolveAs && field.type.definitions[0].type === Array
+      const resolveAs = this.getSchema()[fieldName].resolveAs;
+      
+      return resolveAs && resolveAs.includes('[') 
         ? `${fieldName}{_id}` // if it's a custom resolver, add a basic query to its _id
         : fieldName; // else just ask for the field name
     });
@@ -87,7 +83,6 @@ class FormWrapper extends Component{
     `
 
     // get query & mutation fragments from props or else default to same as generatedFragment
-    // note: mutationFragment should probably always be specified in props
     return {
       queryFragment: this.props.queryFragment || generatedFragment,
       mutationFragment: this.props.mutationFragment || generatedFragment,

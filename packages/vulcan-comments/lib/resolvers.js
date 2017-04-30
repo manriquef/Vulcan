@@ -2,32 +2,25 @@ import { GraphQLSchema } from 'meteor/vulcan:core';
 
 const specificResolvers = {
   Post: {
-    async commenters(post, args, {currentUser, Users}) {
-      if (!post.commenters) return [];
-      const commenters = await Users.loader.loadMany(post.commenters);
-      return Users.restrictViewableFields(currentUser, Users, commenters);
+    commenters(post, args, context) {
+      return post.commenters ? context.Users.find({_id: {$in: post.commenters}}, { fields: context.getViewableFields(context.currentUser, context.Users) }).fetch() : [];
     },
+    // comments(post, args, context) {
+    //   return post.commentCount ? context.Comments.find({postId: post._id}, { fields: context.getViewableFields(context.currentUser, context.Comments) }).fetch() : [];
+    // },
   },
   Comment: {
-    async parentComment(comment, args, {currentUser, Users, Comments}) {
-      if (!comment.parentCommentId) return null;
-      const parentComment = await Comments.loader.load(comment.parentCommentId);
-      return Users.restrictViewableFields(currentUser, Users, parentComment);
+    parentComment(comment, args, context) {
+      return comment.parentCommentId ? context.Comments.findOne({_id: comment.parentCommentId}, { fields: context.getViewableFields(context.currentUser, context.Comments) }) : null;
     },
-    async topLevelComment(comment, args, {currentUser, Users, Comments}) {
-      if (!comment.topLevelCommentId) return null;
-      const topLevelComment = await Comments.loader.load(comment.topLevelCommentId);
-      return Users.restrictViewableFields(currentUser, Users, topLevelComment);
+    topLevelComment(comment, args, context) {
+      return comment.topLevelCommentId ? context.Comments.findOne({_id: comment.topLevelCommentId}, { fields: context.getViewableFields(context.currentUser, context.Comments) }) : null;
     },
-    async post(comment, args, {currentUser, Users, Posts}) {
-      if (!comment.postId) return null;
-      const post = await Posts.loader.load(comment.postId);
-      return Users.restrictViewableFields(currentUser, Users, post);
+    post(comment, args, context) {
+      return context.Posts.findOne({_id: comment.postId}, { fields: context.getViewableFields(context.currentUser, context.Posts) });
     },
-    async user(comment, args, {currentUser, Users}) {
-      if (!comment.userId) return null;
-      const user = await Users.loader.load(comment.userId);
-      return Users.restrictViewableFields(currentUser, Users, user);
+    user(comment, args, context) {
+      return context.Users.findOne({_id: comment.userId}, { fields: context.getViewableFields(context.currentUser, context.Users) });
     },
   },
 };
@@ -41,21 +34,14 @@ const resolvers = {
 
     name: 'commentsList',
 
-    resolver(root, {terms}, {currentUser, Users, Comments}) {
+    resolver(root, {terms}, context) {
+      let {selector, options} = context.Comments.getParameters(terms);
 
-      // get selector and options from terms and perform Mongo query
-      let {selector, options} = Comments.getParameters(terms);
       options.limit = (terms.limit < 1 || terms.limit > 100) ? 100 : terms.limit;
       options.skip = terms.offset;
-      const comments = Comments.find(selector, options).fetch();
+      options.fields = context.getViewableFields(context.currentUser, context.Comments);
 
-      // restrict documents fields
-      const restrictedComments = Users.restrictViewableFields(currentUser, Comments, comments);
-
-      // prime the cache
-      restrictedComments.forEach(comment => Comments.loader.prime(comment._id, comment));
-
-      return restrictedComments;
+      return context.Comments.find(selector, options).fetch();
     },
 
   },
@@ -64,9 +50,8 @@ const resolvers = {
     
     name: 'commentsSingle',
     
-    async resolver(root, {documentId}, {currentUser, Users, Comments}) {
-      const comment = await Comments.loader.load(documentId);
-      return Users.restrictViewableFields(currentUser, Comments, comment);
+    resolver(root, {documentId}, context) {
+      return context.Comments.findOne({_id: documentId}, { fields: context.getViewableFields(context.currentUser, context.Comments) });
     },
   
   },

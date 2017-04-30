@@ -46,8 +46,8 @@ const schema = {
     type: Date,
     optional: true,
     viewableBy: ['admins'],
-    onInsert: (document, currentUser) => {
-      return new Date();
+    autoValue: (documentOrModifier) => {
+      if (documentOrModifier && !documentOrModifier.$set) return new Date() // if this is an insert, set createdAt to current timestamp
     }
   },
   /**
@@ -57,8 +57,8 @@ const schema = {
     type: Date,
     optional: true,
     viewableBy: ['guests'],
-    onInsert: (document, currentUser) => {
-      return new Date();
+    autoValue: (documentOrModifier) => {
+      if (documentOrModifier && !documentOrModifier.$set) return new Date() // if this is an insert, set createdAt to current timestamp
     }
   },
   /**
@@ -87,11 +87,10 @@ const schema = {
     type: String,
     optional: true,
     viewableBy: ['guests'],
-    onEdit: (modifier, document, currentUser) => {
+    autoValue: (documentOrModifier) => {
       // if userId is changing, change the author name too
-      if (modifier.$set && modifier.$set.userId) {
-        return Users.getDisplayNameById(modifier.$set.userId)
-      }
+      const userId = documentOrModifier.userId || documentOrModifier.$set && documentOrModifier.$set.userId
+      if (userId) return Users.getDisplayNameById(userId)
     }
   },
   /**

@@ -31,21 +31,14 @@ const resolvers = {
 
     name: 'usersList',
 
-    resolver(root, {terms}, {currentUser, Users}, info) {
+    resolver(root, {terms}, context, info) {
+      let {selector, options} = context.Users.getParameters(terms);
 
-      // get selector and options from terms and perform Mongo query
-      let {selector, options} = Users.getParameters(terms);
       options.limit = (terms.limit < 1 || terms.limit > 100) ? 100 : terms.limit;
       options.skip = terms.offset;
-      const users = Users.find(selector, options).fetch();
+      options.fields = context.getViewableFields(context.currentUser, context.Users);
 
-      // restrict documents fields
-      const restrictedUsers = Users.restrictViewableFields(currentUser, Users, users);
-
-      // prime the cache
-      restrictedUsers.forEach(user => Users.loader.prime(user._id, user));
-
-      return restrictedUsers;
+      return context.Users.find(selector, options).fetch();
     },
 
   },
@@ -54,10 +47,11 @@ const resolvers = {
 
     name: 'usersSingle',
 
-    async resolver(root, {documentId, slug}, {currentUser, Users}) {
-      // don't use Dataloader if user is selected by slug
-      const user = documentId ? await Users.loader.load(documentId) : Users.findOne({slug});
-      return Users.restrictViewableFields(currentUser, Users, user);
+    resolver(root, {documentId, slug}, context) {
+      const selector = documentId ? {_id: documentId} : {'slug': slug};
+      // get the user first so we can get a list of viewable fields specific to this user document
+      const user = context.Users.findOne(selector);
+      return context.Users.keepViewableFields(context.currentUser, context.Users, user);
     },
 
   },

@@ -78,24 +78,29 @@ var createComment = function (slug, username, body, parentBody) {
   });
 };
 
-const createUser = function (username, email) {
-  const user = {
-    username,
-    email,
-    isDummy: true
-  };
-  newMutation({
-    collection: Users, 
-    document: user,
-    validate: false
-  });
-}
-
 var createDummyUsers = function () {
   console.log('// inserting dummy users…');
-  createUser('Bruce', 'dummyuser1@telescopeapp.org');
-  createUser('Arnold', 'dummyuser2@telescopeapp.org');
-  createUser('Julia', 'dummyuser3@telescopeapp.org');
+  Accounts.createUser({
+    username: 'Bruce',
+    email: 'dummyuser1@telescopeapp.org',
+    profile: {
+      isDummy: true
+    }
+  });
+  Accounts.createUser({
+    username: 'Arnold',
+    email: 'dummyuser2@telescopeapp.org',
+    profile: {
+      isDummy: true
+    }
+  });
+  Accounts.createUser({
+    username: 'Julia',
+    email: 'dummyuser3@telescopeapp.org',
+    profile: {
+      isDummy: true
+    }
+  });
 };
 
 var createDummyPosts = function () {
@@ -128,11 +133,10 @@ var createDummyComments = function () {
 
 };
 
-Vulcan.removeGettingStartedContent = () => {
+const deleteDummyContent = function () {
   Users.remove({'profile.isDummy': true});
   Posts.remove({isDummy: true});
   Comments.remove({isDummy: true});
-  console.log('// Getting started content removed');
 };
 
 Meteor.startup(function () {

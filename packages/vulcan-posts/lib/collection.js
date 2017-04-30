@@ -10,7 +10,7 @@ import { createCollection } from 'meteor/vulcan:core';
  */
 const Posts = createCollection({
 
-  collectionName: 'Posts',
+  collectionName: 'posts',
 
   typeName: 'Post',
 
@@ -22,7 +22,7 @@ const Posts = createCollection({
 
 });
 
-// refactor: moved here from schema.js
+// refacto: moved here from schema.js
 Posts.config = {};
 
 Posts.config.STATUS_PENDING = 1;

@@ -14,7 +14,7 @@ import './parameters.js';
 
 const Movies = createCollection({
 
-  collectionName: 'Movies',
+  collectionName: 'movies',
 
   typeName: 'Movie',
 

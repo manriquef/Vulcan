@@ -10,7 +10,7 @@ import { createCollection } from 'meteor/vulcan:core';
  */
  const Comments = createCollection({
 
-   collectionName: 'Comments',
+   collectionName: 'comments',
 
    typeName: 'Comment',
 

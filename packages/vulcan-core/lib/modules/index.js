@@ -9,7 +9,7 @@ export {
   // components
   Components, registerComponent, replaceComponent, getRawComponent, getComponent, copyHoCs, populateComponentsApp,
   // collections
-  Collections, createCollection,
+  createCollection,
   // fragments
   Fragments, registerFragment, getFragment, getFragmentName, extendFragment,
   // graphql
@@ -23,7 +23,7 @@ export {
   // render context
   renderContext, getRenderContext, withRenderContext,
   // routes
-  Routes, addRoute, addAsChildRoute, getRoute, populateRoutesApp,
+  Routes, addRoute, getRoute, populateRoutesApp,
   // settings
   getSetting,
   // strings

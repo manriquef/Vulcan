@@ -7,7 +7,7 @@ import SimpleSchema from 'simpl-schema';
 
 Vulcan = {};
 
-Vulcan.VERSION = '1.3.2';
+Vulcan.VERSION = '1.3.0';
 
 // ------------------------------------- Schemas -------------------------------- //
 
@@ -22,10 +22,7 @@ SimpleSchema.extendOptions([
   'autoform', // legacy form placeholder; backward compatibility (not used anymore)
   'control', // SmartForm control (String or React component)
   'order', // position in the form
-  'group', // form fieldset group
-  'onInsert', // field insert callback
-  'onEdit', // field edit callback
-  'onRemove', // field remove callback
+  'group' // form fieldset group
 ]);
 
 export default Vulcan;

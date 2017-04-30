@@ -51,18 +51,6 @@ const withList = (options) => {
         listResolverName = collection.options.resolvers.list && collection.options.resolvers.list.name,
         totalResolverName = collection.options.resolvers.total && collection.options.resolvers.total.name;
 
-  // build graphql query from options
-  const query = gql`
-    query ${queryName}($terms: JSON) {
-      ${totalResolverName}(terms: $terms)
-      ${listResolverName}(terms: $terms) {
-        __typename
-        ...${fragmentName}
-      }
-    }
-    ${fragment}
-  `;
-
   return compose(
 
     // wrap component with Apollo HoC to give it access to the store
@@ -71,20 +59,29 @@ const withList = (options) => {
     // wrap component with HoC that manages the terms object via its state
     withState('paginationTerms', 'setPaginationTerms', props => {
 
-      // get initial limit from props, or else options
-      const paginationLimit = props.terms && props.terms.limit || limit;
+      // either get initial limit from options, or default to settings
       const paginationTerms = {
-        limit: paginationLimit, 
-        itemsPerPage: paginationLimit, 
+        limit, 
+        itemsPerPage: limit, 
       };
-      
+    
       return paginationTerms;
     }),
 
     // wrap component with graphql HoC
     graphql(
 
-      query,
+      // build graphql query from options
+      gql`
+        query ${queryName}($terms: JSON) {
+          ${totalResolverName}(terms: $terms)
+          ${listResolverName}(terms: $terms) {
+            __typename
+            ...${fragmentName}
+          }
+        }
+        ${fragment}
+      `,
 
       {
         alias: 'withList',
@@ -176,14 +173,9 @@ const withList = (options) => {
 // define query reducer separately
 const queryReducer = (previousResults, action, collection, mergedTerms, listResolverName, totalResolverName, queryName, apolloClient) => {
 
-  // if collection has no mutations defined, just return previous results
-  if (!collection.options.mutations) {
-    return previousResults;
-  }
-
-  const newMutationName = collection.options.mutations.new && collection.options.mutations.new.name;
-  const editMutationName = collection.options.mutations.edit && collection.options.mutations.edit.name;
-  const removeMutationName = collection.options.mutations.remove && collection.options.mutations.remove.name;
+  const newMutationName = collection.options.mutations.new.name;
+  const editMutationName = collection.options.mutations.edit.name;
+  const removeMutationName = collection.options.mutations.remove.name;
 
   let newResults = previousResults;
 

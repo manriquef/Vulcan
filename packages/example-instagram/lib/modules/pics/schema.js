@@ -12,20 +12,18 @@ const schema = {
 
   _id: {
     type: String,
-    optional: true,
     viewableBy: ['guests'],
   },
   createdAt: {
     type: Date,
-    optional: true,
     viewableBy: ['guests'],
-    onInsert: (document, currentUser) => {
-      return new Date();
+    autoValue: (documentOrModifier) => {
+      // if this is an insert, set createdAt to current timestamp
+      if (documentOrModifier && !documentOrModifier.$set) return new Date()  
     }
   },
   userId: {
     type: String,
-    optional: true,
     viewableBy: ['guests'],
     resolveAs: 'user: User', // resolve this field as "user" on the client
   },
@@ -35,6 +33,7 @@ const schema = {
   imageUrl: {
     label: 'Image URL',
     type: String,
+    optional: true,
     viewableBy: ['guests'],
     insertableBy: ['members'],
     editableBy: ['members'],

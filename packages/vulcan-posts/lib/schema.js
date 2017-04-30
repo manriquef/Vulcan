@@ -32,8 +32,8 @@ const schema = {
     type: Date,
     optional: true,
     viewableBy: ['admins'],
-    onInsert: (document, currentUser) => {
-      return new Date();
+    autoValue: (documentOrModifier) => {
+      if (documentOrModifier && !documentOrModifier.$set) return new Date() // if this is an insert, set createdAt to current timestamp
     }
   },
   /**
@@ -147,15 +147,16 @@ const schema = {
     insertableBy: ['admins'],
     editableBy: ['admins'],
     control: "select",
-    onInsert: document => {
-      if (document.userId && !document.status) {
-        const user = Users.findOne(document.userId);
+    autoValue(documentOrModifier) {
+      // provide a default value if this is an insert operation and status field is not set in the document
+      if (documentOrModifier && !documentOrModifier.$set && documentOrModifier.userId && !documentOrModifier.status) {
+        const user = Users.findOne(documentOrModifier.userId);
         return Posts.getDefaultStatus(user);
       }
     },
     form: {
       noselect: true,
-      options: () => Posts.statuses,
+      options: Posts.statuses,
       group: 'admin'
     },
     group: formGroups.admin
@@ -214,11 +215,10 @@ const schema = {
     type: String,
     optional: true,
     viewableBy: ['guests'],
-    onEdit: (modifier, document, currentUser) => {
+    autoValue: (documentOrModifier) => {
       // if userId is changing, change the author name too
-      if (modifier.$set && modifier.$set.userId) {
-        return Users.getDisplayNameById(modifier.$set.userId)
-      }
+      const userId = documentOrModifier.userId || documentOrModifier.$set && documentOrModifier.$set.userId
+      if (userId) return Users.getDisplayNameById(userId)
     }
   },
   /**
