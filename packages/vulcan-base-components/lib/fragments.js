@@ -36,6 +36,7 @@ registerFragment(`
     username
     displayName
     emailHash
+    isFeed
   }
 `);
 
@@ -51,7 +52,6 @@ registerFragment(`
     website
     groups
     karma
-    isFeed
     # vulcan:posts
     postCount
     # vulcan:comments

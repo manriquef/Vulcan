@@ -7,6 +7,7 @@ registerFragment(`
     title
     url
     userId
+    feedUsers
     categories
     {
       _id

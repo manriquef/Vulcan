@@ -142,7 +142,7 @@ Users.addField([
       form: {
         options: formProps => getCategoriesAsOptions(formProps.client)
       },
-    //  group: ['mods','supermods'],
+      group: ['mods','supermods'],
     }
   },
   {

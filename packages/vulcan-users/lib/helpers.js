@@ -244,6 +244,10 @@ Users.adminUsers = function (options) {
   return this.find({isAdmin : true}, options).fetch();
 };
 
+Users.feedUsers = function (options) {
+  return this.find({isFeed : true}, options).fetch();
+};
+
 Users.getCurrentUserEmail = function () {
   return Meteor.user() ? Users.getEmail(Meteor.user()) : '';
 };

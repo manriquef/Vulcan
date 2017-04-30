@@ -41,7 +41,7 @@ class CategoryInfo extends Component {
       <div>
           <div className="categories-info">
             This feed is
-            {!!this.getCurrentCategory() ? this.getCurrentCategoryRules() : "LOL NA NIG"}
+            {!!this.getCurrentCategory() ? this.getCurrentCategoryRules() : "nothing here..."}
           </div>
 
       </div>

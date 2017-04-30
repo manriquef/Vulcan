@@ -17,7 +17,6 @@ import Category from 'meteor/vulcan:categories';
        value: user._id,
        label: Users.getDisplayName(user)
      };
-     console.log("LK: " + user);
    });
  }
 
@@ -46,11 +45,21 @@ const schema = {
      control: 'select',
      viewableBy: ['guests'],
      insertableBy: ['admins'],
+     hidden: true,
+   },
+   feedUsers: {
+     type: Array,
+     control: 'select',
+     viewableBy: ['guests'],
+     insertableBy: ['admins'],
      editableBy: ['admins'],
-     resolveAs: 'user: User',
      form: {
        options: formProps => getAdminAsOptions(formProps.client)
      },
+   },
+   'feedUsers.$': {
+     type: String,
+     optional: true
    },
    categories: {
      type: Array,
