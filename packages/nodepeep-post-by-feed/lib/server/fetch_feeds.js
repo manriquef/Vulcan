@@ -172,19 +172,19 @@ const feedHandler = {
         if (item.pubdate)
           post.postedAt = moment(item.pubdate).toDate();
 
-        try {
-          newMutation({
-          //  action: 'posts.new',
-            collection: Posts,
-            document: post,
-            currentUser: userName._id,
-            validate: false,
-          });
-        } catch (error) {
-          // catch errors so they don't stop the loop
-        //  console.log(error);
-        console.log(error + post);
-        }
+          try {
+            newMutation({
+              collection: Posts,
+              document: post,
+              currentUser: userName._id,
+              validate: false,
+            });
+          } catch (error) {
+            // catch errors so they don't stop the loop
+          //  console.log(error);
+          console.log(error + post);
+          }
+
       }
 
       // console.log('// Found ' + newItemsCount + ' new feed items');

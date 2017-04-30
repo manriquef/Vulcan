@@ -1,4 +1,3 @@
-    {/*console.log(JSON.stringify(results))*/}
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Components, withList, withCurrentUser, Loading } from 'meteor/vulcan:core';

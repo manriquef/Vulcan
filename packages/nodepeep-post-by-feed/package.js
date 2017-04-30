@@ -23,7 +23,6 @@ Package.onUse(function(api) {
     'vulcan:lib@1.3.2',
     'vulcan:posts@1.3.2',
     'vulcan:users@1.3.2',
-
   ]);
 
   api.mainModule('lib/client.js', 'client');

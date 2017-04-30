@@ -1,9 +1,3 @@
-/*
-
-Register the GraphQL fragment used to query for data
-
-*/
-
 import { registerFragment, getFragment  } from 'meteor/vulcan:core';
 
 registerFragment(`

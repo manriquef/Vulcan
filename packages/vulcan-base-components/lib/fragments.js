@@ -36,7 +36,7 @@ registerFragment(`
     username
     displayName
     emailHash
-    feedAcount
+    feedAccount
   }
 `);
 
