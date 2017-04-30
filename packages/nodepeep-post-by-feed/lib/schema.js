@@ -12,11 +12,12 @@ import Category from 'meteor/vulcan:categories';
 
  export function getAdminAsOptions (apolloClient) {
    // give the form component (here: checkboxgroup) exploitable data
-   return Users.find({ $or: [{ feedAccount: true }] }).map((user) => {
+   return Users.find({ $or: [{ isFeed: true }, { isOwner: true }] }).map((user) => {
      return {
        value: user._id,
        label: Users.getDisplayName(user)
      };
+     console.log("LK: " + user);
    });
  }
 
@@ -64,10 +65,6 @@ const schema = {
     //   order: 50,
        options: formProps => getCategoriesAsOptions(formProps.client)
      },
-   },
-    'categories.$': {
-       type: String,
-       optional: true
    },
    createdFromSettings: {
      type: Boolean,

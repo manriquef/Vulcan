@@ -16,7 +16,7 @@ import { newMutation } from 'meteor/vulcan:core';
       if (feed.categorySlug) {
         const category = Categories.findOne({ slug: feed.categorySlug });
         try {
-          feed.categories = [category]; // this will break the post feeds if changed to id
+          feed.categories = [category]; // this will break the post feeds if changed to ._id
         } catch (e) {
           console.log(e);
         }

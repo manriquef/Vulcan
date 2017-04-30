@@ -82,7 +82,6 @@ const feedHandler = {
     if (!!feedCategories) {
       itemCategories = _.uniq(itemCategories.concat(feedCategories));
     }
-
     return itemCategories;
   },
 
@@ -140,10 +139,9 @@ const feedHandler = {
           isFeed: true,
           userId: userName._id,
           thumbnailUrl: extractThumbnail(item.description),
-          categories: self.getItemCategories(item, feedCategories)
+          categories: self.getItemCategories(item, feedCategories._id)
         };
 
-        //console.log(JSON.stringify(post));
 
         if (item.description) {
           post.body = toMarkdown(he.decode(item.description));
@@ -204,7 +202,7 @@ export const fetchFeeds = function() {
     // if feed doesn't specify a user, default to admin
     const feedName = !!feed.userName ? feed.userName.trim() : null;
     const userName = Users.findOne({username: feedName});
-    const feedCategories = feed.categories._id;
+    const feedCategories = Categories.findOne({ slug: feed.categorySlug });
     const feedId = feed._id;
 
     try {

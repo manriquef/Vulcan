@@ -18,15 +18,6 @@ const feedFlag = {
 Users.addField(feedFlag);
 Posts.addField(feedFlag);
 
-Users.addField({
-  fieldName: 'feedAccount',
-  fieldSchema: {
-    type: Boolean,
-    optional: true,
-    hidden: true // never show this
-  }
-});
-
 
 var toTitleCase = function (str) {
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -40,7 +31,6 @@ var createFeedUsers = function () {
     profile: {
       isFeed: true
     },
-  //  feedAccount: true
   });
   Accounts.createUser({
     username: 'NewsMaster',
@@ -48,7 +38,6 @@ var createFeedUsers = function () {
     profile: {
       isFeed: true
     },
-//    feedAccount: true
   });
   Accounts.createUser({
     username: 'WorldNewsMaster',
@@ -56,7 +45,6 @@ var createFeedUsers = function () {
     profile: {
       isFeed: true
     },
-//    feedAccount: true
   });
   Accounts.createUser({
     username: 'SportsMaster',
@@ -64,7 +52,6 @@ var createFeedUsers = function () {
     profile: {
       isFeed: true
     },
-//    feedAccount: true
   });
   Accounts.createUser({
     username: 'ScienceMaster',
@@ -72,7 +59,6 @@ var createFeedUsers = function () {
     profile: {
       isFeed: true
     },
-//    feedAccount: true
   });
   Accounts.createUser({
     username: 'TechMaster',
@@ -80,7 +66,6 @@ var createFeedUsers = function () {
     profile: {
       isFeed: true
     },
-//feedAccount: true
   });
   Accounts.createUser({
     username: 'ArtsMaster',
@@ -88,7 +73,6 @@ var createFeedUsers = function () {
     profile: {
       isFeed: true
     },
-  //  feedAccount: true
   });
   Accounts.createUser({
     username: 'PoliticsMaster',
@@ -96,7 +80,6 @@ var createFeedUsers = function () {
     profile: {
       isFeed: true
     },
-  //  feedAccount: true
   });
   Accounts.createUser({
     username: 'HealthMaster',
@@ -104,7 +87,6 @@ var createFeedUsers = function () {
     profile: {
       isFeed: true
     },
-  //  feedAccount: true
   });
 };
 
