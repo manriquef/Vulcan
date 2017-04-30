@@ -8,6 +8,7 @@ addStrings('en', {
   "accounts.error_username_required": "Username required",
   "accounts.error_accounts_": "",
   "accounts.error_unknown": "Unknown error",
+  "accounts.error_user_not_found": "User not found",
   "accounts.enter_username_or_email": "Enter username or email",
   "accounts.username_or_email": "Username or email",
   "accounts.enter_username": "Enter username",
@@ -77,6 +78,7 @@ addStrings('en', {
   "posts.subscribed_posts" : "Posts subscribed to",
   "posts.link_already_posted": "This link has already been posted.",
   "posts.max_per_day": "Sorry you cannot submit more than {value} posts per day.",
+  "posts.like": "Like",
 
   "comments.comments": "Comments",
   "comments.count": "{count, plural, =0 {No comments} one {# comment} other {# comments}}",
@@ -100,6 +102,7 @@ addStrings('en', {
   "users.edit_success": "User “{name}” edited",
   "users.log_in": "Log In",
   "users.sign_up": "Sign Up",
+  "users.sign_up_log_in": "Sign Up/Log In",
   "users.log_out": "Log Out",
   "users.bio": "Bio",
   "users.displayName": "Display Name",
@@ -182,7 +185,7 @@ addStrings('en', {
 
   "app.loading": "Loading…",
   "app.404": "Sorry, we couldn't find what you were looking for.",
-  "app.powered_by": "Powered by Telescope",
+  "app.powered_by": "Built with VulcanJS",
   "app.or": "Or",
   "app.noPermission": "Sorry, you do not have the permission to do this at this time.",
   "app.operation_not_allowed": 'Sorry, you don\'t have the rights to perform the operation "{value}"',
