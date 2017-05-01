@@ -333,6 +333,7 @@
     border-bottom: $border; // Modified to remove border on posts
     padding: $vmarginPostPadding 10px; // Modified
     margin-bottom: 1px;
+  //  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 4px 12px 0 rgba(0, 0, 0, 0.19);
   }
 }
 
@@ -391,6 +392,29 @@
 // Card Item                                        //
 //////////////////////////////////////////////////////
 
+.cards-item-list{
+  position: relative;
+  max-height: 300px;
+  top: 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.cards-item{
+  display: inline-flex;
+//  border: 1px solid #d9d9da;
+//  border-radius: 3px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+  //position: sticky;
+  @include small{
+    width: 150px;
+  }
+  width: 15%;
+  min-width: 200px;
+  height: 250px;
+  margin-bottom: 50px;
+  margin-right: 11px;
+}
 
 .cards-item-content{
   position: absolute;
@@ -526,7 +550,7 @@
 
 .cards-stats{
   position: absolute;
-  top: 250px;
+  top: 255px;
   @include small{
     margin-bottom: $vmargin/2;
   }
