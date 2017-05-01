@@ -15,9 +15,30 @@
   }
 }
 
-.categories-node .categories-node{
-  border-left: 10px $lightest-border solid;
-  padding-left: $hmargin;
+.category-button-item{
+  display: inline-flex;
+  margin: 1px;
+}
+
+.categories-item{
+  display: inline-flex;
+  padding-left: 3px;
+  .categories-all-button {
+    background-color: $btnAllCategories;
+    border-color: $btnAllCategoriesborder;
+  }
+  .category-button-item{
+  //  background-color: $btnAllCategories;
+  //  border-color: $btnAllCategoriesborder;
+    .btn{
+      background-color: $btnCategories;
+      border-color: $btnCategoriesborder;
+    }
+  }
+}
+
+.categories-children{
+
 }
 
 .categories-edit-form-admin{

@@ -1,12 +1,32 @@
+/*
+  Modified: 25MAR2017
+  Added Cards Items
+*/
 
-//////////////////////////////////////////////////////
-// Post List                                        //
-//////////////////////////////////////////////////////
+.posts-list{
+  display: inline-block;
+  width: 100%;
+}
+
+.posts-list-content{
+  width: 75%;
+
+  // padding-top: 15px;
+  // margin-top: 15px;
+  margin-bottom: $vmargin;
+  padding-right: 10px;
+}
+
+.posts-no-more{
+  text-align: center;
+}
 
 .posts-list-header{
   @include medium-large{
     @include flex-center;
     justify-content: space-between;
+    width: 100%;
+  //  display: block;
   }
   margin-bottom: $vmargin;
 }
@@ -49,21 +69,9 @@
       background: $light-blue;
     }
   }
-}
-
-.posts-list-header{
-  @include medium-large{
-    .search-form, .posts-list-header-categories button, .posts-views button{
-      width: 160px;
-    }
+  .btn-group{
+    margin-right: $hmargin;
   }
-}
-
-.posts-list-content{
-  border-top: $border;
-  // padding-top: 15px;
-  // margin-top: 15px;
-  margin-bottom: $vmargin;
 }
 
 .posts-load-more, .comments-load-more{
@@ -91,9 +99,10 @@
   @include medium-large{
     @include flex-center;
   }
-  border-bottom: $border;
-  padding: $vmargin 5px;
-  // margin-bottom: 15px;
+
+  border-bottom: $border; // Modified to remove border on posts
+  padding: $vmarginPostPadding 10px; // Modified
+  margin-bottom: 1px;
   &.posts-sticky{
     background: $light-yellow;
 
@@ -102,16 +111,17 @@
 
 .posts-item-vote{
   @include small{
-    float: right;    
+    float: right;
   }
   @include medium-large{
     margin-right: $hmargin;
   }
 }
 
+// Modified to remove border around arrow
 .upvote-button{
-  @include border;
-  @include border-radius;
+//  @include border;
+//  @include border-radius;
   @include flex-center;
   flex-direction: column;
   justify-content: center;
@@ -119,18 +129,54 @@
   .icon{
     text-align: center;
     display: block;
+    color: $upvoteIconColor;
+    &:hover{
+      color: $upvoteIconHoverColor;
+    }
   }
   .vote-count{
     text-align: center;
     display: block;
   }
   .voted &{
-    color: $light-text;
+    color: $upvotedColor;
+  }
+/* Modified: 24DEC2016
+  @include activeHover;
+  &, &:active, &:hover{
+    text-decoration: none;
+  }
+  */
+}
+
+.downvote-button{
+//  @include border;
+//  @include border-radius;
+  @include flex-center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3px 5px;
+  .icon{
+    text-align: center;
+    display: block;
+    color: $downvoteIconColor;
+  }
+  .vote-count{
+    text-align: center;
+    display: block;
+  }
+  .voted &{
+    color: $downvoteColor;
   }
   @include activeHover;
   &, &:active, &:hover{
     text-decoration: none;
   }
+}
+//This is if not encased within upvote or downvote
+.vote-count{
+  text-align: center;
+  display: block;
 }
 
 .posts-item-content{
@@ -138,14 +184,15 @@
 }
 
 .posts-item-title{
+  text-align: left;
   @include small{
     margin-right: 40px;
-    font-size: $large-font;
+    font-size: $medium-font;
     margin-bottom: $vmargin/2;
   }
   @include medium-large{
     @include flex-center;
-    font-size: $larger-font;
+    font-size: $large-font;
     margin-bottom: 5px;
   }
   .posts-item-title-link{
@@ -162,17 +209,18 @@
 
 .posts-categories{
   flex-wrap: wrap;
+  white-space: nowrap;
   @include medium-large{
     margin-left: 5px;
   }
   @include flex-center;
   a{
-    display: block;
-    font-size: $small-font;
+    display: inline-flex;
+    font-size: $smallest-font;
     @include border;
     @include border-radius;
-    margin-right: 5px;
-    padding: 2px 6px;
+    margin-right: 4px;
+    padding: 1px 3px;
     @include activeHover;
   }
 }
@@ -181,13 +229,18 @@
   @include medium-large{
     @include flex-center;
   }
-  font-size: $small-font;
+  font-size: $smaller-font;
   .users-avatar{
     margin-right: 5px;
   }
-  .users-name, .posts-item-date, .posts-item-comments, .posts-stats, .post-actions{
+  .users-name, .posts-item-comments, .posts-stats, .post-actions{
     margin-right: $hmargin;
   }
+}
+
+.posts-item-date{
+  font-size: $smallest-font;
+  margin-right: $hmargin;
 }
 
 .posts-item-user{
@@ -202,6 +255,13 @@
     margin-bottom: $vmargin/2;
   }
   color: $medium-text;
+}
+
+.posts-item-sponsored{
+  font-size: $smaller-font;
+  font-weight: bold;
+  color: $postSponsored;
+  margin-right: 5px;
 }
 
 .posts-stats{
@@ -240,6 +300,13 @@
   }
 }
 
+.posts-commenters-discuss{
+  .icon{
+  color: $commentIconColor;
+}
+}
+
+// Adjust post thumbnails
 .posts-thumbnail{
   @include small{
     float: left;
@@ -249,7 +316,7 @@
   img{
     display: block;
     height: 50px;
-    width: auto;
+    width: 75px; //width: auto;
   }
 }
 
@@ -258,22 +325,38 @@
 //////////////////////////////////////////////////////
 
 .posts-page{
+  //width: 75%;
   .posts-item{
-    @include border-radius;
-    border: $border;
-    padding: $hmargin;
-    margin-bottom: $vmargin;
+  //  @include border-radius;
+    border: $postItemBorder;
+    margin-bottom: $vmargin/2;
+    border-bottom: $border; // Modified to remove border on posts
+    padding: $vmarginPostPadding 10px; // Modified
+    margin-bottom: 1px;
+  //  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 4px 12px 0 rgba(0, 0, 0, 0.19);
   }
 }
 
+.posts-page-header{
+  width: 75%;
+}
+
 .posts-page-body{
-  font-size: $large-font;
+  font-size: $medium-font;
   margin-bottom: $hmargin;
+  width: 75%;
+  img{
+    max-width: 98%;
+  }
 }
 
 //////////////////////////////////////////////////////
 // Other Elements                                   //
 //////////////////////////////////////////////////////
+
+.posts-daily{
+  width: 75%;
+}
 
 .posts-day{
   margin-bottom: $vmargin * 2;
@@ -283,7 +366,7 @@
     &:hover{
       background: inherit;
       color: inherit;
-      border: inherit;      
+      border: inherit;
     }
   }
   .posts-no-results{
@@ -291,6 +374,9 @@
   }
 }
 
+.posts-day-heading{
+  color: #ff9900;
+}
 .posts-edit-form-header{
   @include flex-center;
   justify-content: space-between;
@@ -300,4 +386,199 @@
   @include flex-center;
   justify-content: space-between;
   margin-bottom: $vmargin * 2;
+}
+
+//////////////////////////////////////////////////////
+// Card Item                                        //
+//////////////////////////////////////////////////////
+
+.cards-item-list{
+  position: relative;
+  max-height: 300px;
+  top: 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.cards-item{
+  display: inline-flex;
+//  border: 1px solid #d9d9da;
+//  border-radius: 3px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+  //position: sticky;
+  @include small{
+    width: 150px;
+  }
+  width: 15%;
+  min-width: 200px;
+  height: 250px;
+  margin-bottom: 50px;
+  margin-right: 11px;
+}
+
+.cards-item-content{
+  position: absolute;
+  //top: 0px;
+  //left: 0px;
+  display: inline-block;
+  height: 250px;
+  width: 14%;
+  min-width: 200px;
+  margin-left: -1px;
+  .posts-commenters-avatars {
+    .avatar{
+      position: relative;
+      top: 20px;
+      left: 40px;
+      border-radius: 100%;
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+
+.cards-item-thumbnail{
+  max-height: 50%;
+  overflow: hidden;
+  margin-left: -1px;
+  img{
+   max-width: 100%;
+   max-height: 100%;
+   width: auto;
+  }
+}
+
+.cards-item-title{
+  display: flex;
+  height: 80px;
+  max-height: 80px;
+  width: 15%;
+  min-width: 200px;
+  @include small{
+    font-size: $smaller1-font;
+  }
+  @include medium-large{
+    font-size: $small-font;
+  }
+}
+.cards-item-title-link {
+  word-wrap: break-word;
+  height: 80px;
+  width: 15%;
+  min-width: 200px;
+  @include small{
+  }
+  color: $black;
+  &, &:active, &:hover{
+    text-decoration: none;
+  }
+}
+
+.cards-item-categories{
+  display: flex;
+  position: absolute;
+  flex-wrap: wrap;
+  top: 0px;
+//  left: -80px;
+  @include medium-large{
+  }
+  a{
+    background: #ffffff;
+    font-size: $smallest-font;
+    @include border;
+    @include border-radius;
+    margin-right: 3px;
+    padding: 1px 5px;
+    @include activeHover;
+  }
+}
+
+.cards-item-user{
+    position: absolute;
+    bottom: 5px;
+    width: 148px;
+    max-height: 190px;
+    .avatar{
+      display: inline-block;
+      position: relative;
+      left: -20px;
+      //top: 25px;
+      //border-radius: 100%;
+      height: 25px;
+      width: 25px;
+    }
+}
+
+.cards-item-date{
+  text-align: justify;
+  position: absolute;
+  bottom: 5px;
+  left: 70px;
+  font-size: $smallest-font;
+  color: $color-lightgrey;
+}
+
+.cards-item-vote{
+  position: absolute;
+  bottom: 0px;
+}
+
+.cards-item-comments{
+//  display: flex;
+  text-align: right;
+  width: 15%;
+  min-width: 200px;
+  position: absolute;
+  bottom: 2px;
+  left: -2px;
+  margin-left: -2px;
+  font-size: $smallest-font;
+}
+
+.cards-item-link{
+
+}
+
+.cards-actions{
+  display: flex;
+  position: absolute;
+  bottom: 5px;
+  left: 170px;
+  color: #ffa100;
+  font-size: $smallest-font;
+}
+
+.cards-stats{
+  position: absolute;
+  top: 255px;
+  @include small{
+    margin-bottom: $vmargin/2;
+  }
+  @include border;
+  @include border-radius;
+  font-size: $smaller-font;
+  .cards-stats-item{
+    border-right: $border;
+    padding: 2px 5px;
+    &:last-child{
+      border: none;
+    }
+  }
+}
+
+.cards-commenters{
+  width: 50%;
+  display: flex;
+  position: absolute;
+  bottom: 3px;
+  left: 30px;
+}
+
+.cards-commenters-avatars{
+  display: inline-;
+    img {
+    border-radius: 100%;
+    height: 20px;
+    width: 20px;
+  }
 }

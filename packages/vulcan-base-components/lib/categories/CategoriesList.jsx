@@ -1,7 +1,8 @@
 import { ModalTrigger, Components, registerComponent, withList, Utils } from "meteor/vulcan:core";
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { ButtonToolbar, Button, MenuItem } from 'react-bootstrap';
 import { withRouter } from 'react-router'
 import { LinkContainer } from 'react-router-bootstrap';
 import Categories from 'meteor/vulcan:categories';
@@ -21,10 +22,10 @@ class CategoriesList extends Component {
     const categoriesClone = _.map(categories, category => {
       return {
         ...category, // we don't want to modify the objects we got from props
-        active: currentCategory && category.slug === currentCategory.slug, 
+        active: currentCategory && category.slug === currentCategory.slug,
         expanded: parentCategories && _.contains(_.pluck(parentCategories, 'slug'), category.slug)
       };
-    }); 
+    });
 
     const nestedCategories = Utils.unflatten(categoriesClone, '_id', 'parentId');
 
@@ -39,17 +40,18 @@ class CategoriesList extends Component {
 
     return (
       <div>
-        <DropdownButton
-          bsStyle="default"
-          className="categories-list btn-secondary"
-          title={<FormattedMessage id="categories"/>}
-          id="categories-dropdown"
-        >
-          <div className="category-menu-item category-menu-item-all dropdown-item">
-            <LinkContainer className="category-menu-item-title" to={{pathname:"/", query: allCategoriesQuery}}>
-              <MenuItem eventKey={0}>
+        <Components.ShowIf check={Categories.options.mutations.new.check}>
+          <div className="categories-new-button">
+            <ModalTrigger title={<FormattedMessage id="categories.new"/>} component={<Button bsStyle="primary" bsSize="small"><FormattedMessage id="categories.new"/></Button>}>
+              <Components.CategoriesNewForm/>
+            </ModalTrigger>
+          </div>
+        </Components.ShowIf>
+          <div className="categories-item">
+            <LinkContainer className="categories-all-button" to={{pathname:"/", query: allCategoriesQuery}}>
+            <Button bsStyle="primary" bsSize="small">
                 <FormattedMessage id="categories.all"/>
-              </MenuItem>
+            </Button>
             </LinkContainer>
           </div>
           {
@@ -61,17 +63,8 @@ class CategoriesList extends Component {
               // not any category found
               : null
             // categories are loading
-            : <div className="dropdown-item"><MenuItem><Components.Loading /></MenuItem></div>
+            : <Components.Loading />
           }
-          <Components.ShowIf check={Categories.options.mutations.new.check}>
-            <div className="categories-new-button category-menu-item dropdown-item">
-              <ModalTrigger title={<FormattedMessage id="categories.new"/>} component={<Button bsStyle="primary"><FormattedMessage id="categories.new"/></Button>}>
-                <Components.CategoriesNewForm/>
-              </ModalTrigger>
-            </div>
-          </Components.ShowIf>
-        </DropdownButton>
-
       </div>
     )
 
@@ -79,7 +72,7 @@ class CategoriesList extends Component {
 }
 
 CategoriesList.propTypes = {
-  results: React.PropTypes.array,
+  results: PropTypes.array,
 };
 
 

@@ -1,12 +1,59 @@
+/* Modified: 23DEC2016
+
+   Changes: Split up the main, header & footer
+*/
+
 body{
   font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", sans-serif;
 }
 
-.main, .footer, .header{
+.main{
   margin-left: auto;
   margin-right: auto;
   padding: 0 $hmargin;
   max-width: 1200px;
+}
+ .footer{
+   margin-left: auto;
+   margin-right: auto;
+   padding: 0 $hmargin;
+   max-width: 1200px;
+ }
+
+ .header{
+   margin-left: auto;
+   margin-right: auto;
+   padding: 0 $hmargin;
+   max-width: 1200px;
+ }
+
+ .nav-user{
+  .dropdown-menu{
+    .dropdown-menu-right{
+
+    }
+  }
+ }
+
+ .rightbar{
+   max-width: 25%;
+   border: 1px solid #b1b1b1;
+   border-radius: 3px;
+   float: right;
+   position: sticky;
+   width: 25%;
+ }
+
+ .rightbar-categories{
+   text-align: left;
+   height: 200px;
+   overflow-y: scroll;
+   background-color: #d5ffd0;
+   border-radius: 3%;
+ }
+
+.rightbar-categories-info{
+
 }
 
 .main{

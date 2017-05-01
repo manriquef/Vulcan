@@ -82,7 +82,6 @@ const feedHandler = {
     if (!!feedCategories) {
       itemCategories = _.uniq(itemCategories.concat(feedCategories));
     }
-
     return itemCategories;
   },
 
@@ -140,10 +139,9 @@ const feedHandler = {
           isFeed: true,
           userId: userName._id,
           thumbnailUrl: extractThumbnail(item.description),
-          categories: self.getItemCategories(item, feedCategories)
+          categories: self.getItemCategories(item, feedCategories._id)
         };
 
-        //console.log(JSON.stringify(post));
 
         if (item.description) {
           post.body = toMarkdown(he.decode(item.description));
@@ -172,19 +170,19 @@ const feedHandler = {
         if (item.pubdate)
           post.postedAt = moment(item.pubdate).toDate();
 
-        try {
-          newMutation({
-          //  action: 'posts.new',
-            collection: Posts,
-            document: post,
-            currentUser: userName._id,
-            validate: false,
-          });
-        } catch (error) {
-          // catch errors so they don't stop the loop
-        //  console.log(error);
-        console.log(error + post);
-        }
+          try {
+            newMutation({
+              collection: Posts,
+              document: post,
+              currentUser: userName._id,
+              validate: false,
+            });
+          } catch (error) {
+            // catch errors so they don't stop the loop
+          //  console.log(error);
+          console.log(error + post);
+          }
+
       }
 
       // console.log('// Found ' + newItemsCount + ' new feed items');
@@ -204,7 +202,7 @@ export const fetchFeeds = function() {
     // if feed doesn't specify a user, default to admin
     const feedName = !!feed.userName ? feed.userName.trim() : null;
     const userName = Users.findOne({username: feedName});
-    const feedCategories = feed.categories;
+    const feedCategories = Categories.findOne({ slug: feed.categorySlug });
     const feedId = feed._id;
 
     try {

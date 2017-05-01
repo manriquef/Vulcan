@@ -1,7 +1,8 @@
 .posts-comments-thread{
-  border-top: $border;
+  border-top: $borderTopComment;
   margin-top: $vmargin;
   padding-top: $vmargin;
+  width: 75%;
 }
 
 .posts-comments-thread-title{
@@ -12,53 +13,79 @@
   margin-bottom: $vmargin;
 }
 
-.comments-node .comments-node, .comments-item-reply{
-  border-left: 10px $lightest-border solid;
+.comments-node .comments-node{
+  border-left: 2px $leftCommentBorderNode solid;
   padding-left: $hmargin;
 }
 
+// Created 02Feb2017
+.comments-item-reply-link{
+  font-size: $smaller-font;
+}
+
 .comments-item{
-  margin-bottom: $vmargin;
+  margin-bottom: $bottomNodeMargin;
 }
 
 .comments-item-body{
   @include border-radius;
   // max-width: 800px;
-  border: $border;
-  padding: $hmargin $vmargin;
+  border: $borderCommentsBody;
+  padding-top: $hmarginComment;
+  padding-right: $vmarginComment;
+  padding-bottom: $hmarginComment;
+  //padding-left: $vmarginComment;
 }
 
+// Modified 02FEB2017
 .comments-item-meta{
   @include flex-center;
-  margin-bottom: $vmargin;
-  
+  //padding-left: 5px;
+  //margin-bottom: $vmarginComment;
+
   .comments-item-vote{
-    margin-right: 10px;
+  //margin-right: 10px;
   }
 
   .users-avatar{
     margin-right: 5px;
   }
   .users-name{
-    margin-right: $hmargin;
+    margin-right: 5px; //$hmargin;
   }
   .comments-item-date{
-    margin-right: $hmargin;
+    margin-right: 5px; //$hmargin;
     color: $medium-text;
-    font-size: $small-font;
+    font-size: $smaller-font;
   }
-  .comment-edit, .comment-delete {
-    font-size: $small-font;
+  .comment-edit{
+    font-size: $smaller-font;
+    color: $cmtEditColor;
+
   }
   .comment-delete {
+    font-size: $smaller-font;
     margin-left: 8px;
   }
 }
 
+.comments-delete-link{
+    color: $cmtDeleteColor;
+}
+
+// Modified 03FEB2017
 .comments-item-text{
+  padding-left: $lcommentText;
+  p{
+    margin-bottom: .1rem;
+  }
 }
 
 .comments-edit-form, .comments-new-form{
+
+  .document-edit{
+    padding-left: 5px;
+  }
   .input-body{
     margin-bottom: $hmargin;
   }
@@ -70,6 +97,8 @@
 
 .comments-item-reply{
   margin-top: $vmargin;
+  border-left: 3px $leftCommentBorderNode solid;
+  padding-left: $hmargin;
 }
 
 .comment-actions{
@@ -80,4 +109,12 @@
   a{
     display: block;
   }
+}
+
+.icon-reply{
+  color: $replyIconColor;
+}
+
+.icon-close{
+  color: $deleteIconColor;
 }

@@ -2,6 +2,7 @@ import SimpleSchema from 'simpl-schema';
 import Users from 'meteor/vulcan:users';
 import { getCategoriesAsOptions } from 'meteor/vulcan:categories';
 import Tags from 'meteor/vulcan:forms-tags';
+import Category from 'meteor/vulcan:categories';
 
 /**
  * @summary Users schema
@@ -11,7 +12,7 @@ import Tags from 'meteor/vulcan:forms-tags';
 
  export function getAdminAsOptions (apolloClient) {
    // give the form component (here: checkboxgroup) exploitable data
-   return Users.find({ $or: [{ isFeed: true }] }).map((user) => {
+   return Users.find({ $or: [{ isFeed: true }, { isOwner: true }] }).map((user) => {
      return {
        value: user._id,
        label: Users.getDisplayName(user)
@@ -44,11 +45,21 @@ const schema = {
      control: 'select',
      viewableBy: ['guests'],
      insertableBy: ['admins'],
+     hidden: true,
+   },
+   feedUsers: {
+     type: Array,
+     control: 'select',
+     viewableBy: ['guests'],
+     insertableBy: ['admins'],
      editableBy: ['admins'],
-     resolveAs: 'user: User',
      form: {
        options: formProps => getAdminAsOptions(formProps.client)
      },
+   },
+   'feedUsers.$': {
+     type: String,
+     optional: true
    },
    categories: {
      type: Array,
@@ -57,12 +68,12 @@ const schema = {
      viewableBy: ['guests'],
      insertableBy: ['admins'],
      editableBy: ['admins'],
+     resolveAs: 'categories: [Category]',
      form: {
     //   noselect: true,
     //   order: 50,
        options: formProps => getCategoriesAsOptions(formProps.client)
      },
-     resolveAs: 'categories: [Category]',
    },
    createdFromSettings: {
      type: Boolean,
