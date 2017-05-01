@@ -1,5 +1,6 @@
 import Posts from "meteor/vulcan:posts";
 import { getCategoriesAsOptions } from './schema.js';
+import Tags from 'meteor/vulcan:forms-tags';
 
 Posts.addField([
   {
