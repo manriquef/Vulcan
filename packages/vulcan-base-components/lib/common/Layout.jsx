@@ -9,19 +9,17 @@ const Layout = props =>
     <Components.UsersProfileCheck currentUser={props.currentUser} documentId={props.currentUser && props.currentUser._id} />
 
     <Components.Header />
-  
+
     <div className="main">
 
       <Components.FlashMessages />
 
-      <Components.Newsletter />
-
       {props.children}
 
     </div>
-  
+
     <Components.Footer />
-  
+
   </div>
 
 registerComponent('Layout', Layout, withCurrentUser);
