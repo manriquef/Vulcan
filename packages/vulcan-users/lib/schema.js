@@ -26,6 +26,11 @@ const schema = {
     optional: true,
     viewableBy: ['guests'],
     insertableBy: ['guests'],
+    onInsert: user => {
+      if (user.services.twitter && user.services.twitter.screenName) {
+        return user.services.twitter.screenName;
+      }
+    }
   },
   emails: {
     type: Array,
@@ -70,7 +75,8 @@ const schema = {
   profile: {
     type: Object,
     optional: true,
-    blackbox: true
+    blackbox: true,
+    insertableBy: ['guests'],
   },
   // telescope-specific data, kept for backward compatibility and migration purposes
   telescope: {
@@ -106,16 +112,14 @@ const schema = {
     editableBy: ['members'],
     viewableBy: ['guests'],
     onInsert: (user, options) => {
-      if (user.username) {
-        return user.username;
-      } else if (user.profile && user.profile.username) {
-        return user.profile.username;
-      } else if (user.profile && user.profile.name) {
+      if (user.profile && user.profile.name) {
         return user.profile.name;
+      } else if (user.services.twitter && user.services.twitter.screenName) {
+        return user.services.twitter.screenName;
       } else if (user.services.linkedin && user.services.linkedin.firstName) {
         return user.services.linkedin.firstName + " " + user.services.linkedin.lastName;
-      } else {
-        return user.username;
+      } else if (user.username) {
+        return user.username
       }
     }
   },
@@ -126,7 +130,7 @@ const schema = {
     type: String,
     optional: true,
     regEx: SimpleSchema.RegEx.Email,
-    required: true,
+    mustComplete: true,
     control: "text",
     insertableBy: ['guests'],
     editableBy: ['members'],
@@ -158,6 +162,15 @@ const schema = {
       if (user.email) {
         return Users.avatar.hash(user.email);
       }
+    }
+  },
+  avatarUrl: {
+    type: String,
+    optional: true,
+    viewableBy: ['guests'],
+    onInsert: user => {
+      const twitterAvatar = _.deep(user, 'services.twitter.profile_image_url_https');
+      return twitterAvatar;
     }
   },
   /**
