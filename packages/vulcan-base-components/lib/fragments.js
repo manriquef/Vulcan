@@ -36,7 +36,7 @@ registerFragment(`
     username
     displayName
     emailHash
-    isDummy
+    isAdmin
   }
 `);
 
@@ -45,7 +45,6 @@ registerFragment(`
     # vulcan:users
     ...UsersMinimumInfo
     createdAt
-    isAdmin
     bio
     htmlBio
     twitterUsername

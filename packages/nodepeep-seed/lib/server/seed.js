@@ -5,7 +5,7 @@ import Comments from "meteor/vulcan:comments";
 import Users from 'meteor/vulcan:users';
 import Events from "meteor/vulcan:events";
 
-const feedFlag = {
+const dummyFlag = {
   fieldName: 'isDummy',
   fieldSchema: {
     type: Boolean,
@@ -35,79 +35,36 @@ var createPic = function (imageUrl, createdAt, body, username) {
 
 };
 
-Users.addField(feedFlag);
-Posts.addField(feedFlag);
+Users.addField(dummyFlag);
+Posts.addField(dummyFlag);
 
 
 var toTitleCase = function (str) {
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 };
 
-var createFeedUsers = function () {
-  console.log("*** Creating Feed Accounts ***");
-  Accounts.createUser({
-    username: 'GameMaster',
-    email: 'gamesmaster@nodepeep.com',
-    profile: {
-      isDummy: true
-    },
+
+const createFeedUsers = function (username, email) {
+  const user = {
+    username,
+    email,
+    isDummy: true
+  };
+  newMutation({
+    collection: Users,
+    document: user,
+    validate: false
   });
-  Accounts.createUser({
-    username: 'NewsMaster',
-    email: 'newsmaster@nodepeep.com',
-    profile: {
-      isDummy: true
-    },
-  });
-  Accounts.createUser({
-    username: 'WorldNewsMaster',
-    email: 'worldnewsmaster@nodepeep.com',
-    profile: {
-      isDummy: true
-    },
-  });
-  Accounts.createUser({
-    username: 'SportsMaster',
-    email: 'sportsmaster@nodepeep.com',
-    profile: {
-      isDummy: true
-    },
-  });
-  Accounts.createUser({
-    username: 'ScienceMaster',
-    email: 'science@nodepeep.com',
-    profile: {
-      isDummy: true
-    },
-  });
-  Accounts.createUser({
-    username: 'TechMaster',
-    email: 'techmaster@nodepeep.com',
-    profile: {
-      isDummy: true
-    },
-  });
-  Accounts.createUser({
-    username: 'ArtsMaster',
-    email: 'artsmaster@nodepeep.com',
-    profile: {
-      isDummy: true
-    },
-  });
-  Accounts.createUser({
-    username: 'PoliticsMaster',
-    email: 'politicsmaster@nodepeep.com',
-    profile: {
-      isDummy: true
-    },
-  });
-  Accounts.createUser({
-    username: 'HealthMaster',
-    email: 'healthmaster@nodepeep.com',
-    profile: {
-      isDummy: true
-    },
-  });
+}
+
+var createDummyUsers = function () {
+  console.log('// inserting dummy users…');
+  createUser('NewsMaster', 'newsmaster@nodepeep.com');
+  createUser('GamesMaster', 'gamesmaster@nodepeep.com');
+  createUser('WorldNewsMaster', 'worldnewsmaster@nodepeep.com');
+  createUser('TechMaster', 'tech@nodepeep.com');
+  createUser('SportsMaster', 'sportsmaster@nodepeep.com');
+  createUser('ScienceMaster', 'sciencemaster@nodepeep.com');
 };
 
 
