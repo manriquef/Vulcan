@@ -36,7 +36,7 @@ registerFragment(`
     username
     displayName
     emailHash
-    isFeed
+    isDummy
   }
 `);
 
@@ -126,7 +126,7 @@ registerFragment(`
     status
     body
     htmlBody
-    isFeed
+    isDummy
     excerpt
     viewCount
     clickCount

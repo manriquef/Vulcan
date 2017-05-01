@@ -168,10 +168,10 @@ const schema = {
     type: String,
     optional: true,
     viewableBy: ['guests'],
-    onInsert: user => {
-      const twitterAvatar = _.deep(user, 'services.twitter.profile_image_url_https');
-      return twitterAvatar;
-    }
+  //  onInsert: user => {
+    //  const twitterAvatar = _.deep(user, 'services.twitter.profile_image_url_https');
+      //return twitterAvatar;
+    //}
   },
   /**
     The HTML version of the bio field

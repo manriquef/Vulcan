@@ -6,7 +6,7 @@ import Users from 'meteor/vulcan:users';
 import Events from "meteor/vulcan:events";
 
 const feedFlag = {
-  fieldName: 'isFeed',
+  fieldName: 'isDummy',
   fieldSchema: {
     type: Boolean,
     optional: true,
@@ -14,6 +14,26 @@ const feedFlag = {
   }
 }
 
+var createPic = function (imageUrl, createdAt, body, username) {
+
+  const user = Users.findOne({username: username});
+
+  const pic = {
+    createdAt,
+    imageUrl: `http://vulcanjs.org/photos/${imageUrl}`,
+    body,
+    isDummy: true,
+    userId: user._id
+  };
+
+  newMutation({
+    collection: Pics,
+    document: pic,
+    currentUser: user,
+    validate: false
+  });
+
+};
 
 Users.addField(feedFlag);
 Posts.addField(feedFlag);
@@ -29,71 +49,71 @@ var createFeedUsers = function () {
     username: 'GameMaster',
     email: 'gamesmaster@nodepeep.com',
     profile: {
-      isFeed: true
+      isDummy: true
     },
   });
   Accounts.createUser({
     username: 'NewsMaster',
     email: 'newsmaster@nodepeep.com',
     profile: {
-      isFeed: true
+      isDummy: true
     },
   });
   Accounts.createUser({
     username: 'WorldNewsMaster',
     email: 'worldnewsmaster@nodepeep.com',
     profile: {
-      isFeed: true
+      isDummy: true
     },
   });
   Accounts.createUser({
     username: 'SportsMaster',
     email: 'sportsmaster@nodepeep.com',
     profile: {
-      isFeed: true
+      isDummy: true
     },
   });
   Accounts.createUser({
     username: 'ScienceMaster',
     email: 'science@nodepeep.com',
     profile: {
-      isFeed: true
+      isDummy: true
     },
   });
   Accounts.createUser({
     username: 'TechMaster',
     email: 'techmaster@nodepeep.com',
     profile: {
-      isFeed: true
+      isDummy: true
     },
   });
   Accounts.createUser({
     username: 'ArtsMaster',
     email: 'artsmaster@nodepeep.com',
     profile: {
-      isFeed: true
+      isDummy: true
     },
   });
   Accounts.createUser({
     username: 'PoliticsMaster',
     email: 'politicsmaster@nodepeep.com',
     profile: {
-      isFeed: true
+      isDummy: true
     },
   });
   Accounts.createUser({
     username: 'HealthMaster',
     email: 'healthmaster@nodepeep.com',
     profile: {
-      isFeed: true
+      isDummy: true
     },
   });
 };
 
 
 const deleteFeedContent = function () {
-  Users.remove({'profile.isFeed': true});
-  Posts.remove({isFeed: true});
+  Users.remove({'profile.isDummy': true});
+  Posts.remove({isDummy: true});
 };
 
 Meteor.startup(function () {
