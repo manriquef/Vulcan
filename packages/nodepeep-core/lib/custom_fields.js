@@ -81,7 +81,7 @@ Posts.addField([
       control: 'checkbox',
       label: 'Sponsored Post',
       optional: true,
-      defaultValue: false,
+      defaultValue: true,
       insertableBy: ['admins'],
       editableBy: ['admins'],
       viewableBy: ['guests'],
@@ -116,7 +116,7 @@ Users.addField([
     fieldSchema: {
       type: Number,
       label: 'Daily Post Limit',
-      optional: false,
+      optional: true,
       defaultValue: 0,
     }
   },
@@ -125,7 +125,7 @@ Users.addField([
     fieldSchema: {
       type: Number,
       label: 'Warnings',
-      optional: false,
+      optional: true,
       defaultValue: 0,
     }
   },
@@ -165,7 +165,7 @@ Users.addField([
     fieldSchema: {
       type: String,
       label: 'Users Rank',
-      optional: false, // this field is required
+      optional: true, // this field is required
       defaultValue: 'none',
     }
   },
@@ -202,7 +202,7 @@ Users.addField([
     fieldSchema: {
       type: String,
       label: 'Prospective Job',
-      optional: false, // this field is required
+      optional: true, // this field is required
       defaultValue: 'none',
     }
   },
@@ -211,7 +211,7 @@ Users.addField([
     fieldSchema: {
       type: String,
       label: 'Job Location',
-      optional: false, // this field is required
+      optional: true, // this field is required
       defaultValue: 'none',
     }
   },

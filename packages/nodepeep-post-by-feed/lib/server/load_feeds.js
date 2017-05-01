@@ -63,7 +63,7 @@ import { newMutation } from 'meteor/vulcan:core';
           }
 
         feed.createdFromSettings = true;
-
+        try{
         newMutation({
           action: 'feeds.new',
           collection: Feeds,
@@ -71,6 +71,9 @@ import { newMutation } from 'meteor/vulcan:core';
           currentUser: feed.userId,
           validate: false,
         });
+      } catch(error) {
+        console.log(error);
+      }
 
         console.log(`// Creating feed “${feed.url}”`);
 
