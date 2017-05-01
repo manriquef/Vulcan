@@ -6,7 +6,7 @@ Posts.addField([
     fieldName: 'categories',
     fieldSchema: {
       type: Array,
-      control: "checkboxgroup",
+      control: Tags,
       optional: true,
       insertableBy: ['members'],
       editableBy: ['members'],

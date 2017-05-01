@@ -1,6 +1,7 @@
 
 // common
 
+import './common/CardsItem.jsx';
 import './common/Footer.jsx';
 import './common/Header.jsx';
 import './common/Layout.jsx';
@@ -12,9 +13,17 @@ import './common/Newsletter.jsx';
 import './common/NewsletterButton.jsx';
 import './common/SearchForm.jsx';
 import './common/Vote.jsx';
+import './common/Reporting.jsx';
+import './common/RightBar.jsx';
 
 // posts
 
+import './posts/CardsThumbnail.jsx';
+import './posts/CardsCategories.jsx';
+import './posts/CardsCommenters.jsx';
+import './posts/CardsStats.jsx';
+import './posts/FeedsCategories.jsx';
+import './posts/FeedsEditForm.jsx';
 import './posts/PostsHome.jsx';
 import './posts/PostsSingle.jsx';
 import './posts/PostsNewButton.jsx';
@@ -49,6 +58,7 @@ import './comments/CommentsLoadMore.jsx';
 
 // categories
 
+import './categories/CategoryInfo.jsx';
 import './categories/CategoriesList.jsx';
 import './categories/CategoriesNode.jsx';
 import './categories/Category.jsx';
