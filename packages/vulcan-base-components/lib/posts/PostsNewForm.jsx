@@ -1,13 +1,15 @@
 import { Components, registerComponent, getRawComponent, getFragment, withMessages } from 'meteor/vulcan:core';
 import Posts from "meteor/vulcan:posts";
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import { withRouter } from 'react-router'
 
-const PostsNewForm = (props, context) => 
-  <Components.ShowIf
+const PostsNewForm = (props, context) => {
+  return (
+    <Components.ShowIf
       check={Posts.options.mutations.new.check}
-      failureComponent={<Components.AccountsLoginForm />}
+      failureComponent={<Components.UsersAccountForm />}
     >
       <div className="posts-new-form">
         <Components.SmartForm
@@ -21,15 +23,17 @@ const PostsNewForm = (props, context) =>
         />
       </div>
     </Components.ShowIf>
+  );
+};
 
 PostsNewForm.propTypes = {
-  closeModal: React.PropTypes.func,
-  router: React.PropTypes.object,
-  flash: React.PropTypes.func,
+  closeModal: PropTypes.func,
+  router: PropTypes.object,
+  flash: PropTypes.func,
 }
 
 PostsNewForm.contextTypes = {
-  closeCallback: React.PropTypes.func,
+  closeCallback: PropTypes.func,
   intl: intlShape
 };
 

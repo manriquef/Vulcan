@@ -1,8 +1,9 @@
 import { ModalTrigger, Components, registerComponent } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { LinkContainer } from 'react-router-bootstrap';
-import { MenuItem } from 'react-bootstrap';
-import { withRouter } from 'react-router'
+import { Button, MenuItem } from 'react-bootstrap';
+import { withRouter } from 'react-router';
 import Categories from 'meteor/vulcan:categories';
 
 class Category extends Component {
@@ -25,15 +26,16 @@ class Category extends Component {
     newQuery.cat = category.slug;
 
     return (
-      <div className="category-menu-item dropdown-item">
+      <div className="category-button-item">
         <LinkContainer to={{pathname:"/", query: newQuery}}>
-          <MenuItem
-            eventKey={index+1}
+          <Button
+            bsStyle="primary"
+            bsSize="small"
             key={category._id}
           >
             {currentCategorySlug === category.slug ? <Components.Icon name="voted"/> :  null}
             {category.name}
-          </MenuItem>
+          </Button>
         </LinkContainer>
         <Components.ShowIf check={Categories.options.mutations.edit.check} document={category}>{this.renderEdit()}</Components.ShowIf>
       </div>
@@ -42,10 +44,10 @@ class Category extends Component {
 }
 
 Category.propTypes = {
-  category: React.PropTypes.object,
-  index: React.PropTypes.number,
-  currentCategorySlug: React.PropTypes.string,
-  openModal: React.PropTypes.func
+  category: PropTypes.object,
+  index: PropTypes.number,
+  currentCategorySlug: PropTypes.string,
+  openModal: PropTypes.func
 };
 
 registerComponent('Category', Category, withRouter);

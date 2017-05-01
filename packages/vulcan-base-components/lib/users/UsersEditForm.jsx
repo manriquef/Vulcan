@@ -1,9 +1,11 @@
 import { Components, registerComponent, withCurrentUser, withMessages } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
 import Users from 'meteor/vulcan:users';
 
 const UsersEditForm = (props, context) => {
+
   return (
     <Components.ShowIf
       check={Users.options.mutations.edit.check}
@@ -12,11 +14,12 @@ const UsersEditForm = (props, context) => {
     >
       <div className="page users-edit-form">
         <h2 className="page-title users-edit-form-title"><FormattedMessage id="users.edit_account"/></h2>
-        <Components.SmartForm 
-          collection={Users} 
+        <Components.SmartForm
+          collection={Users}
           {...props.terms}
           successCallback={user => {
             props.flash(context.intl.formatMessage({id: "users.edit_success"}, {name: Users.getDisplayName(user)}), 'success')
+              this.props.router.push('/');
           }}
           showRemove={true}
         />
@@ -27,10 +30,11 @@ const UsersEditForm = (props, context) => {
 
 
 UsersEditForm.propTypes = {
-  terms: React.PropTypes.object, // a user is defined by its unique _id or its unique slug
+  terms: PropTypes.object, // a user is defined by its unique _id or its unique slug
 };
 
 UsersEditForm.contextTypes = {
+  addToAutofilledValues: PropTypes.func,
   intl: intlShape
 };
 

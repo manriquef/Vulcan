@@ -1,4 +1,4 @@
-import { registerFragment, getFragment } from 'meteor/vulcan:core';
+import { registerFragment } from 'meteor/vulcan:core';
 
 // ------------------------------ Vote ------------------------------ //
 
@@ -12,6 +12,18 @@ registerFragment(`
   }
 `);
 
+// ------------------------------ Reporting ------------------------------ //
+
+// note: fragment used by default on the Reporting fragment
+registerFragment(`
+  fragment ReportedItem on Report {
+    # nodepeep:report
+    itemId
+    power
+    reportedAt
+  }
+`);
+
 // ------------------------------ Users ------------------------------ //
 
 // note: fragment used by default on UsersProfile, PostsList & CommentsList fragments
@@ -20,9 +32,11 @@ registerFragment(`
     # vulcan:users
     _id
     slug
+    avatar
     username
     displayName
     emailHash
+    isFeed
   }
 `);
 
@@ -42,6 +56,11 @@ registerFragment(`
     postCount
     # vulcan:comments
     commentCount
+    # vulcan:newsletter
+    newsletter_subscribeToNewsletter
+    # vulcan:notifications
+    notifications_users
+    notifications_posts
     # vulcan:voting
     downvotedComments {
       ...VotedItem
@@ -54,6 +73,12 @@ registerFragment(`
     }
     upvotedPosts {
       ...VotedItem
+    }
+    reportedPosts{
+      ...ReportedItem
+    }
+    reportedComments{
+      ...ReportedItem
     }
   }
 `);
@@ -75,6 +100,7 @@ registerFragment(`
     # vulcan:categories
     ...CategoriesMinimumInfo
     description
+    rules
     order
     image
     parentId
@@ -93,12 +119,14 @@ registerFragment(`
     title
     url
     slug
+    feedId
     postedAt
     createdAt
     sticky
     status
     body
     htmlBody
+    isFeed
     excerpt
     viewCount
     clickCount
@@ -107,8 +135,8 @@ registerFragment(`
     user {
       ...UsersMinimumInfo
     }
-    # vulcan:embedly
-    thumbnailUrl
+    # vulcan:embedAPI
+     thumbnailUrl
     # vulcan:categories
     categories {
       ...CategoriesMinimumInfo
@@ -129,6 +157,12 @@ registerFragment(`
     downvotes
     baseScore
     score
+    reports
+    reporters {
+      _id
+    }
+    reportBaseScore
+    reportScore
   }
 `);
 
@@ -175,5 +209,11 @@ registerFragment(`
     downvotes
     baseScore
     score
+    reports
+    reporters {
+      _id
+    }
+    reportBaseScore
+    reportScore
   }
 `);

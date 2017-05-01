@@ -1,5 +1,6 @@
 import { Components, registerComponent } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CommentsNode extends Component {
 
@@ -34,7 +35,7 @@ class CommentsNode extends Component {
 }
 
 CommentsNode.propTypes = {
-  comment: React.PropTypes.object.isRequired, // the current comment
+  comment: PropTypes.object.isRequired, // the current comment
 };
 
 registerComponent('CommentsNode', CommentsNode);

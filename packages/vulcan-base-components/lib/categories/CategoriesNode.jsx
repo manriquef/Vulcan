@@ -1,5 +1,6 @@
 import { Components, registerComponent } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CategoriesNode extends Component {
 
@@ -23,7 +24,7 @@ class CategoriesNode extends Component {
     const children = this.props.category.childrenResults;
 
     return (
-      <div className="categories-node">
+      <div className="categories-item">
         {this.renderCategory(category)}
         {children ? this.renderChildren(children) : null}
       </div>
@@ -33,7 +34,7 @@ class CategoriesNode extends Component {
 }
 
 CategoriesNode.propTypes = {
-  category: React.PropTypes.object.isRequired, // the current category
+  category: PropTypes.object.isRequired, // the current category
 };
 
 registerComponent('CategoriesNode', CategoriesNode);

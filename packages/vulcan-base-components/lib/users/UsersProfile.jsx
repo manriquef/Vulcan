@@ -1,5 +1,6 @@
 import { Components, registerComponent, withDocument, withCurrentUser } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Users from 'meteor/vulcan:users';
 import { Link } from 'react-router';
@@ -12,8 +13,8 @@ const UsersProfile = (props) => {
   } else if (!props.document) {
 
     console.log(`// missing user (_id/slug: ${props.documentId || props.slug})`);
-    return <div className="page users-profile"><FormattedMessage id="app.404"/></div> 
-  
+    return <div className="page users-profile"><FormattedMessage id="app.404"/></div>
+
   } else {
 
     const user = props.document;
@@ -33,14 +34,14 @@ const UsersProfile = (props) => {
           </Components.ShowIf>
         </ul>
         <h3><FormattedMessage id="users.posts"/></h3>
-        <Components.PostsList terms={terms} showHeader={false} />
+        <Components.PostsList terms={terms} />
       </div>
     )
   }
 }
 
 UsersProfile.propTypes = {
-  // document: React.PropTypes.object.isRequired,
+  // document: PropTypes.object.isRequired,
 }
 
 UsersProfile.displayName = "UsersProfile";
