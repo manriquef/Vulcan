@@ -9,12 +9,36 @@ import Category from 'meteor/vulcan:categories';
  * @type {Object}
  */
 
+ export function getFeedUsers (apolloClient) {
+
+   // get the current data of the store
+   const apolloData = apolloClient.store.getState().apollo.data;
+
+   // filter these data based on their typename: we are interested in the categories data
+   const testo = _.filter(apolloData, (object, key) => {
+     return object.__typename === 'User'
+   });
+
+   return testo;
+ }
+
+ export function getFeedUsersAsOptions (apolloClient) {
+   // give the form component (here: checkboxgroup) exploitable data
+   return getFeedUsers(apolloClient).map(function (users) {
+     return {
+       value: users._id,
+       label: users.username,
+     };
+   });
+ }
+
  export function getAdminAsOptions (apolloClient) {
    // give the form component (here: checkboxgroup) exploitable data
-   return Users.find({ $or: [{ isDummy: true }, { isOwner: true }] }).map((user) => {
+   console.log("NIG" + JSON.stringify(Users.find({ isDummy: true }).fetch()));
+   return Users.find({ isDummy: true }).fetch().map((users) => {
      return {
-       value: user._id,
-       label: Users.getDisplayName(user)
+       value: users._id,
+       label: users.username
      };
    });
  }
@@ -45,6 +69,7 @@ const schema = {
      viewableBy: ['guests'],
      insertableBy: ['admins'],
      editableBy: ['admins'],
+     resolveAs: 'user: User',
      form: {
        options: formProps => getAdminAsOptions(formProps.client)
      }

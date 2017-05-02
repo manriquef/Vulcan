@@ -40,7 +40,7 @@ vulcan:i18n-en-us               # default language translation
 ############ Accounts Packages ############
 
 accounts-password@1.3.5
-# accounts-twitter
+ accounts-twitter
 # accounts-facebook
 
 ############ Demo Packages ############
