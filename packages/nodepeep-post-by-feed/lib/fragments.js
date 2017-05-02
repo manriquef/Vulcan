@@ -7,6 +7,13 @@ registerFragment(`
     title
     url
     userId
+    user {
+      _id
+      slug
+      avatar
+      username
+      displayName
+    }
     categories
     {
       _id

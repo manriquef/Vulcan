@@ -1,5 +1,6 @@
-import { GraphQLSchema} from 'meteor/vulcan:core';
+import { GraphQLSchema} from 'meteor/vulcan:lib';
 import Users from 'meteor/vulcan:users';
+
 
 // basic list, single, and total query resolvers
 const resolvers = {

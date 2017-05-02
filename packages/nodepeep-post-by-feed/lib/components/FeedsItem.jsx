@@ -4,6 +4,7 @@ import { Components, registerComponent, withList, withCurrentUser, ModalTrigger 
 import { FormattedMessage, intlShape } from 'react-intl';
 import NovaForm from 'meteor/vulcan:forms';
 import Feeds from '../collection.js';
+import Users from 'meteor/vulcan:users';
 
  const FeedsItem = ({feed, currentUser}) =>
 
@@ -18,7 +19,7 @@ import Feeds from '../collection.js';
 
                 <div className="posts-item-meta">
                   { feed.user ? ( <div className="posts-item-user">
-                        <Components.UsersName user={feed.userId}/>
+                        <Components.UsersName user={feed.user}/>
                       </div>
                     ) : null }
                   {Feeds.options.mutations.edit.check(currentUser, feed) ? (feed.createdFromSettings
