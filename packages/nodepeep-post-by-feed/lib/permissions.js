@@ -6,7 +6,7 @@ const guestsActions = [
 Users.groups.guests.can(guestsActions);
 
 const adminActions = [
-  'feeds.view',
+  'feeds.view.all',
   'feeds.new',
   'feeds.edit.all',
   'feeds.remove.all',

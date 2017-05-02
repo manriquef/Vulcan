@@ -9,7 +9,7 @@ const PostsNewForm = (props, context) => {
   return (
     <Components.ShowIf
       check={Posts.options.mutations.new.check}
-      failureComponent={<Components.UsersAccountForm />}
+      failureComponent={<Components.AccountsLoginForm/>}
     >
       <div className="posts-new-form">
         <Components.SmartForm

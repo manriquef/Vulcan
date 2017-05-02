@@ -3,7 +3,7 @@ export function getCategories (apolloClient) {
 
   // get the current data of the store
   const apolloData = apolloClient.store.getState().apollo.data;
-  
+
   // filter these data based on their typename: we are interested in the categories data
   const categories = _.filter(apolloData, (object, key) => {
     return object.__typename === 'Category'
@@ -19,6 +19,16 @@ export function getCategoriesAsOptions (apolloClient) {
       value: category._id,
       label: category.name,
       // slug: category.slug, // note: it may be used to look up from prefilled props
+    };
+  });
+}
+
+export function getAdminAsOptions (apolloClient) {
+  // give the form component (here: checkboxgroup) exploitable data
+  return Users.find({ $or: [{ isDummy: true }, { isOwner: true }] }).map((user) => {
+    return {
+      value: user._id,
+      label: Users.getDisplayName(user)
     };
   });
 }
