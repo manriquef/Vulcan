@@ -63,9 +63,9 @@ import { newMutation } from 'meteor/vulcan:core';
           }
 
         feed.createdFromSettings = true;
+
         try{
         newMutation({
-          action: 'feeds.new',
           collection: Feeds,
           document: feed,
           currentUser: feed.userId,

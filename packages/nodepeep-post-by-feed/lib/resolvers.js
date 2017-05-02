@@ -15,7 +15,7 @@ const resolvers = {
         const statusesLabel = statuses.map(status => _.findWhere(Feeds.statuses, {value: status}).label)
         return _.every(statusesLabel, label => Users.canDo(user, `feeds.view.${label}.all`));
       } else {
-        return Users.canDo(user, `feeds.view.approved.all`);
+        return Users.canDo(user, `feeds.view`);
       }
     },
 

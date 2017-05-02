@@ -27,9 +27,9 @@ const schema = {
     viewableBy: ['guests'],
     insertableBy: ['guests'],
     onInsert: user => {
-         if (user.services.twitter && user.services.twitter.screenName) {
-          return user.services.twitter.screenName;
-        }
+//         if (user.services.twitter && user.services.twitter.screenName) {
+//          return user.services.twitter.screenName;
+//        }
     }
   },
   emails: {
@@ -113,11 +113,11 @@ const schema = {
     viewableBy: ['guests'],
     onInsert: (user, options) => {
       if (user.profile && user.profile.name) {
-        return user.profile.name;
-      } else if (user.services.twitter && user.services.twitter.screenName) {
-        return user.services.twitter.screenName;
-      } else if (user.services.linkedin && user.services.linkedin.firstName) {
-        return user.services.linkedin.firstName + " " + user.services.linkedin.lastName;
+//        return user.profile.name;
+//      } else if (user.services.twitter && user.services.twitter.screenName) {
+//        return user.services.twitter.screenName;
+//      } else if (user.services.linkedin && user.services.linkedin.firstName) {
+//        return user.services.linkedin.firstName + " " + user.services.linkedin.lastName;
       } else if (user.username) {
         return user.username
       }
@@ -168,10 +168,10 @@ const schema = {
     type: String,
     optional: true,
     viewableBy: ['guests'],
-  //  onInsert: user => {
-    //  const twitterAvatar = _.deep(user, 'services.twitter.profile_image_url_https');
-      //return twitterAvatar;
-    //}
+    onInsert: user => {
+//      const twitterAvatar = _.deep(user, 'services.twitter.profile_image_url_https');
+//      return twitterAvatar;
+    }
   },
   /**
     The HTML version of the bio field

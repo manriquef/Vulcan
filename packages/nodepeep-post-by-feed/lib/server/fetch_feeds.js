@@ -136,7 +136,7 @@ const feedHandler = {
           url: item.link,
           feedId: feedId,
           feedItemId: item.guid,
-          isFeed: true,
+          isDummy: true,
           userId: userName._id,
           thumbnailUrl: extractThumbnail(item.description),
           categories: self.getItemCategories(item, feedCategories._id)

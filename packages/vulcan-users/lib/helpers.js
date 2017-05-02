@@ -68,7 +68,7 @@ Users.getProfileUrl = function (user, isAbsolute) {
   isAbsolute = typeof isAbsolute === "undefined" ? false : isAbsolute; // default to false
   var prefix = isAbsolute ? Utils.getSiteUrl().slice(0,-1) : "";
   if (user.slug) {
-    return `${prefix}/users/${user.slug}`;
+    return `${prefix}/p/${user.slug}`;
   } else {
     return "";
   }
@@ -161,7 +161,7 @@ Users.getSetting = function (user = null, settingName, defaultValue = null) {
  * @param {Object} user
  */
 Users.hasCompletedProfile = function (user) {
-  
+
   if (!user) return false;
 
   return _.every(Users.getRequiredFields(), function (fieldName) {

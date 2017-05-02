@@ -7,7 +7,7 @@ import { createCollection } from 'meteor/vulcan:core';
 
 const Feeds = createCollection({
 
-  collectionName: 'feeds',
+  collectionName: 'Feeds',
 
   typeName: 'Feed',
 
