@@ -1,6 +1,6 @@
 import SimpleSchema from 'simpl-schema';
 import Users from 'meteor/vulcan:users';
-import { getCategoriesAsOptions, getAdminAsOptions } from 'meteor/vulcan:categories';
+import { getCategoriesAsOptions } from 'meteor/vulcan:categories';
 import Tags from 'meteor/vulcan:forms-tags';
 import Category from 'meteor/vulcan:categories';
 
@@ -8,6 +8,16 @@ import Category from 'meteor/vulcan:categories';
  * @summary Users schema
  * @type {Object}
  */
+
+ export function getAdminAsOptions (apolloClient) {
+   // give the form component (here: checkboxgroup) exploitable data
+   return Users.find({ $or: [{ isDummy: true }, { isOwner: true }] }).map((user) => {
+     return {
+       value: user._id,
+       label: Users.getDisplayName(user)
+     };
+   });
+ }
 
 const schema = {
    _id: {
@@ -34,6 +44,7 @@ const schema = {
      control: 'select',
      viewableBy: ['guests'],
      insertableBy: ['admins'],
+     editableBy: ['admins'],
      form: {
        options: formProps => getAdminAsOptions(formProps.client)
      }

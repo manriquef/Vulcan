@@ -23,16 +23,6 @@ export function getCategoriesAsOptions (apolloClient) {
   });
 }
 
-export function getAdminAsOptions (apolloClient) {
-  // give the form component (here: checkboxgroup) exploitable data
-  return Users.find({ $or: [{ isDummy: true }, { isOwner: true }] }).map((user) => {
-    return {
-      value: user._id,
-      label: Users.getDisplayName(user)
-    };
-  });
-}
-
 // category schema
 const schema = {
   _id: {
