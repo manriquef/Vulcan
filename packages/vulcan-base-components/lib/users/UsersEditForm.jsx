@@ -1,5 +1,6 @@
 import { Components, registerComponent, withCurrentUser, withMessages } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
 import Users from 'meteor/vulcan:users';
 
@@ -27,7 +28,7 @@ const UsersEditForm = (props, context) => {
 
 
 UsersEditForm.propTypes = {
-  terms: React.PropTypes.object, // a user is defined by its unique _id or its unique slug
+  terms: PropTypes.object, // a user is defined by its unique _id or its unique slug
 };
 
 UsersEditForm.contextTypes = {

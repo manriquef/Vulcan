@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { registerComponent } from 'meteor/vulcan:core';
 
@@ -14,7 +15,7 @@ export class AccountsButton extends React.Component {
       onClick
     } = this.props;
 
-    return type === 'link' ? 
+    return type === 'link' ?
       <a href="#" className={ className } onClick={ onClick } style={{marginRight: '10px'}}>{ label }</a> :
       <Button
         style={{marginRight: '10px'}}
@@ -28,7 +29,7 @@ export class AccountsButton extends React.Component {
   }
 }
 AccountsButton.propTypes = {
-  onClick: React.PropTypes.func
+  onClick: PropTypes.func
 };
 
 registerComponent('AccountsButton', AccountsButton);

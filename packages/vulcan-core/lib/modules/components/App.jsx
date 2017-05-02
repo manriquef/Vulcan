@@ -1,5 +1,6 @@
 import { Components, registerComponent, getSetting, Strings } from 'meteor/vulcan:lib';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { IntlProvider, intlShape} from 'react-intl';
 import withCurrentUser from '../containers/withCurrentUser.js';
 
@@ -11,10 +12,10 @@ class App extends Component {
   }
 
   getChildContext() {
-    
+
     const messages = Strings[this.getLocale()] || {};
     const intlProvider = new IntlProvider({locale: this.getLocale()}, messages);
-    
+
     const {intl} = intlProvider.getChildContext();
 
     return {
@@ -26,7 +27,7 @@ class App extends Component {
     return (
       <IntlProvider locale={this.getLocale()} messages={Strings[this.getLocale()]}>
         {
-          this.props.currentUserLoading ? 
+          this.props.currentUserLoading ?
             <Components.Loading /> :
             <Components.Layout>{this.props.children}</Components.Layout>
         }
@@ -37,7 +38,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  currentUserLoading: React.PropTypes.bool,
+  currentUserLoading: PropTypes.bool,
 }
 
 App.childContextTypes = {

@@ -1,12 +1,13 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import DateTimePicker from 'react-datetime';
 // import moment from 'moment';
 
 class DateTime extends Component {
-  
+
   constructor(props) {
     super(props);
-    
+
     this.updateDate = this.updateDate.bind(this);
   }
 
@@ -22,7 +23,7 @@ class DateTime extends Component {
   render() {
 
     const date = typeof this.props.value === 'string' ? new Date(this.props.value) : this.props.value;
-    
+
     return (
       <div className="form-group row">
         <label className="control-label col-sm-3">{this.props.label}</label>
@@ -41,17 +42,17 @@ class DateTime extends Component {
 }
 
 DateTime.propTypes = {
-  control: React.PropTypes.any,
-  datatype: React.PropTypes.any,
-  group: React.PropTypes.any,
-  label: React.PropTypes.string,
-  name: React.PropTypes.string,
-  value: React.PropTypes.any,
+  control: PropTypes.any,
+  datatype: PropTypes.any,
+  group: PropTypes.any,
+  label: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.any,
 };
 
 DateTime.contextTypes = {
-  addToAutofilledValues: React.PropTypes.func,
-  updateCurrentValues: React.PropTypes.func,
+  addToAutofilledValues: PropTypes.func,
+  updateCurrentValues: PropTypes.func,
 };
 
 export default DateTime;

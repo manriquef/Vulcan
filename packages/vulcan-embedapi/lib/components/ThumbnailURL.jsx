@@ -63,15 +63,15 @@ class ThumbnailURL extends Component {
 }
 
 ThumbnailURL.propTypes = {
-  name: React.PropTypes.string,
-  value: React.PropTypes.any,
-  label: React.PropTypes.string
+  name: PropTypes.string,
+  value: PropTypes.any,
+  label: PropTypes.string
 }
 
 ThumbnailURL.contextTypes = {
-  addToPrefilledValues: React.PropTypes.func,
-  updateCurrentValues: React.PropTypes.func,
-  deleteValue: React.PropTypes.func
+  addToPrefilledValues: PropTypes.func,
+  updateCurrentValues: PropTypes.func,
+  deleteValue: PropTypes.func
 }
 
 export default ThumbnailURL;

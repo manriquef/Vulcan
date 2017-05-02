@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { registerComponent, Utils, getSetting, Headtags } from 'meteor/vulcan:core';
 
@@ -11,10 +12,10 @@ class HeadTags extends Component {
 
 		// default image meta: logo url, else site image defined in settings
 		let image = !!getSetting("siteImage") ? getSetting("siteImage"): getSetting("logoUrl");
-		
-		// overwrite default image if one is passed as props 
+
+		// overwrite default image if one is passed as props
 		if (!!this.props.image) {
-			image = this.props.image; 
+			image = this.props.image;
 		}
 
 		// add site url base if the image is stored locally
@@ -58,10 +59,10 @@ class HeadTags extends Component {
 }
 
 HeadTags.propTypes = {
-	url: React.PropTypes.string,
-	title: React.PropTypes.string,
-	description: React.PropTypes.string,
-	image: React.PropTypes.string,
+	url: PropTypes.string,
+	title: PropTypes.string,
+	description: PropTypes.string,
+	image: PropTypes.string,
 };
 
 registerComponent('HeadTags', HeadTags);

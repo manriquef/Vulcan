@@ -1,5 +1,6 @@
 import { Components, withMessages } from 'meteor/vulcan:core';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 
 // this component is used as a custom controller in user's account edit (cf. ./custom_fields.js)
@@ -7,9 +8,9 @@ class NewsletterSubscribe extends Component {
 
   constructor(props) {
     super(props);
-    
+
     this.handleSuccessCallback = this.handleSuccessCallback.bind(this);
-    
+
     // note: we double bang (!!) the value to force a boolean (undefined/"" transformed to false)
     this.state = {
       label: !!props.value ? 'newsletter.unsubscribe' : 'newsletter.subscribe',
@@ -23,7 +24,7 @@ class NewsletterSubscribe extends Component {
     // note: forced boolean value because SmartForm's falsy value are empty double quotes.
     this.context.addToAutofilledValues({[this.props.name]: !!this.props.value});
   }
-  
+
   handleSuccessCallback(result) {
     try {
       this.setState(
@@ -32,11 +33,11 @@ class NewsletterSubscribe extends Component {
           label: !prevState.currentValue ? 'newsletter.unsubscribe' : 'newsletter.subscribe',
           mutationName: !prevState.currentValue ? 'removeUserNewsletter' : 'addUserNewsletter',
           currentValue: !prevState.currentValue,
-        }), 
+        }),
         // the asynchronous setState has finished, update the form state related to this field
         () => this.context.addToAutofilledValues({[this.props.name]: this.state.currentValue})
       );
-      
+
       // display a nice message to the client
       this.props.flash(this.context.intl.formatMessage({id: "newsletter.subscription_updated"}), "success");
     } catch(e) {
@@ -44,7 +45,7 @@ class NewsletterSubscribe extends Component {
       this.props.flash("Something went wrong... Please contact the administrator to check the state of your newsletter subscription.");
     }
   }
-  
+
   render() {
     return (
       <div className="form-group row">
@@ -63,7 +64,7 @@ class NewsletterSubscribe extends Component {
 }
 
 NewsletterSubscribe.contextTypes = {
-  addToAutofilledValues: React.PropTypes.func,
+  addToAutofilledValues: PropTypes.func,
   intl: intlShape
 };
 

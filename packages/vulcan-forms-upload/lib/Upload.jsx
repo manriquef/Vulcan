@@ -1,5 +1,6 @@
 import { Components, getSetting, registerComponent } from 'meteor/vulcan:lib';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import 'isomorphic-fetch'; // patch for browser which don't have fetch implemented
 
@@ -24,7 +25,7 @@ class Upload extends Component {
 
   onDrop(files) {
     console.log(this)
-    
+
     // set the component in upload mode with the preview
     this.setState({
       preview: files[0].preview,
@@ -109,13 +110,13 @@ class Upload extends Component {
 }
 
 Upload.propTypes = {
-  name: React.PropTypes.string,
-  value: React.PropTypes.any,
-  label: React.PropTypes.string
+  name: PropTypes.string,
+  value: PropTypes.any,
+  label: PropTypes.string
 };
 
 Upload.contextTypes = {
-  addToAutofilledValues: React.PropTypes.func,
+  addToAutofilledValues: PropTypes.func,
 }
 
 registerComponent('Upload', Upload);

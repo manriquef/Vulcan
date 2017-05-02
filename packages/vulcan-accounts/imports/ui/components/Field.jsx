@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormControl } from 'react-bootstrap';
 import { registerComponent } from 'meteor/vulcan:core';
 
@@ -62,7 +63,7 @@ export class AccountsField extends React.Component {
   }
 }
 AccountsField.propTypes = {
-  onChange: React.PropTypes.func
+  onChange: PropTypes.func
 };
 
 registerComponent('AccountsField', AccountsField)
