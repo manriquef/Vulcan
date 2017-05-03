@@ -8,7 +8,6 @@ const FeedsPage = ({results = [], currentUser, loading, loadMore, count, totalCo
 
     <div className="feeds-list">
       {loading ?  <Loading /> : results.map(feed => <FeedsItem key={feed._id} feed={feed} currentUser={currentUser} />)}
-      {/*console.log(JSON.stringify(results))*/}
       {totalCount > results.length ?
         <a href="#" onClick={e => {e.preventDefault(); loadMore();}}>Load More ({count}/{totalCount})</a> :
         <p>No more items.</p>
