@@ -53,7 +53,7 @@ FeedsEditForm.contextTypes = {
 const options = {
   collection: Users,
   queryName: 'feedsUserQuery',
-  fragmentName: 'UsersMinimumInfo',
+  fragmentName: 'FeedsPage',
 };
 
 registerComponent('FeedsEditForm', FeedsEditForm, withMessages, withRouter, [withList, options]);

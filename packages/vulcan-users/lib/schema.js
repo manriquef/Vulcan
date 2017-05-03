@@ -112,17 +112,6 @@ const schema = {
     editableBy: ['members'],
     viewableBy: ['guests'],
     onInsert: (user, options) => {
-<<<<<<< HEAD
-      if (user.profile && user.profile.name) {
-        return user.profile.name;
-//      } else if (user.services.twitter && user.services.twitter.screenName) {
-//        return user.services.twitter.screenName;
-//      } else if (user.services.linkedin && user.services.linkedin.firstName) {
-//        return user.services.linkedin.firstName + " " + user.services.linkedin.lastName;
-      } else if (user.username) {
-        return user.username
-      }
-=======
       const profileName = Utils.getNestedProperty(user, 'profile.name');
       const twitterName = Utils.getNestedProperty(user, 'services.twitter.screenName');
       const linkedinFirstName = Utils.getNestedProperty(user, 'services.linkedin.firstName');
@@ -133,7 +122,6 @@ const schema = {
       if (user.username) return user.username;
       return undefined;
 
->>>>>>> VulcanJS/devel
     }
   },
   /**
@@ -183,19 +171,12 @@ const schema = {
     optional: true,
     viewableBy: ['guests'],
     onInsert: user => {
-<<<<<<< HEAD
-//      const twitterAvatar = _.deep(user, 'services.twitter.profile_image_url_https');
-//      return twitterAvatar;
-=======
-
       const twitterAvatar = Utils.getNestedProperty(user, 'services.twitter.profile_image_url_https');
       const facebookId = Utils.getNestedProperty(user, 'services.facebook.id');
 
       if (twitterAvatar) return twitterAvatar;
       if (facebookId) return `https://graph.facebook.com/${facebookId}/picture?type=large`;
       return undefined;
-
->>>>>>> VulcanJS/devel
     }
   },
   /**
