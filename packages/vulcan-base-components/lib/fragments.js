@@ -220,7 +220,6 @@ registerFragment(`
 
 registerFragment(`
   fragment FeedsList on Feed {
-    # vulcan:posts
     _id
     title
     url

@@ -51,7 +51,7 @@ FeedsEditForm.contextTypes = {
 }
 
 const options = {
-  collection: Users,
+  collection: Feeds,
   queryName: 'feedsUserQuery',
   fragmentName: 'FeedsPage',
 };

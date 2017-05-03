@@ -1,7 +1,15 @@
-import { GraphQLSchema } from 'meteor/vulcan:lib';
-import Users from 'meteor/vulcan:users';
+import { GraphQLSchema, Utils } from 'meteor/vulcan:core';
 
+const specificResolvers = {
+  Feed: {
+     async user(feed, args, context) {
+      if (!feed.userId) return null;
+      return context.Users.findOne({ _id: feed.userId }, { fields: context.Users.getViewableFields(context.currentUser, context.Users) });
+    },
+  }
+};
 
+GraphQLSchema.addResolvers(specificResolvers);
 // basic list, single, and total query resolvers
 const resolvers = {
 
