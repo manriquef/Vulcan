@@ -216,3 +216,29 @@ registerFragment(`
     reportScore
   }
 `);
+
+registerFragment(`
+  fragment FeedsList on Feed {
+    # vulcan:posts
+    _id
+    title
+    url
+    userId
+    user {
+      ...UsersMinimumInfo
+      isDummy
+    }
+    categories
+    {
+      ...CategoriesMinimumInfo
+    }
+    createdFromSettings
+    subjectToParsingErrors
+  }
+`);
+
+registerFragment(`
+  fragment FeedsPage on Feed {
+    ...FeedsList
+  }
+`);

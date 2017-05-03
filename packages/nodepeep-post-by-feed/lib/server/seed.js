@@ -35,20 +35,12 @@ const createUser = function (username, email) {
   });
 }
 
-var createDummyUsers = function () {
-  console.log('// inserting dummy users…');
+export const createDummyUsers = function () {
+  console.log('*** Inserting dummy users…');
   createUser('NewsMaster', 'newsmaster@nodepeep.com');
   createUser('GamesMaster', 'gamesmaster@nodepeep.com');
   createUser('WorldNewsMaster', 'worldnewsmaster@nodepeep.com');
-  createUser('TechMaster', 'tech@nodepeep.com');
+  createUser('TechMaster', 'techmaster@nodepeep.com');
   createUser('SportsMaster', 'sportsmaster@nodepeep.com');
   createUser('ScienceMaster', 'sciencemaster@nodepeep.com');
 };
-
-Meteor.startup(function () {
-  // insert dummy content only if createFeedContent hasn't happened and there aren't any posts or users in the db
-  if (!Users.find().count()) {
-    createDummyUsers();
-  }
-
-});

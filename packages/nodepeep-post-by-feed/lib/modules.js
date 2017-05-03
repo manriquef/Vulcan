@@ -1,4 +1,4 @@
-import Feeds from './collection';
+import Feeds from './collection.js';
 
 import './components.js';
 import './custom_fields.js';

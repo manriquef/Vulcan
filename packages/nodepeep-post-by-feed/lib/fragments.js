@@ -13,6 +13,7 @@ registerFragment(`
       avatar
       username
       displayName
+      isDummy
     }
     categories
     {

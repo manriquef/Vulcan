@@ -34,8 +34,8 @@ import Category from 'meteor/vulcan:categories';
 
  export function getAdminAsOptions (apolloClient) {
    // give the form component (here: checkboxgroup) exploitable data
-   console.log("NIG" + JSON.stringify(Users.find({}).fetch()));
-   return Users.find({ isDummy: true }).fetch().map((users) => {
+   console.log("NIG" + JSON.stringify(Users.find({})));
+   return Users.find({ isDummy: true }).map((users) => {
      return {
        value: users._id,
        label: users.username
@@ -71,7 +71,7 @@ const schema = {
      editableBy: ['admins'],
      resolveAs: 'user: User',
      form: {
-       options: formProps => getAdminAsOptions(formProps.client)
+       options: formProps => getFeedUsersAsOptions(formProps.client)
      }
    },
    categories: {

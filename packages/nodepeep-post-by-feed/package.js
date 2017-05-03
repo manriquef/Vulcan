@@ -4,14 +4,6 @@ Package.describe({
   version: "1.3.2",
 });
 
-Npm.depends({
-  'feedparser': '1.0.0',
-  'to-markdown': '0.0.2',
-  'he': '0.5.0',
-  'iconv-lite': '0.4.7',
-  'moment': '2.13.0',
-});
-
 Package.onUse(function(api) {
 
   api.versionsFrom('METEOR@1.0');

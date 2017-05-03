@@ -1,11 +1,33 @@
-import { getFirstAdminUser } from './fetch_feeds';
+import { getFirstAdminUser, fetchFeeds } from './fetch_feeds.js';
+import { createDummyUsers } from './seed.js';
 import Categories from 'meteor/vulcan:categories';
 import Users from 'meteor/vulcan:users';
 import Feeds from '../collection.js';
 import { newMutation } from 'meteor/vulcan:core';
 
+
+const addJob = () => {
+  SyncedCron.add({
+    name: 'Post by RSS feed',
+    schedule: function(parser) {
+      return parser.text('every 1 minutes');
+    },
+    job: () => {
+      if (Feeds.find().count()) {
+        fetchFeeds();
+      }
+    }
+  });
+};
+
 // Load feeds from settings, if there are any
-//Meteor.startup(() => {
+Meteor.startup(() => {
+
+// Insert dummy users first
+  if (!Users.find().count()) {
+    createDummyUsers();
+  }
+  addJob();
 
   if (Meteor.settings && Meteor.settings.feeds) {
     Meteor.settings.feeds.forEach(feed => {
@@ -54,8 +76,10 @@ import { newMutation } from 'meteor/vulcan:core';
         // if not, create it only if there is an admin user
         if (feed.userName) {
           const AdminUser = feed.userId;
+          console.log(`// Creating feed “${feed.url}”`);
         } else {
           const AdminUser = getFirstAdminUser();
+          console.log(`// Creating feed “${feed.url}”`);
         }
 
           if (typeof AdminUser == 'undefined') {
@@ -75,9 +99,7 @@ import { newMutation } from 'meteor/vulcan:core';
         console.log(error);
       }
 
-        console.log(`// Creating feed “${feed.url}”`);
-
       }
     });
   }
-//});
+});

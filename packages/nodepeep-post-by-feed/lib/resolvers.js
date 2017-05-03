@@ -1,4 +1,4 @@
-import { GraphQLSchema} from 'meteor/vulcan:lib';
+import { GraphQLSchema } from 'meteor/vulcan:lib';
 import Users from 'meteor/vulcan:users';
 
 
