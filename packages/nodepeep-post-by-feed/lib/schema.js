@@ -8,15 +8,6 @@ import Category, { getCategoriesAsOptions } from 'meteor/vulcan:categories';
  * @type {Object}
  */
 
- export function getAdminAsOptions () {
-   return Users.find({ isDummy: true }).map((users) => {
-     return {
-       value: users._id,
-       label: users.username
-     };
-   });
- }
-
 const schema = {
    _id: {
      type: String,
@@ -45,7 +36,14 @@ const schema = {
      editableBy: ['admins'],
      resolveAs: 'user: User',
      form: {
-       options: formProps => getAdminAsOptions()
+       options: function() { //fix via callback??
+         return Users.find({}).map((users) => {
+           return {
+             value: users._id,
+             label: users.username
+           };
+         });
+       }
      }
    },
    categories: {
