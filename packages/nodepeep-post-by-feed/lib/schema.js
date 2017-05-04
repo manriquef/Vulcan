@@ -33,7 +33,7 @@ import Category, { getCategoriesAsOptions } from 'meteor/vulcan:categories';
 
  export function getAdminAsOptions (apolloClient) {
    // give the form component (here: checkboxgroup) exploitable data
-   console.log("NIG" + JSON.stringify(Users.find({})));
+   console.log("N: " + JSON.stringify(Users.find({})));
    return Users.find({ isDummy: true }).map((users) => {
      return {
        value: users._id,

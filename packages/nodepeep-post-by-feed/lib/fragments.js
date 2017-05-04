@@ -1,8 +1,7 @@
-import { registerFragment, getFragment  } from 'meteor/vulcan:core';
+/*import { registerFragment, getFragment  } from 'meteor/vulcan:core';
 
 registerFragment(`
   fragment FeedsList on Feed {
-    # vulcan:posts
     _id
     title
     url
@@ -31,3 +30,4 @@ registerFragment(`
     ...FeedsList
   }
 `);
+*/

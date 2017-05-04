@@ -228,8 +228,7 @@ registerFragment(`
       ...UsersMinimumInfo
       isDummy
     }
-    categories
-    {
+    categories {
       ...CategoriesMinimumInfo
     }
     createdFromSettings

@@ -35,8 +35,8 @@ Meteor.startup(() => {
       let existingFeed = Feeds.findOne({url: feed.url});
 
       // todo: accept more than one category
-      if (feed.categorySlug) {
-        const category = Categories.findOne({ slug: feed.categorySlug });
+      if (feed.categories) {
+        const category = Categories.findOne({ slug: feed.categories });
         try {
           feed.categories = [category]; // this will break the post feeds if changed to ._id
         } catch (e) {
@@ -44,9 +44,9 @@ Meteor.startup(() => {
         }
       }
 
-      if (feed.userName) {
+      if (feed.userId) {
                                 // What you want - What you have
-        const user = Users.findOne({ username: feed.userName });
+        const user = Users.findOne({ username: feed.userId });
         try {
           feed.userId = [user._id];//if it doesn't exist it fails
         } catch (e) {
@@ -74,7 +74,7 @@ Meteor.startup(() => {
         Feeds.update(existingFeed._id, { $set: feed });
       } else {
         // if not, create it only if there is an admin user
-        if (feed.userName) {
+        if (feed.userId) {
           const AdminUser = feed.userId;
           console.log(`// Creating feed “${feed.url}”`);
         } else {

@@ -85,7 +85,7 @@ const feedHandler = {
     return itemCategories;
   },
 
-  handle(contentBuffer, userName, feedCategories, feedId) {
+  handle(contentBuffer, feedUserId, feedCategories, feedId) {
     const self = this;
     const content = normalizeEncoding(contentBuffer);
     const stream = this.getStream(content);
@@ -125,7 +125,6 @@ const feedHandler = {
 
         // check if post already exists
         if (!!Posts.findOne({ feedItemId: item.guid })) {
-          //console.log('// Feed item already imported');
           continue;
         }
 
@@ -137,9 +136,9 @@ const feedHandler = {
           feedId: feedId,
           feedItemId: item.guid,
           isDummy: true,
-          userId: userName._id,
+          userId: feedUserId,
           thumbnailUrl: extractThumbnail(item.description),
-          categories: self.getItemCategories(item, feedCategories._id)
+          categories: feedCategories //self.getItemCategories(item, feedCategories)
         };
 
 
@@ -174,7 +173,7 @@ const feedHandler = {
             newMutation({
               collection: Posts,
               document: post,
-              currentUser: userName._id,
+              currentUser: feedUserId,
               validate: false,
             });
           } catch (error) {
@@ -199,15 +198,13 @@ export const fetchFeeds = function() {
 
   Feeds.find().forEach(function(feed) {
 
-    // if feed doesn't specify a user, default to admin
-    const feedName = !!feed.userName ? feed.userName.trim() : null;
-    const userName = Users.findOne({username: feedName});
-    const feedCategories = Categories.findOne({ slug: feed.categorySlug });
+    const feedUserId = feed.userId;
+    const feedCategories = feed.categories; //Categories.findOne({ slug: feed.categories });
     const feedId = feed._id;
 
     try {
       contentBuffer = HTTP.get(feed.url, { responseType: 'buffer' }).content;
-      feedHandler.handle(contentBuffer, userName, feedCategories, feedId);
+      feedHandler.handle(contentBuffer, feedUserId, feedCategories, feedId);
     } catch (error) {
       console.log(error);
       return true; // just go to next feed URL

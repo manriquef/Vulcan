@@ -53,45 +53,45 @@
   "feeds":[
     {
       "url": "http://www.theverge.com/rss/index.xml",
-      "categorySlug": "technews",
+      "categories": "technews",
       "title": "The Verge",
-      "userName": "TechMaster"
+      "userId": "TechMaster"
     },
     {
       "url": "http://feeds.gawker.com/gizmodo/full",
-      "categorySlug": "technews",
+      "categories": "technews",
       "title": "Gizmodo",
-      "userName": "TechMaster"
+      "userId": "TechMaster"
     },
     {
       "url": "https://www.engadget.com/rss.xml",
-      "categorySlug": "technews",
+      "categories": "technews",
       "title": "Engadget",
-      "userName": "TechMaster"
+      "userId": "TechMaster"
     },
     {
       "url": "http://wccftech.com/feed/",
-      "categorySlug": "technews",
+      "categories": "technews",
       "title": "WCCFTECH",
-      "userName": "TechMaster"
+      "userId": "TechMaster"
     },
     {
       "url": "http://feeds.reuters.com/Reuters/worldNews",
-      "categorySlug": "worldnews",
+      "categories": "worldnews",
       "title": "Reuters World News",
-      "userName": "WorldNewsMaster"
+      "userId": "WorldNewsMaster"
     },
     {
       "url": "http://feeds.reuters.com/reuters/scienceNews",
-      "categorySlug": "science",
+      "categories": "science",
       "title": "Reuters Space News",
-      "userName": "ScienceMaster"
+      "userId": "ScienceMaster"
     },
     {
       "url": "http://feeds.reuters.com/reuters/sportsNews",
-      "categorySlug": "sports",
+      "categories": "sports",
       "title": "CNN World Sports",
-      "userName": "SportsMaster"
+      "userId": "SportsMaster"
     }
   ],
   "categories": [
