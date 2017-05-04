@@ -38,7 +38,7 @@ Meteor.startup(() => {
       if (feed.categories) {
         const category = Categories.findOne({ slug: feed.categories });
         try {
-          feed.categories = category; // this will break the post feeds if changed to ._id
+          feed.categories = [category]; // this will break the post feeds if changed to ._id
         } catch (e) {
           console.log(e);
         }
@@ -48,7 +48,7 @@ Meteor.startup(() => {
                                 // What you want - What you have
         const user = Users.findOne({ username: feed.userId });
         try {
-          feed.userId = [user._id];//if it doesn't exist it fails
+          feed.userId = user._id;//if it doesn't exist it fails
         } catch (e) {
           console.log(e);
         }

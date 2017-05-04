@@ -140,7 +140,7 @@ const feedHandler = {
           isDummy: true,
           userId: feedUserId,
           thumbnailUrl: extractThumbnail(item.description),
-          categories: self.getItemCategories(item, feedCategories._id)
+          categories: self.getItemCategories(item, feedCategories)
         };
 
 
@@ -201,7 +201,7 @@ export const fetchFeeds = function() {
   Feeds.find().forEach(function(feed) {
 
     const feedUserId = feed.userId;
-    const feedCategories = feed.categories._id;// Categories.findOne({ slug: feed.categorySlug });
+    const feedCategories = feed.categories._id;
     const feedId = feed._id;
 
     try {
