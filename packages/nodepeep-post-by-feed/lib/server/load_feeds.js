@@ -38,7 +38,7 @@ Meteor.startup(() => {
       if (feed.categories) {
         const category = Categories.findOne({ slug: feed.categories });
         try {
-          feed.categories = [category]; // this will break the post feeds if changed to ._id
+          feed.categories = category; // this will break the post feeds if changed to ._id
         } catch (e) {
           console.log(e);
         }

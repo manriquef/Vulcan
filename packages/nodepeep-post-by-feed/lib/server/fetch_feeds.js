@@ -130,6 +130,8 @@ const feedHandler = {
 
         newItemsCount++;
 
+        console.log("FD: " + JSON.stringify(feedCategories));
+
         let post = {
           title: he.decode(item.title),
           url: item.link,
@@ -138,7 +140,7 @@ const feedHandler = {
           isDummy: true,
           userId: feedUserId,
           thumbnailUrl: extractThumbnail(item.description),
-          categories: feedCategories //self.getItemCategories(item, feedCategories)
+          categories: self.getItemCategories(item, feedCategories._id)
         };
 
 
@@ -199,7 +201,7 @@ export const fetchFeeds = function() {
   Feeds.find().forEach(function(feed) {
 
     const feedUserId = feed.userId;
-    const feedCategories = feed.categories; //Categories.findOne({ slug: feed.categories });
+    const feedCategories = feed.categories._id;// Categories.findOne({ slug: feed.categorySlug });
     const feedId = feed._id;
 
     try {
