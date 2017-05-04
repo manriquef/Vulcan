@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Components, registerComponent, getFragment, withCurrentUser } from 'meteor/vulcan:core';
+import { Components, registerComponent, getFragment, withCurrentUser, withList} from 'meteor/vulcan:core';
 import { intlShape } from 'react-intl';
-import NovaForm from "meteor/vulcan:forms";
+import NovaForm from 'meteor/vulcan:forms';
 import Feeds from '../collection.js';
+import Users from 'meteor/vulcan:users';
 
 class FeedsNewForm extends Component {
 
@@ -30,4 +31,10 @@ FeedsNewForm.contextTypes = {
     currentUser: PropTypes.object,
 };
 
-registerComponent('FeedsNewForm', FeedsNewForm, withCurrentUser);
+const options = {
+  collection: Users,
+  queryName: 'feedsNewFormQuery',
+  fragmentName: 'UsersMinimumInfo',
+};
+
+registerComponent('FeedsNewForm', FeedsNewForm, withCurrentUser, [withList, options]);

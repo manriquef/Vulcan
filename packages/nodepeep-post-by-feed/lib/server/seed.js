@@ -9,6 +9,7 @@ const dummyFlag = {
   fieldSchema: {
     type: Boolean,
     optional: true,
+    viewableBy: ['guests'],
     hidden: true
   }
 }

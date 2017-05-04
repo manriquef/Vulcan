@@ -34,6 +34,7 @@ Meteor.startup(() => {
       // look for existing feed with same url
       let existingFeed = Feeds.findOne({url: feed.url});
 
+      feed.categorySlug = feed.categories;
       // todo: accept more than one category
       if (feed.categories) {
         const category = Categories.findOne({ slug: feed.categories });
@@ -86,6 +87,7 @@ Meteor.startup(() => {
             console.log('// No userId defined and no admin found, cannot create feed');
           }
 
+        
         feed.createdFromSettings = true;
 
         try{

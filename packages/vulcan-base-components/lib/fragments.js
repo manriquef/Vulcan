@@ -36,6 +36,7 @@ registerFragment(`
     username
     displayName
     emailHash
+    isDummy
   }
 `);
 
