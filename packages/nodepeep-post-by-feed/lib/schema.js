@@ -8,6 +8,29 @@ import Category, { getCategoriesAsOptions } from 'meteor/vulcan:categories';
  * @type {Object}
  */
 
+ export function getFeedUsersFromApollo (apolloClient) {
+
+   // get the current data of the store
+   const apolloData = apolloClient.store.getState().apollo.data;
+
+   const allUsers = _.filter(apolloData, (object, key) => {
+     return object.__typename === 'User'
+   });
+
+   const feedUsers = _.filter(allUsers, function(item){
+     return item.isDummy === true;
+  });
+
+   return feedUsers;
+ }
+
+ export function getFeedUsers (apolloClient) {
+    return getFeedUsersFromApollo(apolloClient).map(function (users) {
+         return {value: users._id, label: users.username}
+     });
+ }
+
+
 const schema = {
    _id: {
      type: String,
@@ -36,15 +59,8 @@ const schema = {
      editableBy: ['admins'],
      resolveAs: 'user: User',
      form: {
-       options: function() { //fix via callback??
-         return Users.find({}).map((users) => {
-           return {
-             value: users._id,
-             label: users.username
-           };
-         });
+       options: formProps => getFeedUsers(formProps.client)
        }
-     }
    },
    categories: {
      type: Array,

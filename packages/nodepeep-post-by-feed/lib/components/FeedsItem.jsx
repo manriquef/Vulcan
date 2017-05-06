@@ -23,7 +23,7 @@ import Users from 'meteor/vulcan:users';
                       </div>
                     ) : null }
                   {Feeds.options.mutations.edit.check(currentUser, feed) ? (feed.createdFromSettings
-                        ? <span>This feed has been added from your settings.json file, you cannot edit or remove it the client. Please make your modifications in your settings file.</span>
+                        ? <span>This feed has been added from your settings.json file, you cannot edit or remove it from the client. Please make your modifications in your settings file.</span>
                         : <div className="feed-actions">
                           <span className="feeds-item-edit" title="Edit this post">
                             <ModalTrigger title="Edit Post" component={<a className="feeds-action-edit"><FormattedMessage id="posts.edit"/></a>}>
