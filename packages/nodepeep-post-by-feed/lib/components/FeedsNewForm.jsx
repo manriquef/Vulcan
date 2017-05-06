@@ -5,9 +5,27 @@ import { intlShape } from 'react-intl';
 import NovaForm from 'meteor/vulcan:forms';
 import Feeds from '../collection.js';
 import Users from 'meteor/vulcan:users';
+import Select from 'react-select';
+
 
 const FeedsNewForm = (props, context) => {
+/*
+  var options = [
+    { value: 'one', label: 'One' },
+    { value: 'two', label: 'Two' }
+  ];
 
+  function logChange(val) {
+    console.log("Selected: " + val);
+  }
+
+  <Select
+  name="form-field-name"
+  value="one"
+  options={options}
+  onChange={logChange}
+  />
+  */
     return(
       <Components.ShowIf
         check={Feeds.options.mutations.new.check}
@@ -24,6 +42,7 @@ const FeedsNewForm = (props, context) => {
             props.flash(context.intl.formatMessage({id: "feeds.created_message"}), "success");
           }}
         />
+
       </div>
       </Components.ShowIf>
   );

@@ -27,7 +27,9 @@ Picker.route('/out', ({ query}, req, res, next) => {
         res.end();
       } else {
         // don't redirect if we can't find a post for that link
-        res.end(`Invalid URL: ${query.url}`);
+        res.writeHead(301, {'Location': query.url});
+        res.end();
+      //  res.end(`Invalid URL: ${query.url}`);
       }
     } catch (error) {
       console.log('// /out error')

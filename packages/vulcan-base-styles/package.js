@@ -16,7 +16,8 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'lib/stylesheets/bootstrap.css',
-    'lib/stylesheets/main.scss'
+    'lib/stylesheets/main.scss',
+    'lib/stylesheets/react-select.css'
   ], ['client']);
 
 });

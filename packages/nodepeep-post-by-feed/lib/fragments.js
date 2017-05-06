@@ -1,7 +1,7 @@
-/*import { registerFragment, getFragment  } from 'meteor/vulcan:core';
+import { registerFragment, getFragment  } from 'meteor/vulcan:core';
 
 registerFragment(`
-  fragment FeedsList on Feed {
+  fragment FeedsNew on Feed {
     _id
     title
     url
@@ -20,14 +20,5 @@ registerFragment(`
       name
       slug
     }
-    createdFromSettings
-    subjectToParsingErrors
   }
 `);
-
-registerFragment(`
-  fragment FeedsPage on Feed {
-    ...FeedsList
-  }
-`);
-*/

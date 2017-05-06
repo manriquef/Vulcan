@@ -1,7 +1,14 @@
+// cards
+
+import './cards/CardsCategories.jsx';
+import './cards/CardsCommenters.jsx';
+import './cards/CardsItem.jsx';
+import './cards/CardsStats.jsx';
+import './cards/CardsThumbnail.jsx';
+
 
 // common
 
-import './common/CardsItem.jsx';
 import './common/Footer.jsx';
 import './common/Header.jsx';
 import './common/Layout.jsx';
@@ -22,10 +29,6 @@ import './feeds/FeedsEditForm.jsx';
 
 // posts
 
-import './posts/CardsThumbnail.jsx';
-import './posts/CardsCategories.jsx';
-import './posts/CardsCommenters.jsx';
-import './posts/CardsStats.jsx';
 import './posts/PostsHome.jsx';
 import './posts/PostsSingle.jsx';
 import './posts/PostsNewButton.jsx';

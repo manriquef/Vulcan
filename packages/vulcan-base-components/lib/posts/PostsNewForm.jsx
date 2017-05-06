@@ -6,6 +6,10 @@ import { intlShape } from 'react-intl';
 import { withRouter } from 'react-router'
 
 const PostsNewForm = (props, context) => {
+
+  const currentCategorySlug = props.router.location.query && this.props.router.location.query.cat;
+  console.log(props);
+
   return (
     <Components.ShowIf
       check={Posts.options.mutations.new.check}
