@@ -43,6 +43,7 @@ const schema = {
      viewableBy: ['guests'],
      insertableBy: ['admins'],
      editableBy: ['admins'],
+     order: 1,
    },
    title: {
      type: String,
@@ -50,6 +51,7 @@ const schema = {
      viewableBy: ['guests'],
      insertableBy: ['admins'],
      editableBy: ['admins'],
+     order: 2,
    },
    userId: {
      type: String,
@@ -58,6 +60,7 @@ const schema = {
      insertableBy: ['admins'],
      editableBy: ['admins'],
      resolveAs: 'user: User',
+     order: 4,
      form: {
        options: formProps => getFeedUsers(formProps.client)
        }
@@ -70,6 +73,7 @@ const schema = {
      insertableBy: ['admins'],
      editableBy: ['admins'],
      resolveAs: 'categories: [Category]',
+     order: 3,
      form: {
        options: formProps => getCategoriesAsOptions(formProps.client)
      },

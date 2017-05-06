@@ -6,11 +6,13 @@ import NovaForm from 'meteor/vulcan:forms';
 import Feeds from '../collection.js';
 import Users from 'meteor/vulcan:users';
 
-class FeedsNewForm extends Component {
-
-  render() {
+const FeedsNewForm = (props, context) => {
 
     return(
+      <Components.ShowIf
+        check={Feeds.options.mutations.new.check}
+        failureComponent={<Components.AccountsLoginForm/>}
+      >
       <div style={{marginBottom: 15}}>
         <h2>Add a new feed</h2>
         <Components.SmartForm
@@ -23,9 +25,9 @@ class FeedsNewForm extends Component {
           }}
         />
       </div>
-  )
- }
-}
+      </Components.ShowIf>
+  );
+};
 
 FeedsNewForm.contextTypes = {
     currentUser: PropTypes.object,
