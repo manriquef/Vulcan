@@ -8,7 +8,7 @@ import DateTime from './DateTime.jsx';
 // import Utils from './utils.js';
 
 const Checkbox = FRC.Checkbox;
-// const CheckboxGroup = FRC.CheckboxGroup;
+const CheckboxGroup = FRC.CheckboxGroup;
 const Input = FRC.Input;
 const RadioGroup = FRC.RadioGroup;
 const Select = FRC.Select;
@@ -33,10 +33,10 @@ class FormComponent extends Component {
     // see https://facebook.github.io/react/warnings/unknown-prop.html
     const { control, group, updateCurrentValues, document, beforeComponent, afterComponent, ...rest } = this.props; // eslint-disable-line
 
-    const base = this.props.control === "function" ? this.props : rest;
+    // const base = typeof this.props.control === "function" ? this.props : rest;
 
     const properties = {
-      ...base,
+      ...rest,
       onBlur: this.handleBlur,
       ref: (ref) => this.formControl = ref
     };
@@ -55,11 +55,11 @@ class FormComponent extends Component {
           return <Textarea      {...properties} />;
         case "checkbox":
           return <Checkbox      {...properties} />;
-        // note: checkboxgroup cause React refs error
         case "checkboxgroup":
           return <CheckboxGroup  {...properties} />;
         case "radiogroup":
-          return <RadioGroup    {...properties} />;
+          // not sure why, but onChange needs to be specified here
+          return <RadioGroup    {...properties} onChange={(name, value) => {this.props.updateCurrentValues({[name]: value})}}/>;
         case "select":
           properties.options = [{label: this.context.intl.formatMessage({id: "forms.select_option"}), disabled: true}, ...properties.options];
           return <Select        {...properties} />;
@@ -103,6 +103,7 @@ FormComponent.contextTypes = {
 };
 
 export default FormComponent;
+<<<<<<< HEAD
 
 //-------------------------------------//
 
@@ -182,3 +183,5 @@ const CheckboxGroup = React.createClass({
         );
     }
 });
+=======
+>>>>>>> VulcanJS/devel
