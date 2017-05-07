@@ -37,8 +37,12 @@
   }
 }
 
-.categories-children{
-
+.categories-rules{
+  background-color: $bgCategoriesRules;
+  border-color: $CategoriesRulesborder;
+  color: $fntCategoriesRules;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 .categories-edit-form-admin{

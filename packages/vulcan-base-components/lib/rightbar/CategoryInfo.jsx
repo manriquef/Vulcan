@@ -39,7 +39,7 @@ class CategoryInfo extends Component {
 
     return (
       <div>
-          <div className="categories-info">
+          <div className="categories-rules">
             This feed is
             {!!this.getCurrentCategory() ? this.getCurrentCategoryRules() : "nothing here..."}
           </div>

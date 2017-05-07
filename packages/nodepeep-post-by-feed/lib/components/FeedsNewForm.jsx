@@ -5,11 +5,10 @@ import { intlShape } from 'react-intl';
 import NovaForm from 'meteor/vulcan:forms';
 import Feeds from '../collection.js';
 import Users from 'meteor/vulcan:users';
-import Select from 'react-select';
+import FRC from 'formsy-react-components';
 
-
-const FeedsNewForm = (props, context) => {
 /*
+
   var options = [
     { value: 'one', label: 'One' },
     { value: 'two', label: 'Two' }
@@ -25,7 +24,22 @@ const FeedsNewForm = (props, context) => {
   options={options}
   onChange={logChange}
   />
-  */
+
+  <Components.SmartForm
+    collection={Feeds}
+    mutationFragment={getFragment('FeedsPage')}
+    successCallback={feed => {
+      props.closeModal();
+      props.router.push({pathname: Feeds.getPageUrl(feed)});
+      props.flash(context.intl.formatMessage({id: "feeds.created_message"}), "success");
+    }}
+  />
+
+const { Checkbox, CheckboxGroup, Input, RadioGroup, Row, Select, File, Textarea } = FRC;
+*/
+
+const FeedsNewForm = (props, context) => {
+
     return(
       <Components.ShowIf
         check={Feeds.options.mutations.new.check}
@@ -42,7 +56,6 @@ const FeedsNewForm = (props, context) => {
             props.flash(context.intl.formatMessage({id: "feeds.created_message"}), "success");
           }}
         />
-
       </div>
       </Components.ShowIf>
   );

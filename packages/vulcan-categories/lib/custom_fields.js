@@ -13,6 +13,7 @@ Posts.addField([
       insertableBy: ['members'],
       editableBy: ['members'],
       viewableBy: ['guests'],
+      defaultValue: "all",
       form: {
         noselect: true,
         type: "bootstrap-category",

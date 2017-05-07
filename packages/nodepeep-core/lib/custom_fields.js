@@ -45,6 +45,18 @@ Categories.addField([
       viewableBy: ['guests'],
     }//fieldSchema
   },
+  {
+    fieldName: 'mods',
+    fieldSchema: {
+      type: String,
+      control: Tags,
+      max: 24,
+      optional: true,
+      insertableBy: ['admins'],
+      editableBy: ['admins','supermods'],
+      viewableBy: ['guests'],
+    }//fieldSchema
+  },
 ]);
 
 /*******************************************************************/
@@ -136,13 +148,13 @@ Users.addField([
       label: "Category",
       control: Tags,
       optional: true,
-      viewableBy: ['supermods','mods'],
+      viewableBy: ['guests'],
       editableBy: ['admins','supermods'],
       insertableBy: ['admins','supermods'],
       form: {
         options: formProps => getCategoriesAsOptions(formProps.client)
       },
-      group: ['mods','supermods'],
+      group: ['admins','mods','supermods'],
     }
   },
   {

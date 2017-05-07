@@ -1,14 +1,24 @@
 import { Components, registerComponent, getRawComponent, getFragment, withMessages } from 'meteor/vulcan:core';
-import Posts from "meteor/vulcan:posts";
+import Posts from 'meteor/vulcan:posts';
+import Categories from 'meteor/vulcan:categories';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
+import ReactDOM from 'react-dom';
 
 const PostsNewForm = (props, context) => {
 
-  const currentCategorySlug = props.router.location.query && this.props.router.location.query.cat;
-  console.log(props);
+  const getCurrentCategory = function () {
+
+    // check if a category is currently active in the route
+    const currentCategorySlug = props.router.location.query && props.router.location.query.cat;
+  //  const currentCategory = Categories.findOneInStore(props.client.store, {slug: currentCategorySlug});
+  //  const parentCategories = Categories.getParents(currentCategory, props.client.store);
+
+    console.log(currentCategorySlug);
+    return currentCategorySlug;
+  };
 
   return (
     <Components.ShowIf
@@ -25,6 +35,7 @@ const PostsNewForm = (props, context) => {
             props.flash(context.intl.formatMessage({id: "posts.created_message"}), "success");
           }}
         />
+        {getCurrentCategory()}
       </div>
     </Components.ShowIf>
   );

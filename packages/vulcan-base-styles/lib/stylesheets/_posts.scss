@@ -404,7 +404,7 @@
   display: inline-flex;
 //  border: 1px solid #d9d9da;
 //  border-radius: 3px;
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.19);
   //position: sticky;
   @include small{
     width: 150px;
@@ -438,13 +438,13 @@
 }
 
 .cards-item-thumbnail{
-  max-height: 50%;
+  height: 50%;
+  max-width: 100%;
   overflow: hidden;
-  margin-left: -1px;
+  margin-left: 2px;
   img{
-   max-width: 100%;
-   max-height: 100%;
-   width: auto;
+   height: 100%;
+   width: 100%;
   }
 }
 
@@ -454,6 +454,8 @@
   max-height: 80px;
   width: 15%;
   min-width: 200px;
+  padding-left: 2px;
+  padding-right: 2px;
   @include small{
     font-size: $smaller1-font;
   }

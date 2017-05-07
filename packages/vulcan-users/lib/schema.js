@@ -26,6 +26,7 @@ const schema = {
     optional: true,
     viewableBy: ['guests'],
     insertableBy: ['guests'],
+    max: 32,
     onInsert: user => {
          if (user.services.twitter && user.services.twitter.screenName) {
           return user.services.twitter.screenName;
@@ -111,6 +112,7 @@ const schema = {
     insertableBy: ['members'],
     editableBy: ['members'],
     viewableBy: ['guests'],
+    max: 32,
     onInsert: (user, options) => {
       const profileName = Utils.getNestedProperty(user, 'profile.name');
       const twitterName = Utils.getNestedProperty(user, 'services.twitter.screenName');
@@ -219,6 +221,7 @@ const schema = {
     editableBy: ['members'],
     viewableBy: ['guests'],
     resolveAs: 'twitterUsername: String',
+    max: 64,
     onInsert: user => {
       if (user.services && user.services.twitter && user.services.twitter.screenName) {
         return user.services.twitter.screenName;
