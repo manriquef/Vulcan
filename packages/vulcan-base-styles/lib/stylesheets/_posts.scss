@@ -58,10 +58,12 @@
     }
   }
   a.btn{
-    @include border;
-    // @include border-radius;
-    // padding: 3px 5px;
-    // margin-right: 5px;
+  //  @include border;
+  //   @include border-radius;
+     padding: 3px 5px;
+     margin-right: 2px;
+     background-color: $btnViewBG;
+     border-color: $btnViewBorder;
     &.posts-view-inactive{
       @include activeHover;
     }
@@ -220,6 +222,7 @@
     @include border;
     @include border-radius;
     margin-right: 4px;
+    margin-bottom: 1px;
     padding: 1px 3px;
     @include activeHover;
   }
@@ -404,7 +407,7 @@
   display: inline-flex;
 //  border: 1px solid #d9d9da;
 //  border-radius: 3px;
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 8px 0 rgba(0, 0, 0, 0.19);
   //position: sticky;
   @include small{
     width: 150px;

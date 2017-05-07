@@ -29,7 +29,7 @@ class CardsItem extends Component {
     return (
       <div className="cards-actions">
         <span className="cards-item-edit" title="Edit this post">
-        <ModalTrigger title="Edit Post" component={<a className="cards-action-edit"><FormattedMessage id="posts.edit"/></a>}>
+        <ModalTrigger title="Edit Post" component={<a className="cards-action-edit"><Components.Icon name="edit"/></a>}>
           <Components.PostsEditForm post={this.props.post} />
         </ModalTrigger>
       </span>

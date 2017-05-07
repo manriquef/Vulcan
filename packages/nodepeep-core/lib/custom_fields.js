@@ -1,10 +1,10 @@
-import Posts from "meteor/vulcan:posts";
-import Users from "meteor/vulcan:users";
-import Categories from "meteor/vulcan:categories";
+import Posts from 'meteor/vulcan:posts';
+import Users from 'meteor/vulcan:users';
+import Categories from 'meteor/vulcan:categories';
 import { getCategoriesAsOptions } from 'meteor/vulcan:categories';
 import Tags from 'meteor/vulcan:forms-tags';
 import { getComponent, getSetting } from 'meteor/vulcan:lib';
-;
+
 /*
 Modified 18APR2017
 
@@ -31,6 +31,28 @@ Users.avatar = {
   },
 };
 
+export function getUsersFromApollo (apolloClient) {
+
+  // get the current data of the store
+  const apolloData = apolloClient.store.getState().apollo.data;
+
+  const allUsers = _.filter(apolloData, (object, key) => {
+    return object.__typename === 'User'
+  });
+
+  // does not show dummy users
+  const npUsers = _.filter(allUsers, function(item){
+    return !item.isDummy;
+ });
+
+  return npUsers;
+}
+
+export function getUsers (apolloClient) {
+   return getUsersFromApollo(apolloClient).map(function (users) {
+        return {value: users._id, label: users.username}
+    });
+}
 
 Categories.addField([
   {
@@ -46,17 +68,38 @@ Categories.addField([
     }//fieldSchema
   },
   {
+    fieldName: 'image',
+    fieldSchema: {
+      type: String,
+      optional: true,
+      control: getComponent('Upload'),
+      insertableBy: ['members'],
+      editableBy: ['members'],
+      viewableBy: ['guests'],
+      form: {
+        options: {
+          preset: getSetting('cloudinaryPresets').avatar // this setting refers to the transformation you want to apply to the image
+        },
+      }
+    }
+  },
+  {
     fieldName: 'mods',
     fieldSchema: {
       type: String,
+      label: 'Moderators',
       control: Tags,
       max: 24,
       optional: true,
       insertableBy: ['admins'],
       editableBy: ['admins','supermods'],
       viewableBy: ['guests'],
+      form: {
+        options: formProps => getUsers(formProps.client)
+      }
     }//fieldSchema
   },
+
 ]);
 
 /*******************************************************************/
@@ -146,7 +189,12 @@ Users.addField([
     fieldSchema: {
       type: Array,
       label: "Category",
-      control: Tags,
+      autoform: {
+        type: 'select2',
+        afFieldInput: {
+          multiple: true
+        },
+      },
       optional: true,
       viewableBy: ['guests'],
       editableBy: ['admins','supermods'],

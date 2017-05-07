@@ -1,3 +1,5 @@
+import { getComponent, getSetting } from 'meteor/vulcan:lib';
+import Categories from 'meteor/vulcan:categories';
 
 export function getCategories (apolloClient) {
 
@@ -23,6 +25,18 @@ export function getCategoriesAsOptions (apolloClient) {
   });
 }
 
+const originalImageConstructor = Categories.image;
+
+// extends the Users.avatar function
+Categories.image = {
+  ...originalImageConstructor,
+  getUrl(category) {
+    url = originalImageConstructor.getUrl(category);
+
+    return !!category && category.image ? category.image : url;
+  },
+};
+
 // category schema
 const schema = {
   _id: {
@@ -42,6 +56,7 @@ const schema = {
     viewableBy: ['guests'],
     insertableBy: ['members'],
     editableBy: ['members'],
+    control: "textarea",
     form: {
       rows: 3
     }
@@ -54,13 +69,6 @@ const schema = {
     editableBy: ['members'],
   },
   slug: {
-    type: String,
-    optional: true,
-    viewableBy: ['guests'],
-    insertableBy: ['members'],
-    editableBy: ['members'],
-  },
-  image: {
     type: String,
     optional: true,
     viewableBy: ['guests'],
