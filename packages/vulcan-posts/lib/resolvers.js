@@ -42,7 +42,7 @@ const resolvers = {
 
       // get selector and options from terms and perform Mongo query
       let {selector, options} = Posts.getParameters(terms);
-      options.limit = (terms.limit < 1 || terms.limit > 100) ? 100 : terms.limit;
+      options.limit = (terms.limit < 1 || terms.limit > 1000) ? 100 : terms.limit;
       options.skip = terms.offset;
       const posts = Posts.find(selector, options).fetch();
 
@@ -58,7 +58,7 @@ const resolvers = {
   },
 
   single: {
-    
+
     name: 'postsSingle',
 
     check(user, document, collection) {
@@ -75,18 +75,18 @@ const resolvers = {
 
       return Users.restrictViewableFields(currentUser, Posts, post);
     },
-  
+
   },
 
   total: {
-    
+
     name: 'postsTotal',
-    
+
     resolver(root, {terms}, {Posts}) {
       const {selector} = Posts.getParameters(terms);
       return Posts.find(selector).count();
     },
-  
+
   }
 };
 

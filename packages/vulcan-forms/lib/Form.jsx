@@ -97,7 +97,7 @@ class Form extends Component {
       const fieldSchema = schema[fieldName];
 
       fieldSchema.name = fieldName;
-      
+
       // intialize properties
       let field = {
         name: fieldName,
@@ -106,8 +106,8 @@ class Form extends Component {
         layout: this.props.layout,
         order: fieldSchema.order
       }
-      
-      // hide or show the field, a function taking form props as argument & returning a boolean can be used 
+
+      // hide or show the field, a function taking form props as argument & returning a boolean can be used
       field.hidden = (typeof fieldSchema.hidden === 'function') ? !!fieldSchema.hidden.call(fieldSchema, this.props) : fieldSchema.hidden;
 
       // add label or internationalized field name if necessary (field not hidden)
@@ -128,10 +128,10 @@ class Form extends Component {
       }
 
       // backward compatibility from 'autoform' to 'form'
-      if (fieldSchema.autoform) {
-        fieldSchema.form = fieldSchema.autoform;
-        console.warn(`Vulcan Warning: The 'autoform' field is deprecated. You should rename it to 'form' instead. It was defined on your '${fieldName}' field  on the '${this.props.collection._name}' collection`); // eslint-disable-line
-      }
+    //  if (fieldSchema.autoform) {
+    //    fieldSchema.form = fieldSchema.autoform;
+    //    console.warn(`Vulcan Warning: The 'autoform' field is deprecated. You should rename it to 'form' instead. It was defined on your '${fieldName}' field  on the '${this.props.collection._name}' collection`); // eslint-disable-line
+    //  }
 
       // replace value by prefilled value if value is empty
       if (fieldSchema.form && fieldSchema.form.prefill) {
@@ -302,25 +302,25 @@ class Form extends Component {
   // ------------------------------- Context ----------------------------- //
   // --------------------------------------------------------------------- //
 
-  // add error to form state 
+  // add error to form state
   // from "GraphQL Error: You have an error [error_code]"
   // to { content: "You have an error", type: "error" }
   throwError(errorMessage) {
 
     let strippedError = errorMessage;
-    
-    // strip the "GraphQL Error: message [error_code]" given by Apollo if present 
+
+    // strip the "GraphQL Error: message [error_code]" given by Apollo if present
     const graphqlPrefixIsPresent = strippedError.match(/GraphQL error: (.*)/);
     if (graphqlPrefixIsPresent) {
       strippedError = graphqlPrefixIsPresent[1];
     }
-    
+
     // strip the error code if present
     const errorCodeIsPresent = strippedError.match(/(.*)\[(.*)\]/);
     if (errorCodeIsPresent) {
       strippedError = errorCodeIsPresent[1];
     }
-    
+
     // internationalize the error if necessary
     const intlError = Utils.decodeIntlError(strippedError, {stripped: true});
     if(typeof intlError === 'object') {
@@ -333,7 +333,7 @@ class Form extends Component {
       content: strippedError,
       type: 'error'
     };
-    
+
     // update the state with unique errors messages
     this.setState(prevState => ({
       errors: _.uniq([...prevState.errors, error])
@@ -417,7 +417,7 @@ class Form extends Component {
 
     console.log("// graphQL Error"); // eslint-disable-line no-console
     console.log(error); // eslint-disable-line no-console
-    
+
     if (!_.isEmpty(error)) {
       // add error to state
       this.throwError(error.message);

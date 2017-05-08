@@ -2,6 +2,7 @@ import SimpleSchema from 'simpl-schema';
 import Users from 'meteor/vulcan:users';
 import Tags from 'meteor/vulcan:forms-tags';
 import Category, { getCategoriesAsOptions } from 'meteor/vulcan:categories';
+import Select from 'react-select';
 
 /**
  * @summary Users schema
@@ -55,7 +56,8 @@ const schema = {
    },
    userId: {
      type: String,
-     control: 'select',
+     control: Select,
+     label: 'User',
      viewableBy: ['guests'],
      insertableBy: ['admins'],
      editableBy: ['admins'],
