@@ -56,7 +56,7 @@ const schema = {
    },
    userId: {
      type: String,
-     control: Select,
+     control: "select",
      label: 'User',
      viewableBy: ['guests'],
      insertableBy: ['admins'],
