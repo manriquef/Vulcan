@@ -236,28 +236,53 @@
   .users-avatar{
     margin-right: 5px;
   }
-  .users-name, .posts-item-comments, .posts-stats, .post-actions{
+  .posts-item-comments, .posts-stats, .post-actions{
     margin-right: $hmargin;
   }
 }
 
 .posts-item-date{
-  font-size: $smallest-font;
-  margin-right: $hmargin;
-}
-
-.posts-item-user{
   @include small{
     margin-bottom: $vmargin/2;
   }
-  @include flex-center;
+  word-break: keep-all;
+  display: inline;
+  color: $medium-text;
+  font-size: $smallest-font;
+  margin-right: $hmargin;
+  position: absolute;
+  top: 15px;
+  left: 40px;
+  .users-name{
+    position: absolute;
+    top: -19px;
+    left: 0px;
+    font-size: $smaller-font;
+  }
 }
 
-.posts-item-date, .posts-item-comments{
+.posts-item-user{
+  min-width: 20%;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  @include small{
+    margin-bottom: $vmargin/2;
+  }
+}
+
+.posts-item-comments{
   @include small{
     margin-bottom: $vmargin/2;
   }
   color: $medium-text;
+  .icon{
+    font-size: 1rem;
+    color: #0000FF;
+  }
+  position: relative;
+  left: 0px;
+  top: 5px;
 }
 
 .posts-item-sponsored{
@@ -268,6 +293,8 @@
 }
 
 .posts-stats{
+  position: relative;
+  left: 70px;
   @include small{
     margin-bottom: $vmargin/2;
     display: inline-block;
@@ -285,9 +312,17 @@
   }
 }
 
-.post-actions{
+.posts-action-edit{
+  position: relative;
+  left: 0px;
+  top: 5px;
   @include flex-center;
+  .icon{
+    color: $postEditIconColor;
+    font-size: 1rem;
+  }
 }
+
 
 .posts-commenters{
   @include small{
@@ -358,10 +393,11 @@
 //////////////////////////////////////////////////////
 
 .posts-daily{
-  width: 75%;
+  width: 100%;
 }
 
 .posts-day{
+  width: 100%;
   margin-bottom: $vmargin * 2;
   .posts-load-more{
     border: none;
@@ -550,7 +586,7 @@
   bottom: 5px;
   left: 170px;
   color: #ffa100;
-  font-size: $smallest-font;
+  font-size: $smaller-font;
 }
 
 .cards-stats{

@@ -24,7 +24,7 @@ class PostsItem extends Component {
     return (
       <div className="post-actions">
         <span className="posts-item-edit" title="Edit this post">
-        <ModalTrigger title="Edit Post" component={<a className="posts-action-edit"><FormattedMessage id="posts.edit"/></a>}>
+        <ModalTrigger title="Edit Post" component={<a className="posts-action-edit"><Components.Icon name="edit"/></a>}>
           <Components.PostsEditForm post={this.props.post} />
         </ModalTrigger>
       </span>
@@ -58,8 +58,8 @@ class PostsItem extends Component {
           </div>
 
           <div className="posts-item-meta">
-            {post.user? <div className="posts-item-user"><Components.UsersAvatar user={post.user} size="small"/><Components.UsersName user={post.user}/></div> : null}
-            <div className="posts-item-date">{post.postedAt ? <FormattedRelative value={post.postedAt}/> : <FormattedMessage id="posts.dateNotDefined"/>}</div>
+            {post.user? <div className="posts-item-user"><Components.UsersAvatar user={post.user} size="small"/><Components.UsersName user={post.user}/>
+            {post.postedAt ? <FormattedRelative value={post.postedAt}/> : <FormattedMessage id="posts.dateNotDefined"/>}</div> : null}
             <div className="posts-item-comments">
               <Link to={Posts.getPageUrl(post)}>
                 <Components.Icon name="comment" />

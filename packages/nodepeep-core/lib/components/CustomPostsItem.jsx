@@ -44,17 +44,18 @@ class CustomPostsItem extends getRawComponent('PostsItem') {
           </div>
 
           <div className="posts-item-meta">
-             {post.sponsored? <div className="posts-item-sponsored"><FormattedMessage id="posts.sponsored"/></div>
-             : post.user? <div className="posts-item-user"><Components.UsersAvatar user={post.user} size="small"/><Components.UsersName user={post.user}/></div> : null}
-             {post.sponsored? null : <div className="posts-item-date"><FormattedRelative value={post.postedAt}/></div>}
+             {post.sponsored ? <div className="posts-item-sponsored"><FormattedMessage id="posts.sponsored"/></div>
+             : post.user ? <div className="posts-item-user"><Components.UsersAvatar user={post.user} size="small"/>
+             {post.sponsored ? null : <div className="posts-item-date"><FormattedRelative value={post.postedAt}/><Components.UsersName user={post.user}/></div>}
+             </div> : null}
             <div className="posts-item-comments">
               <Link to={Posts.getPageUrl(post)}>
                 <Components.Icon name="comment" />
                 <FormattedMessage id="comments.count" values={{count: post.commentCount}}/>
               </Link>
             </div>
-              {this.props.currentUser && this.props.currentUser.isAdmin ? <Components.PostsStats post={post} /> : null}
               {Posts.options.mutations.edit.check(this.props.currentUser, post) ? this.renderActions() : null}
+              {this.props.currentUser && this.props.currentUser.isAdmin ? <Components.PostsStats post={post} /> : null}
             </div>
           </div>
 

@@ -14,6 +14,7 @@ class PostsDay extends Component {
         <h6 className="posts-day-heading">{date.format("dddd, MMMM Do YYYY")}</h6>
         { noPosts ? <Components.PostsNoMore /> :
           <div className="posts-list">
+            <Components.RightBar/>
             <div className="posts-list-content">
               {posts.map(post => <Components.PostsItem post={post} key={post._id} currentUser={this.props.currentUser} />)}
             </div>

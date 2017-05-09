@@ -2,7 +2,7 @@ import SimpleSchema from 'simpl-schema';
 import Users from 'meteor/vulcan:users';
 import Tags from 'meteor/vulcan:forms-tags';
 import Category, { getCategoriesAsOptions } from 'meteor/vulcan:categories';
-import Select from 'react-select';
+
 
 /**
  * @summary Users schema
@@ -44,7 +44,6 @@ const schema = {
      viewableBy: ['guests'],
      insertableBy: ['admins'],
      editableBy: ['admins'],
-     order: 1,
    },
    title: {
      type: String,
@@ -52,7 +51,6 @@ const schema = {
      viewableBy: ['guests'],
      insertableBy: ['admins'],
      editableBy: ['admins'],
-     order: 2,
    },
    userId: {
      type: String,
@@ -62,7 +60,7 @@ const schema = {
      insertableBy: ['admins'],
      editableBy: ['admins'],
      resolveAs: 'user: User',
-     order: 4,
+//     order: 4,
      form: {
        options: formProps => getFeedUsers(formProps.client)
        }
@@ -75,7 +73,6 @@ const schema = {
      insertableBy: ['admins'],
      editableBy: ['admins'],
      resolveAs: 'categories: [Category]',
-     order: 3,
      form: {
        options: formProps => getCategoriesAsOptions(formProps.client)
      },
