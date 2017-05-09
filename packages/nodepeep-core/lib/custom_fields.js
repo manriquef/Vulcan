@@ -176,6 +176,15 @@ Users.addField([
     }
   },
   {
+    fieldName: 'online',
+    fieldSchema: {
+      type: Boolean,
+      label: 'Online Status',
+      optional: true,
+      defaultValue: 0,
+    }
+  },
+  {
     fieldName: 'warnings',
     fieldSchema: {
       type: Number,
@@ -189,12 +198,6 @@ Users.addField([
     fieldSchema: {
       type: Array,
       label: "Category",
-      autoform: {
-        type: 'select2',
-        afFieldInput: {
-          multiple: true
-        },
-      },
       optional: true,
       viewableBy: ['guests'],
       editableBy: ['admins','supermods'],
@@ -216,17 +219,30 @@ Users.addField([
     fieldName: 'rating',
     fieldSchema: {
       type: Number,
-      optional: true, // this field is required
-      defaultValue: 1,
+      optional: true,
     }
+  },
+  {
+   fieldName: 'bookmark',
+   fieldSchema: {
+     type: Array,
+     optional: true,
+     resolveAs: 'categories: [Category]',
+   }
+  },
+  {
+   fieldName: 'bookmark.$',
+   fieldSchema: {
+     type: String,
+     optional: true
+   }
   },
   {
     fieldName: 'rank',
     fieldSchema: {
       type: String,
       label: 'Users Rank',
-      optional: true, // this field is required
-      defaultValue: 'none',
+      optional: true,
     }
   },
   {
@@ -234,8 +250,7 @@ Users.addField([
     fieldSchema: {
       type: Object,
       label: 'User Awards',
-      optional: true, // this field is required
-      defaultValue: null, //set default rating to 0
+      optional: true,
     }
   },
 //----------Work Specific Schema----------//
@@ -244,8 +259,7 @@ Users.addField([
     fieldSchema: {
       type: String,
       label: 'User Job',
-      optional: true, // this field is required
-      defaultValue: 'none',
+      optional: true,
     }
   },
   {
@@ -253,8 +267,7 @@ Users.addField([
     fieldSchema: {
       type: Object,
       label: 'User Education',
-      optional: true, // this field is required
-      defaultValue: null,
+      optional: true,
     }
   },
   {
@@ -262,8 +275,7 @@ Users.addField([
     fieldSchema: {
       type: String,
       label: 'Prospective Job',
-      optional: true, // this field is required
-      defaultValue: 'none',
+      optional: true,
     }
   },
   {
@@ -271,8 +283,7 @@ Users.addField([
     fieldSchema: {
       type: String,
       label: 'Job Location',
-      optional: true, // this field is required
-      defaultValue: 'none',
+      optional: true,
     }
   },
   {
@@ -280,8 +291,7 @@ Users.addField([
     fieldSchema: {
       type: Object,
       label: 'Certifications',
-      optional: true, // this field is required
-      defaultValue: null,
+      optional: true,
     }
   },
 //----------Game Specific----------//
@@ -290,8 +300,7 @@ Users.addField([
     fieldSchema: {
       type: String,
       label: 'Xbox Gamer Tag',
-      optional: true, // this field is required
-      defaultValue: 'none',
+      optional: true,
     }
   },
   {
@@ -299,8 +308,7 @@ Users.addField([
     fieldSchema: {
       type: String,
       label: 'Playstation Gamer Tag',
-      optional: true, // this field is required
-      defaultValue: 'none',
+      optional: true,
     }
   },
   {
@@ -308,8 +316,7 @@ Users.addField([
     fieldSchema: {
       type: String,
       label: 'Origin Gamer Tag',
-      optional: true, // this field is required
-      defaultValue: 'none',
+      optional: true,
     }
   },
   {
@@ -317,8 +324,7 @@ Users.addField([
     fieldSchema: {
       type: String,
       label: 'uPlay Gamer Tag',
-      optional: true, // this field is required
-      defaultValue: 'none',
+      optional: true,
     }
   },
   {
@@ -326,8 +332,7 @@ Users.addField([
     fieldSchema: {
       type: String,
       label: 'Battle.Net Gamer Tag',
-      optional: true, // this field is required
-      defaultValue: 'none',
+      optional: true,
     }
   }
 ]);

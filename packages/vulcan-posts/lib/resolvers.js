@@ -42,7 +42,7 @@ const resolvers = {
 
       // get selector and options from terms and perform Mongo query
       let {selector, options} = Posts.getParameters(terms);
-      options.limit = (terms.limit < 1 || terms.limit > 1000) ? 100 : terms.limit;
+      options.limit = (terms.limit < 1 || terms.limit > 400) ? 100 : terms.limit;
       options.skip = terms.offset;
       const posts = Posts.find(selector, options).fetch();
 

@@ -10,7 +10,7 @@ import Users from 'meteor/vulcan:users';
 const PostsViews = (props, context) => {
 
   let views = ["top", "new", "best"];
-  const adminViews = ["pending", "rejected", "scheduled"];
+  const adminViews = ["pending", "rejected", "scheduled", "reported users", "reported posts", "reported comments", "userUpvotedPosts"];
 
   if (Users.canDo(props.currentUser, "posts.edit.all")) {
     views = views.concat(adminViews);
@@ -27,11 +27,6 @@ const PostsViews = (props, context) => {
             </Button>
           </LinkContainer>
         )}
-        <LinkContainer to={"/daily"} className="button-item">
-          <Button bsStyle="primary" bsSize="small" >
-            <FormattedMessage id="posts.daily"/>
-          </Button>
-        </LinkContainer>
     </div>
   )
 }
@@ -53,3 +48,11 @@ PostsViews.contextTypes = {
 PostsViews.displayName = "PostsViews";
 
 registerComponent('PostsViews', PostsViews, withCurrentUser, withRouter);
+
+/*
+<LinkContainer to={"/daily"} className="button-item">
+  <Button bsStyle="primary" bsSize="small" >
+    <FormattedMessage id="posts.daily"/>
+  </Button>
+</LinkContainer>
+*/

@@ -95,8 +95,8 @@ Posts.addView("userPosts", terms => ({
 /**
  * @summary User upvoted posts view
  */
-Posts.addView("userUpvotedPosts", (terms, apolloClient) => {
-  var user = apolloClient ? Users.findOneInStore(apolloClient.store, terms.userId) : Users.findOne(terms.userId);
+Posts.addView("userUpvotedPosts", (terms) => {
+  var user = Users.findOne( {userId: Users.findOne(terms.userId)} );
 
   var postsIds = _.pluck(user.upvotedPosts, "itemId");
   return {

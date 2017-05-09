@@ -13,7 +13,7 @@ export {
   // fragments
   Fragments, registerFragment, getFragment, getFragmentName, extendFragment,
   // graphql
-  GraphQLSchema, addGraphQLSchema, addGraphQLQuery, addGraphQLMutation, addGraphQLResolvers, removeGraphQLResolver, addToGraphQLContext, 
+  GraphQLSchema, addGraphQLSchema, addGraphQLQuery, addGraphQLMutation, addGraphQLResolvers, removeGraphQLResolver, addToGraphQLContext,
   // headtags
   Headtags,
   // inject data
@@ -38,7 +38,7 @@ export {
   webAppConnectHandlersUse
 } from 'meteor/vulcan:lib';
 
-export { default as Layout } from "./components/Layout.jsx";
+//export { default as Layout } from "./components/Layout.jsx";
 export { default as App } from "./components/App.jsx";
 export { default as Icon } from "./components/Icon.jsx";
 export { default as Loading } from "./components/Loading.jsx";

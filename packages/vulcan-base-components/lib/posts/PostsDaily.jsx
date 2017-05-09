@@ -5,7 +5,7 @@ import moment from 'moment';
 
 const PostsDaily = props => {
   // const terms = props.location && props.location.query;
-  const numberOfDays = getSetting('numberOfDays', 5);
+  const numberOfDays = getSetting('numberOfDays', 1);
   const terms = {
     view: 'top',
     after: moment().subtract(numberOfDays - 1, 'days').format("YYYY-MM-DD"),
