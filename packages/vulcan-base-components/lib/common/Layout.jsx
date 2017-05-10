@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Dashboard, Header, Sidebar } from 'react-adminlte-dash';
 
-/*const nav = () => ([
+const nav = () => ([
   <Header.Item href="/some/link" key="1" />
 ]);
 
@@ -22,14 +22,14 @@ const App = ({ children }) => (
     {children}
   </Dashboard>
 );
-*/
 
-const Layout = props =>
+/*
+const Layout = ({currentUser, children}) =>
   <div className="wrapper" id="wrapper">
 
     <Components.HeadTags />
 
-    <Components.UsersProfileCheck currentUser={props.currentUser} documentId={props.currentUser && props.currentUser._id} />
+    {currentUser ? <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} /> : null}
 
     <Components.Header />
 
@@ -37,7 +37,7 @@ const Layout = props =>
 
       <Components.FlashMessages />
 
-      {props.children}
+      {children}
 
     </div>
 
@@ -45,4 +45,4 @@ const Layout = props =>
 
   </div>
 
-registerComponent('Layout', Layout, withCurrentUser);
+registerComponent('Layout', Layout, withCurrentUser);*/

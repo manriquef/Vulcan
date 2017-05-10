@@ -37,6 +37,7 @@ registerFragment(`
     displayName
     emailHash
     isDummy
+    avatarUrl
   }
 `);
 
