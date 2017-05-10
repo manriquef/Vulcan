@@ -49,7 +49,7 @@ Users.getUserNameById = function (userId) {return Users.getUserName(Users.findOn
  */
 Users.getDisplayName = function (user) {
   if (typeof user === "undefined") {
-    return "";
+    return "Guest";
   } else {
     return (user.displayName) ? user.displayName : Users.getUserName(user);
   }
@@ -246,6 +246,10 @@ Users.adminUsers = function (options) {
 
 Users.getCurrentUserEmail = function () {
   return Meteor.user() ? Users.getEmail(Meteor.user()) : '';
+};
+
+Users.getCurrentUserName = function () {
+  return Meteor.user() ? Users.getDisplayName(Meteor.user()) : 'Guest';
 };
 
 Users.findByEmail = function (email) {
