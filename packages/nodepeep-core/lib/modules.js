@@ -12,11 +12,8 @@ import "./fragments.js";
 import "./marked.js";
 
 // custom components
-import "./components/CustomLogo.jsx";
-import "./components/CustomNewsletter.jsx";
-import "./components/CustomPostsItem.jsx";
 import "./components/MyCustomPage.jsx";
-import "./components/MarkdownEditor.jsx";
+//import "./components/MarkdownEditor.jsx";
 
 // custom routes
 import "./routes.jsx";

@@ -34,10 +34,14 @@ class PostsItem extends Component {
 
   render() {
 
-    const {post} = this.props;
+    const post = this.props.post;
 
     let postClass = "posts-item";
+
     if (post.sticky) postClass += " posts-sticky";
+    if (post.color) postClass += " post-"+post.color;
+    if (post.sponsored) postClass += " posts-sponsored";
+
 
     return (
       <div className={postClass}>
@@ -58,25 +62,28 @@ class PostsItem extends Component {
           </div>
 
           <div className="posts-item-meta">
-            {post.user? <div className="posts-item-user"><Components.UsersAvatar user={post.user} size="small"/><Components.UsersName user={post.user}/>
-            {post.postedAt ? <FormattedRelative value={post.postedAt}/> : <FormattedMessage id="posts.dateNotDefined"/>}</div> : null}
+             {post.sponsored ? <div className="posts-item-sponsored"><FormattedMessage id="posts.sponsored"/></div>
+             : post.user ? <div className="posts-item-user"><Components.UsersAvatar user={post.user} size="small"/>
+             {post.sponsored ? null : <div className="posts-item-date"><FormattedRelative value={post.postedAt}/><Components.UsersName user={post.user}/></div>}
+             </div> : null}
             <div className="posts-item-comments">
               <Link to={Posts.getPageUrl(post)}>
                 <Components.Icon name="comment" />
                 <FormattedMessage id="comments.count" values={{count: post.commentCount}}/>
               </Link>
             </div>
-            {this.props.currentUser && this.props.currentUser.isAdmin ? <Components.PostsStats post={post} /> : null}
-            {Posts.options.mutations.edit.check(this.props.currentUser, post) ? this.renderActions() : null}
+              {Posts.options.mutations.edit.check(this.props.currentUser, post) ? this.renderActions() : null}
+              {this.props.currentUser && this.props.currentUser.isAdmin ? <Components.PostsStats post={post} /> : null}
+            </div>
           </div>
-
-        </div>
 
         {this.renderCommenters()}
 
       </div>
     )
   }
+
+
 }
 
 PostsItem.propTypes = {

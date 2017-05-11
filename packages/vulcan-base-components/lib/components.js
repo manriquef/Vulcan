@@ -11,17 +11,18 @@ import './cards/CardsThumbnail.jsx';
 
 import './common/Footer.jsx';
 import './common/Header.jsx';
+import './common/Flash.jsx';
+import './common/FlashMessages.jsx';
+import './common/HeadTags.jsx';
+import './common/index.jsx';
 import './common/Layout.jsx';
 import './common/Logo.jsx';
-import './common/Flash.jsx';
-import './common/HeadTags.jsx';
-import './common/FlashMessages.jsx';
 import './common/Newsletter.jsx';
 import './common/NewsletterButton.jsx';
-import './common/SearchForm.jsx';
-import './common/Vote.jsx';
 import './common/Reporting.jsx';
 import './common/RightBar.jsx';
+import './common/SearchForm.jsx';
+import './common/Vote.jsx';
 
 // feeds
 import './feeds/FeedsCategories.jsx';

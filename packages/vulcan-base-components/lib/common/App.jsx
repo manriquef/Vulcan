@@ -1,14 +1,10 @@
-import { Components, registerComponent, withCurrentUser } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
-import Users from 'meteor/vulcan:users';
+/* eslint-disable no-alert */
+import React from 'react';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
-import { Link } from 'react-router'
 import { Dashboard, Header, Sidebar } from 'react-adminlte-dash';
-/* eslint-disable no-alert */
 
-
-const navMenu = (user) => ([
+const navMenu = () => ([
   <Header.Item
     href={`https://github.com/manriquef/vulcanjs`}
     iconClass="fa fa-github"
@@ -16,10 +12,10 @@ const navMenu = (user) => ([
     title="Github"
   />,
   <Header.UserMenu
-    name={Users.getCurrentUserName()}
+    name="Alexander Pierce"
     image="public/user2-160x160.jpg"
-    profileAction={() => <Link to={`/p/${Users.getCurrentUserName().slug}`}/>}
-    signOutAction={() => Meteor.logout(() => client.resetStore())}
+    profileAction={() => alert('Access profile')}
+    signOutAction={() => alert('Sign out')}
     key="2"
   />,
 ]);
@@ -153,8 +149,7 @@ const sb = pickTheme => ([
     <Sidebar.Menu.Item icon={{ className: 'fa-folder' }} title="Examples" >
       <Sidebar.Menu.Item title="Invoice" />
       <Sidebar.Menu.Item title="Profile" />
-      <Sidebar.Menu.Item title="Blank Page" />
-      <Sidebar.Menu.Item title="Pace Page" />
+      <Sidebar.Menu.Item title="Login" />
     </Sidebar.Menu.Item>
     <Sidebar.Menu.Item icon={{ className: 'fa-share' }} title="Multilevel">
       <Sidebar.Menu.Item title="Level One" />
@@ -188,9 +183,9 @@ const footer = () => ([
   </div>,
 ]);
 
-const NPTheme = ({ currentUser, children, theme, pickTheme }) => (
+const NPTheme = ({ children, theme, pickTheme }) => (
   <Dashboard
-    navbarChildren={navMenu(currentUser)}
+    navbarChildren={navMenu()}
     sidebarChildren={sb(pickTheme)}
     footerChildren={footer()}
     sidebarMini
@@ -207,28 +202,4 @@ NPTheme.propTypes = {
   theme: PropTypes.string,
 };
 
-registerComponent('NPTheme', NPTheme, withCurrentUser);
 export default NPTheme;
-
-const Layout = ({currentUser, children}) =>
-  <div className="wrapper" id="wrapper">
-
-    <Components.HeadTags />
-
-    {currentUser ? <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} /> : null}
-
-    <Components.Header />
-
-    <div className="main">
-
-      <Components.FlashMessages />
-
-      {children}
-
-    </div>
-
-    <Components.Footer />
-
-  </div>
-
-registerComponent('Layout', Layout, withCurrentUser);

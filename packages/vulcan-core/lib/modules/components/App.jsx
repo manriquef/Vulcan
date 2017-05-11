@@ -26,9 +26,9 @@ class App extends Component {
   render() {
     return (
       <IntlProvider locale={this.getLocale()} messages={Strings[this.getLocale()]}>
-        <Components.Layout>
+        <Components.NPTheme>
           { this.props.currentUserLoading ? <Components.Loading /> : this.props.children }
-        </Components.Layout>
+        </Components.NPTheme>
       </IntlProvider>
     )
   }
@@ -48,3 +48,15 @@ App.displayName = 'App';
 registerComponent('App', App, withCurrentUser);
 
 export default App;
+
+/*
+render() {
+  return (
+    <IntlProvider locale={this.getLocale()} messages={Strings[this.getLocale()]}>
+      <Components.Layout>
+        { this.props.currentUserLoading ? <Components.Loading /> : this.props.children }
+      </Components.Layout>
+    </IntlProvider>
+  )
+}
+*/
