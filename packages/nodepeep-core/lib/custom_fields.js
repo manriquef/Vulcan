@@ -136,7 +136,6 @@ Posts.addField([
       control: 'checkbox',
       label: 'Sponsored Post',
       optional: true,
-      defaultValue: true,
       insertableBy: ['admins'],
       editableBy: ['admins'],
       viewableBy: ['guests'],
@@ -172,7 +171,6 @@ Users.addField([
       type: Number,
       label: 'Daily Post Limit',
       optional: true,
-      defaultValue: 0,
     }
   },
   {
@@ -181,7 +179,6 @@ Users.addField([
       type: Boolean,
       label: 'Online Status',
       optional: true,
-      defaultValue: 0,
     }
   },
   {
@@ -190,7 +187,6 @@ Users.addField([
       type: Number,
       label: 'Warnings',
       optional: true,
-      defaultValue: 0,
     }
   },
   {

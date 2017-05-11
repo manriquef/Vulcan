@@ -1,4 +1,4 @@
-import { toMarkdown } from 'to-markdown';
+import toMarkdown from 'to-markdown';
 import he from 'he';
 import FeedParser from 'feedparser';
 import { Readable } from 'stream';
