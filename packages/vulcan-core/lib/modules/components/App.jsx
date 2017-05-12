@@ -35,11 +35,11 @@ class App extends Component {
 
 }
 
-App.propTypes = {
-  currentUserLoading: PropTypes.bool,
-  pickTheme: React.PropTypes.func,
-  theme: React.PropTypes.string,
-}
+//App.propTypes = {
+//  currentUserLoading: PropTypes.bool,
+//  pickTheme: React.PropTypes.func,
+//  theme: React.PropTypes.string,
+//}
 
 App.childContextTypes = {
   intl: intlShape,

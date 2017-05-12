@@ -14,7 +14,6 @@ import './common/Header.jsx';
 import './common/Flash.jsx';
 import './common/FlashMessages.jsx';
 import './common/HeadTags.jsx';
-import './common/index.jsx';
 import './common/Layout.jsx';
 import './common/Logo.jsx';
 import './common/Newsletter.jsx';

@@ -222,4 +222,3 @@ Layout.propTypes = {
   };
 
 registerComponent('Layout', Layout, withCurrentUser);
-export default Layout;
