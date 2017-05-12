@@ -4,13 +4,14 @@
 ############ Core Packages ############
 
 vulcan:core                       # core components and wrappers
-#vulcan:forms                      # auto-generated forms
+vulcan:forms                      # auto-generated forms
 vulcan:routing                    # routing and server-side rendering
 vulcan:users                      # user management and permissions
 
 ############ Features Packages ############
 
  vulcan:accounts
+ vulcan:cloudinary
  vulcan:email
  vulcan:posts
  vulcan:comments
@@ -40,7 +41,7 @@ vulcan:i18n-en-us               # default language translation
 ############ Accounts Packages ############
 
 accounts-password@1.3.6
- accounts-twitter@1.2.1
+accounts-twitter@1.2.1
 # accounts-facebook
 
 ############ Demo Packages ############

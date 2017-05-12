@@ -1,14 +1,14 @@
 import { Components, registerComponent, withCurrentUser } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
-import Users from 'meteor/vulcan:users';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import { Link } from 'react-router'
 import { Dashboard, Header, Sidebar } from 'react-adminlte-dash';
+import Users from 'meteor/vulcan:users';
 /* eslint-disable no-alert */
 
 
-const navMenu = (user) => ([
+const navMenu = () => ([
   <Header.Item
     href={`https://github.com/manriquef/vulcanjs`}
     iconClass="fa fa-github"
@@ -16,9 +16,9 @@ const navMenu = (user) => ([
     title="Github"
   />,
   <Header.UserMenu
-    name={Users.getCurrentUserName()}
-    image="public/user2-160x160.jpg"
-    profileAction={() => <Link to={`/p/${Users.getCurrentUserName().slug}`}/>}
+    name={Users.getCurrentUserName() ? Users.getCurrentUserName : "Guest"}
+    image={Users.getCurrentUser() ? Users.getCurrentUser().image : "http://cdn.wccftech.com/wp-content/themes/wccf2016/images/wccftech-logo.png" }
+    profileAction={() => <Link to={Users.getProfileUrl(Users.getCurrentUser())}/>}
     signOutAction={() => Meteor.logout(() => client.resetStore())}
     key="2"
   />,
@@ -31,7 +31,6 @@ const sb = pickTheme => ([
     online
     key="1"
   />,
-  <Sidebar.Search key="2" />,
   <Sidebar.Menu header="MAIN NAVIGATION" key="3">
     <Sidebar.Menu.Item icon={{ className: 'fa-dashboard' }} title="Dashboard Colors" >
       <Sidebar.Menu.Item
@@ -188,47 +187,39 @@ const footer = () => ([
   </div>,
 ]);
 
-const NPTheme = ({ currentUser, children, theme, pickTheme }) => (
-  <Dashboard
-    navbarChildren={navMenu(currentUser)}
-    sidebarChildren={sb(pickTheme)}
-    footerChildren={footer()}
-    sidebarMini
-    theme={theme}
-  >
-    {children}
-
-  </Dashboard>
-);
-
-NPTheme.propTypes = {
-  children: PropTypes.node,
-  pickTheme: PropTypes.func,
-  theme: PropTypes.string,
-};
-
-registerComponent('NPTheme', NPTheme, withCurrentUser);
-export default NPTheme;
-
-const Layout = ({currentUser, children}) =>
+const Layout = ({currentUser, children, theme, pickTheme}) =>
   <div className="wrapper" id="wrapper">
 
-    <Components.HeadTags />
+  {currentUser ? <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} /> : null}
 
-    {currentUser ? <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} /> : null}
+    <Dashboard
+      navbarChildren={navMenu()}
+      sidebarChildren={sb(pickTheme)}
+      footerChildren={footer()}
+      sidebarMini
+      theme={theme}
+    >
 
-    <Components.Header />
+        <Components.HeadTags />
 
-    <div className="main">
+        <Components.Header />
 
-      <Components.FlashMessages />
+        <div className="main">
 
-      {children}
+          <Components.FlashMessages />
 
-    </div>
+        </div>
 
-    <Components.Footer />
+       {children}
 
+      </Dashboard>
   </div>
 
+Layout.propTypes = {
+    children: PropTypes.node,
+    pickTheme: PropTypes.func,
+    theme: PropTypes.string,
+  };
+
 registerComponent('Layout', Layout, withCurrentUser);
+export default Layout;

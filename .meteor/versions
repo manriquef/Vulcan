@@ -96,6 +96,7 @@ vulcan:api@1.3.2
 vulcan:base-components@1.3.2
 vulcan:base-styles@1.3.2
 vulcan:categories@1.3.2
+vulcan:cloudinary@1.3.2
 vulcan:comments@1.3.2
 vulcan:core@1.3.2
 vulcan:email@1.3.2

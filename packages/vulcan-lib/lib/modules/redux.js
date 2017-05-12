@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 // create store, and implement reload function
 export const configureStore = (reducers, initialState = {}, middlewares) => {
@@ -77,3 +78,5 @@ export const addMiddleware = (middlewareOrMiddlewareArray, options = {}) => {
   return middlewares;
 };
 export const getMiddlewares = () => middlewares;
+
+export const getHistory = () => syncHistoryWithStore(browserHistory, store);

@@ -37,3 +37,4 @@ UsersAvatar.defaultProps = {
 UsersAvatar.displayName = "UsersAvatar";
 
 registerComponent('UsersAvatar', UsersAvatar);
+export default UsersAvatar;

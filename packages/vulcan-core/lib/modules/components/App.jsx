@@ -26,9 +26,9 @@ class App extends Component {
   render() {
     return (
       <IntlProvider locale={this.getLocale()} messages={Strings[this.getLocale()]}>
-        <Components.NPTheme>
+        <Components.Layout>
           { this.props.currentUserLoading ? <Components.Loading /> : this.props.children }
-        </Components.NPTheme>
+        </Components.Layout>
       </IntlProvider>
     )
   }
@@ -37,6 +37,8 @@ class App extends Component {
 
 App.propTypes = {
   currentUserLoading: PropTypes.bool,
+  pickTheme: React.PropTypes.func,
+  theme: React.PropTypes.string,
 }
 
 App.childContextTypes = {
@@ -48,15 +50,3 @@ App.displayName = 'App';
 registerComponent('App', App, withCurrentUser);
 
 export default App;
-
-/*
-render() {
-  return (
-    <IntlProvider locale={this.getLocale()} messages={Strings[this.getLocale()]}>
-      <Components.Layout>
-        { this.props.currentUserLoading ? <Components.Loading /> : this.props.children }
-      </Components.Layout>
-    </IntlProvider>
-  )
-}
-*/

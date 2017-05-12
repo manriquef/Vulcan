@@ -10,7 +10,7 @@ import Users from 'meteor/vulcan:users';
 const PostsViews = (props, context) => {
 
   let views = ["top", "new", "best"];
-  const adminViews = ["pending", "rejected", "scheduled", "reported users", "reported posts", "reported comments", "userUpvotedPosts"];
+  const adminViews = ["pending", "rejected", "scheduled", "reported_users", "reported_posts", "reported_comments", "userUpvotedPosts"];
 
   if (Users.canDo(props.currentUser, "posts.edit.all")) {
     views = views.concat(adminViews);

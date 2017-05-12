@@ -1,5 +1,5 @@
-import cloudinary from "cloudinary";
-import Posts from "meteor/vulcan:posts";
+import cloudinary from 'cloudinary';
+import Posts from 'meteor/vulcan:posts';
 import Users from 'meteor/vulcan:users';
 import { addCallback, Utils, getSetting } from 'meteor/vulcan:core';
 

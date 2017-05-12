@@ -33,11 +33,10 @@ registerFragment(`
     _id
     slug
     avatar
+    avatarUrl
     username
     displayName
     emailHash
-    isDummy
-    avatarUrl
   }
 `);
 

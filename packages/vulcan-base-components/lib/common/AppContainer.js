@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Components, registerComponent, withCurrentUser } from 'meteor/vulcan:core';
-import NPTheme from './Layout.jsx';
+import Layout from './Layout.jsx';
 
 const initialState = {
   theme: 'skin-blue',
@@ -50,4 +50,4 @@ const mapDispatchToProps = dispatch => ({
   pickTheme: theme => dispatch(themeAction(theme)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NPTheme);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

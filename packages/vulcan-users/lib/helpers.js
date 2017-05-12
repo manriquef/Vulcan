@@ -252,6 +252,10 @@ Users.getCurrentUserName = function () {
   return Meteor.user() ? Users.getDisplayName(Meteor.user()) : 'Guest';
 };
 
+Users.getCurrentUser = function () {
+  return Meteor.user() ? Meteor.user() : null;
+};
+
 Users.findByEmail = function (email) {
   return Users.findOne({"email": email});
 };
