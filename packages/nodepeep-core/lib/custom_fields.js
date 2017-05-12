@@ -19,6 +19,7 @@ const formGroups = {
   }
 };
 
+
 const originalAvatarConstructor = Users.avatar;
 
 // extends the Users.avatar function

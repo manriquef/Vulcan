@@ -1,4 +1,4 @@
-import { Components, registerComponent, withCurrentUser } from 'meteor/vulcan:core';
+import { Components, registerComponent, withCurrentUser, Loading } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
@@ -8,7 +8,7 @@ import Users from 'meteor/vulcan:users';
 /* eslint-disable no-alert */
 
 
-const navMenu = () => ([
+const navMenu = (user) => ([
   <Header.Item
     href={`https://github.com/manriquef/vulcanjs`}
     iconClass="fa fa-github"
@@ -16,18 +16,18 @@ const navMenu = () => ([
     title="Github"
   />,
   <Header.UserMenu
-    name={Users.getCurrentUserName() ? Users.getCurrentUserName : "Guest"}
-    image={Users.getCurrentUser() ? Users.getCurrentUser().image : "http://cdn.wccftech.com/wp-content/themes/wccf2016/images/wccftech-logo.png" }
-    profileAction={() => <Link to={Users.getProfileUrl(Users.getCurrentUser())}/>}
+    name={user ? user.username: "Guest"}
+    image={user ? user.avatar: Users.avatar}
+    profileAction={() => <Components.UsersProfile/>}
     signOutAction={() => Meteor.logout(() => client.resetStore())}
     key="2"
   />,
 ]);
 
-const sb = pickTheme => ([
+const sb = (pickTheme, user) => ([
   <Sidebar.UserPanel
-    name="Alexander Pierce"
-    image="public/user2-160x160.jpg"
+    name={user ? user.username: "Guest"}
+    image={user ? user.avatar: Users.avatar}
     online
     key="1"
   />,
@@ -187,18 +187,22 @@ const footer = () => ([
   </div>,
 ]);
 
-const Layout = ({currentUser, children, theme, pickTheme}) =>
+const Layout = ({currentUser, children, theme, pickTheme, loading}) =>
   <div className="wrapper" id="wrapper">
 
   {currentUser ? <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} /> : null}
 
-    <Dashboard
-      navbarChildren={navMenu()}
-      sidebarChildren={sb(pickTheme)}
-      footerChildren={footer()}
-      sidebarMini
-      theme={theme}
-    >
+  {loading ?
+
+    <Loading /> :
+
+      <Dashboard
+        navbarChildren={navMenu(currentUser)}
+        sidebarChildren={sb(pickTheme,currentUser)}
+        footerChildren={footer()}
+        sidebarMini
+        theme={theme}
+      >
 
         <Components.HeadTags />
 
@@ -212,13 +216,7 @@ const Layout = ({currentUser, children, theme, pickTheme}) =>
 
        {children}
 
-      </Dashboard>
+       </Dashboard> }
   </div>
-
-Layout.propTypes = {
-    children: PropTypes.node,
-    pickTheme: PropTypes.func,
-    theme: PropTypes.string,
-  };
 
 registerComponent('Layout', Layout, withCurrentUser);
