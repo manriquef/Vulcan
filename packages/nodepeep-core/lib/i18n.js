@@ -10,7 +10,8 @@ addStrings('en', {
   "posts.reported_posts": "Reported Posts",
   "posts.reported_users": "Reported Users",
   "posts.reported_comments": "Reported Comments",
-  "posts.userUpvotedPosts": "UpVoted Posts",
+  "posts.userUpvotedPosts": "Up Voted Posts",
+  "posts.userDownvotedPosts": "Down Voted Posts",
   "users.catmod": "Category Moderator",
   "users.please_log_in_to_report": "Please log in to report"
 });

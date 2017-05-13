@@ -17,7 +17,7 @@ addReducer({
         action.postId,
       ];
     }
-    
+
     return state;
   },
 });

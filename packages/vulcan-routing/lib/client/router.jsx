@@ -49,7 +49,7 @@ export const RouterClient = {
       if (typeof options.historyHook === 'function') {
         history = options.historyHook(history);
       }
-
+      //<Route path="/(:filter)" component={App} />
       const appGenerator = addProps => (
         <Router
           history={history}

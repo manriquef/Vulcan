@@ -1,5 +1,6 @@
-import { Components, registerComponent, withCurrentUser, Loading } from 'meteor/vulcan:core';
+import { Components, registerComponent, withCurrentUser, addAction, addReducer } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import { Link } from 'react-router'
@@ -7,12 +8,72 @@ import { Dashboard, Header, Sidebar } from 'react-adminlte-dash';
 import Users from 'meteor/vulcan:users';
 /* eslint-disable no-alert */
 
+const initialState = {
+  theme: 'skin-black',
+};
+
+const themeReducer = (state, action) => {
+  switch (action.theme) {
+    case 'skin-black':
+    case 'skin-black-light':
+    case 'skin-blue':
+    case 'skin-blue-light':
+    case 'skin-green':
+    case 'skin-green-light':
+    case 'skin-purple':
+    case 'skin-purple-light':
+    case 'skin-red':
+    case 'skin-red-light':
+    case 'skin-yellow':
+    case 'skin-yellow-light':
+      return action.theme;
+    default:
+      return state;
+  }
+};
+
+addAction({
+  themeReducer: {
+    themeAction: (theme) => ({
+      type: 'CHANGE_THEME',
+      theme,
+    }),
+  },
+});
+
+addReducer({
+  themeReducer: (state = initialState, action) => {
+    if (action.type === 'CHANGE_THEME') {
+      return Object.assign({}, state, {
+        theme: themeReducer(state.theme, action),
+      });
+    }
+    return state;
+  },
+});
+
+const mapStateToProps = state => ({ theme: state.app.theme });
+const mapDispatchToProps = dispatch => bindActionCreators(getActions().themeAction(theme), dispatch);
+
+/************************************************************/
 
 const navMenu = (user) => ([
   <Header.Item
     href={`https://github.com/manriquef/vulcanjs`}
     iconClass="fa fa-github"
     key="1"
+    title="Github"
+  />,
+  <Header.Item
+    href={`https://github.com/manriquef/vulcanjs`}
+    iconClass="fa fa-github"
+    key="3"
+    title="Github"
+  />,
+  <Header.Item
+    href={`https://github.com/manriquef/vulcanjs`}
+    iconClass="fa fa-github"
+    key="4"
     title="Github"
   />,
   <Header.UserMenu
@@ -24,10 +85,10 @@ const navMenu = (user) => ([
   />,
 ]);
 
-const sb = (pickTheme, user) => ([
+const sb = pickTheme => ([
   <Sidebar.UserPanel
-    name={user ? user.username: "Guest"}
-    image={user ? user.avatar: Users.avatar}
+    name="Guest"//{user ? user.username: "Guest"}
+    image=""//{user ? user.avatar: Users.avatar}
     online
     key="1"
   />,
@@ -182,41 +243,40 @@ const footer = () => ([
   </strong>,
   <span> All rights reserved.</span>,
   <div style={{ float: 'right' }}>
-    <b>Version</b>
-    <span> 1.0.0</span>
+    <b>Version</b><span> 1.0.0</span>
   </div>,
 ]);
 
-const Layout = ({currentUser, children, theme, pickTheme, loading}) =>
+const Layout = ({currentUser, children, theme, pickTheme}) =>
+
   <div className="wrapper" id="wrapper">
 
-  {currentUser ? <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} /> : null}
+    {currentUser ? <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} /> : null}
 
-  {loading ?
+        <Dashboard
+          navbarChildren={navMenu(currentUser)}
+          sidebarChildren={sb(pickTheme)}
+          footerChildren={footer()}
+          sidebarMini
+          initialCollapse
+          theme={theme}
+        >
 
-    <Loading /> :
+          <Components.HeadTags />
+          <Components.Header />
+            <div className="main">
+              <Components.FlashMessages />
+            </div>
 
-      <Dashboard
-        navbarChildren={navMenu(currentUser)}
-        sidebarChildren={sb(pickTheme,currentUser)}
-        footerChildren={footer()}
-        sidebarMini
-        theme={theme}
-      >
+         {children}
 
-        <Components.HeadTags />
-
-        <Components.Header />
-
-        <div className="main">
-
-          <Components.FlashMessages />
-
-        </div>
-
-       {children}
-
-       </Dashboard> }
+         </Dashboard>
   </div>
 
-registerComponent('Layout', Layout, withCurrentUser);
+Layout.propTypes = {
+    pickTheme: PropTypes.func,
+    theme: PropTypes.string,
+}
+
+registerComponent('Layout', Layout, withCurrentUser, connect(mapStateToProps, mapDispatchToProps));
+export default Layout;
