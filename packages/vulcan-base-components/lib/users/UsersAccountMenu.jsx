@@ -3,21 +3,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Dropdown } from 'react-bootstrap';
+import { STATES } from 'meteor/vulcan:accounts';
 
-const UsersAccountMenu = () => {
+const UsersAccountMenu = ({state}) =>
 
-  return (
-    <Dropdown id="accounts-dropdown" className="users-account-menu">
-      <Dropdown.Toggle>
-        <Components.Icon name="user"/>
-        <FormattedMessage id="users.sign_up_log_in"/>
-      </Dropdown.Toggle>
-      <Dropdown.Menu className="dropdown-menu-right">
-        <Components.AccountsLoginForm />
-      </Dropdown.Menu>
-    </Dropdown>
-  )
-};
+  <Dropdown id="accounts-dropdown" className="users-account-menu">
+    <Dropdown.Toggle>
+      <Components.Icon name="user"/>
+      <FormattedMessage id="users.sign_up_log_in"/>
+    </Dropdown.Toggle>
+    <Dropdown.Menu>
+      <Components.AccountsLoginForm formState={state? STATES[state] : STATES.SIGN_UP} />
+    </Dropdown.Menu>
+  </Dropdown>
 
 UsersAccountMenu.displayName = "UsersAccountMenu";
 
