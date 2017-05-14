@@ -54,6 +54,7 @@ accounts-twitter@1.2.1
 ############ Your Packages ############
 
 nodepeep:core
+nodepeep:dash
 nodepeep:post-by-feed
 nodepeep:report
 aldeed:autoform

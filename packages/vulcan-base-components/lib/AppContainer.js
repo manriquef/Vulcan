@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Components, registerComponent, withCurrentUser, addAction, addReducer } from 'meteor/vulcan:core';
-import Layout from './common/Layout.jsx';
-
+import { Components, registerComponent, withCurrentUser, addAction, addReducer, Layout } from 'meteor/vulcan:core';
 
 const initialState = {
   theme: 'skin-black',
@@ -48,5 +46,9 @@ addReducer({
   },
 });
 
-const mapStateToProps = state => ({ theme: state.app.theme });
-const mapDispatchToProps = dispatch => bindActionCreators(getActions().themeAction(theme), dispatch);
+const mapStateToProps = state => ({ theme: state.theme });
+//const mapDispatchToProps = dispatch => ({pickTheme: theme => dispatch(themeAction(theme))});
+const mapDispatchToProps = dispatch => bindActionCreators(getActions().theme, dispatch);
+//const mapDispatchToProps = dispatch => bindActionCreators(getActions().themeAction(theme), dispatch);
+//connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

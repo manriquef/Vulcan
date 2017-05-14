@@ -1,10 +1,11 @@
-import { Components, registerComponent, withCurrentUser, addAction, addReducer } from 'meteor/vulcan:core';
+import { Components, registerComponent, withCurrentUser, addAction, getActions, addReducer } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import { Link } from 'react-router'
-import { Dashboard, Header, Sidebar } from 'react-adminlte-dash';
+import { Dashboard, Header, Sidebar } from 'meteor/nodepeep:dash';
 import Users from 'meteor/vulcan:users';
 /* eslint-disable no-alert */
 
@@ -32,13 +33,9 @@ const themeReducer = (state, action) => {
   }
 };
 
-addAction({
-  themeReducer: {
-    themeAction: (theme) => ({
-      type: 'CHANGE_THEME',
-      theme,
-    }),
-  },
+const themeAction = theme => ({
+  type: 'CHANGE_THEME',
+  theme,
 });
 
 addReducer({
@@ -52,10 +49,11 @@ addReducer({
   },
 });
 
-const mapStateToProps = state => ({ theme: state.app.theme });
-const mapDispatchToProps = dispatch => bindActionCreators(getActions().themeAction(theme), dispatch);
+const mapStateToProps = state => ({ theme: state.theme });
+const mapDispatchToProps = dispatch => ({pickTheme: theme => dispatch(themeAction(theme))});
+//const mapDispatchToProps = dispatch => bindActionCreators(getActions().themeAction(theme), dispatch);
+//connect(mapStateToProps, mapDispatchToProps)(Layout);
 
-/************************************************************/
 
 const navMenu = (user) => ([
   <Header.Item
@@ -68,12 +66,6 @@ const navMenu = (user) => ([
     href={`https://github.com/manriquef/vulcanjs`}
     iconClass="fa fa-github"
     key="3"
-    title="Github"
-  />,
-  <Header.Item
-    href={`https://github.com/manriquef/vulcanjs`}
-    iconClass="fa fa-github"
-    key="4"
     title="Github"
   />,
   <Header.UserMenu
@@ -279,4 +271,3 @@ Layout.propTypes = {
 }
 
 registerComponent('Layout', Layout, withCurrentUser, connect(mapStateToProps, mapDispatchToProps));
-export default Layout;
