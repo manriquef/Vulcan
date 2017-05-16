@@ -1,7 +1,12 @@
 /* eslint-disable react/jsx-filename-extension */
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router'
+import { LinkContainer } from 'react-router-bootstrap';
+import { Components, registerComponent, withCurrentUser, ModalTrigger } from 'meteor/vulcan:core';
+import { Meteor } from 'meteor/meteor';
+import { withApollo } from 'react-apollo';
 
 import DropdownMenu from './DropdownMenu';
 import {
@@ -199,7 +204,16 @@ class UserMenu extends React.Component {
     });
   }
 
+  signIn() {
+    console.log("Toasty");
+  }
+
+  signOut() {
+    Meteor.logout(() => client.resetStore());
+  }
+// Make into a sign in button
   render() {
+    console.log(this.props.currentUser);
     return (
       <StyledUserMenu onClick={this._toggleMenu} onMouseLeave={this._closeMenu} >
         <StyledUserImage src={this.props.image} />
@@ -210,14 +224,15 @@ class UserMenu extends React.Component {
             <UserMenuHeaderName>{this.props.name}</UserMenuHeaderName>
           </UserMenuHeader>
           <UserFooter>
-            {this.props.profileAction &&
+            {!!this.props.currentUser ?
               <div style={{ float: 'left' }}>
-                <UserFooterButton onClick={this.props.profileAction}>Profile</UserFooterButton>
-              </div>}
-            {this.props.signOutAction &&
+                <LinkContainer to={`/p/${this.props.currentUser.slug}`}>
+                  <UserFooterButton>Profile</UserFooterButton>
+                </LinkContainer>
+              </div> : null}
               <div style={{ float: 'right' }}>
-                <UserFooterButton onClick={this.props.signOutAction}>Sign Out</UserFooterButton>
-              </div>}
+                <UserFooterButton>Sign Out</UserFooterButton>
+              </div>
           </UserFooter>
         </UserDropDown>
       </StyledUserMenu>
@@ -228,8 +243,8 @@ class UserMenu extends React.Component {
 UserMenu.propTypes = {
   name: PropTypes.string,
   image: PropTypes.string,
-  profileAction: PropTypes.func,
-  signOutAction: PropTypes.func,
+  currentUser: PropTypes.object,
+  client: PropTypes.object,
 };
 
 export default UserMenu;

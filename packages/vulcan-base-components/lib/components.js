@@ -84,4 +84,5 @@ import './users/UsersAvatar.jsx';
 import './users/UsersName.jsx';
 import './users/UsersMenu.jsx';
 import './users/UsersAccountMenu.jsx';
+import './users/UsersAccountMenuNoDrop.jsx';
 import './users/UsersResetPassword.jsx';

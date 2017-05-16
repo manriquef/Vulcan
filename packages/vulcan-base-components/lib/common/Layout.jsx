@@ -7,17 +7,28 @@ import tinycolor from 'tinycolor2';
 import { Link } from 'react-router'
 import { Dashboard, Header, Sidebar } from 'meteor/nodepeep:dash';
 import Users from 'meteor/vulcan:users';
+
 /* eslint-disable no-alert */
+
+/*
+ * Redux area
+ *
+ *
+*/
 
 const initialState = {
   theme: 'skin-black',
 };
 
+const themeAction = theme => ({
+  type: 'CHANGE_THEME',
+  theme,
+});
+
 const themeReducer = (state, action) => {
   switch (action.theme) {
     case 'skin-black':
     case 'skin-black-light':
-    case 'skin-blue':
     case 'skin-blue-light':
     case 'skin-green':
     case 'skin-green-light':
@@ -33,11 +44,6 @@ const themeReducer = (state, action) => {
   }
 };
 
-const themeAction = theme => ({
-  type: 'CHANGE_THEME',
-  theme,
-});
-
 addReducer({
   themeReducer: (state = initialState, action) => {
     if (action.type === 'CHANGE_THEME') {
@@ -48,13 +54,22 @@ addReducer({
     return state;
   },
 });
-
 const mapStateToProps = state => ({ theme: state.theme });
 const mapDispatchToProps = dispatch => ({pickTheme: theme => dispatch(themeAction(theme))});
-//const mapDispatchToProps = dispatch => bindActionCreators(getActions().themeAction(theme), dispatch);
-//connect(mapStateToProps, mapDispatchToProps)(Layout);
 
+/*
+ * Main UI
+ *
+ *
+*/
+const gotoUrl = (user) => {
+  return (
+  <div>
+    <Link to={`/p/${user.slug}`}/>
+  </div>
+  )
 
+}
 const navMenu = (user) => ([
   <Header.Item
     href={`https://github.com/manriquef/vulcanjs`}
@@ -69,21 +84,22 @@ const navMenu = (user) => ([
     title="Github"
   />,
   <Header.UserMenu
-    name={user ? user.username: "Guest"}
+    name={user ? user.username: "Log In"}
     image={user ? user.avatar: Users.avatar}
-    profileAction={() => <Components.UsersProfile/>}
-    signOutAction={() => Meteor.logout(() => client.resetStore())}
+  //  profileAction={() => gotoUrl(user)}
+  //  signOutAction={() => Meteor.logout(() => client.resetStore())}
     key="2"
   />,
 ]);
 
-const sb = pickTheme => ([
+const sb = (pickTheme, user) => ([
   <Sidebar.UserPanel
-    name="Guest"//{user ? user.username: "Guest"}
-    image=""//{user ? user.avatar: Users.avatar}
+    name={user ? user.username: "Guest"}
+    image={user ? user.avatar: Users.avatar}
     online
     key="1"
   />,
+  <Sidebar.Search key="2" />,
   <Sidebar.Menu header="MAIN NAVIGATION" key="3">
     <Sidebar.Menu.Item icon={{ className: 'fa-dashboard' }} title="Dashboard Colors" >
       <Sidebar.Menu.Item
@@ -247,7 +263,7 @@ const Layout = ({currentUser, children, theme, pickTheme}) =>
 
         <Dashboard
           navbarChildren={navMenu(currentUser)}
-          sidebarChildren={sb(pickTheme)}
+          sidebarChildren={sb(pickTheme,currentUser)}
           footerChildren={footer()}
           sidebarMini
           initialCollapse
@@ -268,6 +284,7 @@ const Layout = ({currentUser, children, theme, pickTheme}) =>
 Layout.propTypes = {
     pickTheme: PropTypes.func,
     theme: PropTypes.string,
-}
+};
+
 
 registerComponent('Layout', Layout, withCurrentUser, connect(mapStateToProps, mapDispatchToProps));
