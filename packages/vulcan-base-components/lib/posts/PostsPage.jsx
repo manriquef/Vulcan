@@ -24,16 +24,16 @@ class PostsPage extends Component {
       const htmlBody = {__html: post.htmlBody};
 
       return (
+
           <div className="posts-page">
             <Components.PostsListHeader/>
               <Components.RightBar/>
-              <Components.HeadTags url={Posts.getPageUrl(post)} title={post.title} image={post.thumbnailUrl} description={post.excerpt} />
+                <Components.HeadTags url={Posts.getPageUrl(post, true)} title={post.title} image={post.thumbnailUrl} description={post.excerpt} />
               <Components.PostsItem post={post} currentUser={this.props.currentUser} />
               {post.htmlBody ? <div className="posts-page-body" dangerouslySetInnerHTML={htmlBody}></div> : null}
               {this.props.currentUser && post.user._id == this.props.currentUser._id ? null : <Components.Reporting collection={Posts} document={post} currentUser={this.props.currentUser} />}
               <Components.PostsCommentsThread terms={{postId: post._id}} />
           </div>
-
 
       );
 
