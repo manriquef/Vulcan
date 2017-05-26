@@ -3,14 +3,14 @@ Modified: 07FEB2017
 Added comment icon next to comment number
 */
 import { Components, registerComponent, ModalTrigger } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, FormattedRelative } from 'react-intl';
 import { Link } from 'react-router';
 import Posts from "meteor/vulcan:posts";
 
+class PostsItem extends PureComponent {
 
-class PostsItem extends Component {
 
   renderCategories() {
     return this.props.post.categories && this.props.post.categories.length > 0 ? <Components.PostsCategories post={this.props.post} /> : "";
@@ -89,6 +89,7 @@ class PostsItem extends Component {
 PostsItem.propTypes = {
   currentUser: PropTypes.object,
   post: PropTypes.object.isRequired,
+  terms: PropTypes.object,
 };
 
 registerComponent('PostsItem', PostsItem);

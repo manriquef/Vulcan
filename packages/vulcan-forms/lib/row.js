@@ -2,9 +2,9 @@
 
 'use strict';
 
-var PropTypes = require('prop-types');
+//var PropTypes = require('prop-types');
 var React = require('react');
-
+import PropTypes from 'prop-types';
 var classNames = require('classnames/dedupe');
 
 var Row = React.createClass({

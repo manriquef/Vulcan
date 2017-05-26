@@ -1,5 +1,5 @@
 import { registerComponent, withCurrentUser } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
 import { Button, MenuItem } from 'react-bootstrap';

@@ -1,9 +1,9 @@
 import { registerComponent } from 'meteor/vulcan:lib';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'react-bootstrap';
 
-class ModalTrigger extends Component {
+class ModalTrigger extends PureComponent {
 
   constructor() {
     super();
@@ -57,7 +57,7 @@ ModalTrigger.propTypes = {
 }
 
 ModalTrigger.defaultProps = {
-  size: "large"
+  size: 'large'
 }
 
 registerComponent('ModalTrigger', ModalTrigger);

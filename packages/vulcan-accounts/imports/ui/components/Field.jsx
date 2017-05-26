@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FormControl } from 'react-bootstrap';
 import { registerComponent } from 'meteor/vulcan:core';
 
-export class AccountsField extends React.Component {
+export class AccountsField extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

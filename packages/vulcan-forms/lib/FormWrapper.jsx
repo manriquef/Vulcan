@@ -24,7 +24,7 @@ component is also added to wait for withDocument's loading prop to be false)
 
 */
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import { withApollo, compose } from 'react-apollo';
@@ -33,7 +33,7 @@ import Form from './Form.jsx';
 import gql from 'graphql-tag';
 import { withDocument } from 'meteor/vulcan:core';
 
-class FormWrapper extends Component{
+class FormWrapper extends PureComponent {
 
   // return the current schema based on either the schema or collection prop
   getSchema() {
@@ -151,7 +151,7 @@ class FormWrapper extends Component{
             {...parentProps}
             {...props}
           />;
-      }
+      };
       Loader.displayName = `withLoader(Form)`;
 
       WrappedComponent = compose(
@@ -168,16 +168,13 @@ class FormWrapper extends Component{
         withNew(mutationOptions)
       )(Form);
 
-      return <WrappedComponent {...childProps} {...parentProps} />
+      return <WrappedComponent {...childProps} {...parentProps} />;
 
     }
-
   }
-
 }
 
 FormWrapper.propTypes = {
-
   // main options
   collection: PropTypes.object.isRequired,
   documentId: PropTypes.string, // if a document is passed, this will be an edit form
@@ -208,7 +205,7 @@ FormWrapper.propTypes = {
 }
 
 FormWrapper.defaultProps = {
-  layout: "horizontal",
+  layout: 'horizontal',
 }
 
 FormWrapper.contextTypes = {

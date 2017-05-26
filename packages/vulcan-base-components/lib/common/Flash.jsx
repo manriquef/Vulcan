@@ -1,9 +1,9 @@
 import { registerComponent } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Alert } from 'react-bootstrap';
 
-class Flash extends Component{
+class Flash extends PureComponent {
 
   constructor() {
     super();

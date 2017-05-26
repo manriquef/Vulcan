@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { hasPasswordService } from '../../helpers.js';
 import { registerComponent } from 'meteor/vulcan:core';
 import { intlShape } from 'react-intl';
 
-export class AccountsPasswordOrService extends React.Component {
+export class AccountsPasswordOrService extends PureComponent {
   render () {
     let { className = "password-or-service", style = {} } = this.props;
     const services = Object.keys(this.props.oauthServices).map(service => {
@@ -32,6 +32,6 @@ AccountsPasswordOrService.propTypes = {
 
 AccountsPasswordOrService.contextTypes = {
   intl: intlShape
-}
+};
 
 registerComponent('AccountsPasswordOrService', AccountsPasswordOrService);

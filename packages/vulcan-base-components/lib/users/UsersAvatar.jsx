@@ -1,5 +1,5 @@
-import { registerComponent, withList } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import { registerComponent } from 'meteor/vulcan:core';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Users from 'meteor/vulcan:users';
 import { Link } from 'react-router';
@@ -30,11 +30,11 @@ UsersAvatar.propTypes = {
 }
 
 UsersAvatar.defaultProps = {
-  size: "medium",
+  size: 'medium',
   link: true
 }
 
-UsersAvatar.displayName = "UsersAvatar";
+UsersAvatar.displayName = 'UsersAvatar';
 
 registerComponent('UsersAvatar', UsersAvatar);
 export default UsersAvatar;

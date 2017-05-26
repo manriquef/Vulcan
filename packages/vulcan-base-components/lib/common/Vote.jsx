@@ -1,11 +1,11 @@
 import { Components, registerComponent, withMessages } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withVote, hasUpvoted, hasDownvoted } from 'meteor/vulcan:voting';
-import { FormattedMessage, intlShape } from 'react-intl';
+import { /*FormattedMessage,*/ intlShape } from 'react-intl';
 
-class Vote extends Component {
+class Vote extends PureComponent {
 
   constructor() {
     super();

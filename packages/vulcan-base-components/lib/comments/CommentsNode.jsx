@@ -1,8 +1,8 @@
 import { Components, registerComponent } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-class CommentsNode extends Component {
+class CommentsNode extends PureComponent {
 
   renderComment(comment) {
 

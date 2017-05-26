@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'react-bootstrap';
 import Users from 'meteor/vulcan:users';
@@ -67,7 +67,7 @@ UsersProfileCheck.contextTypes = {
   intl: intlShape
 };
 
-UsersProfileCheck.displayName = "UsersProfileCheck";
+UsersProfileCheck.displayName = 'UsersProfileCheck';
 
 const mustCompleteFragment = gql`
   fragment UsersMustCompleteFragment on User {

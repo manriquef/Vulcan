@@ -1,5 +1,5 @@
 import { Components, registerComponent, withCurrentUser, withMutation, withMessages, Utils } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
 import Formsy from 'formsy-react';
@@ -8,7 +8,7 @@ import { Button } from 'react-bootstrap';
 import Cookie from 'react-cookie';
 import Users from 'meteor/vulcan:users';
 
-class Newsletter extends Component {
+class Newsletter extends PureComponent {
 
   constructor(props, context) {
     super(props);
@@ -40,8 +40,8 @@ class Newsletter extends Component {
     }
   }
 
-  successCallbackSubscription(result) {
-    this.props.flash(this.context.intl.formatMessage({id: "newsletter.success_message"}), "success");
+  successCallbackSubscription(/* result*/) {
+    this.props.flash(this.context.intl.formatMessage({ id: 'newsletter.success_message'}), 'success' );
     this.dismissBanner();
   }
 
@@ -50,17 +50,19 @@ class Newsletter extends Component {
 
     this.setState({showBanner: false});
 
-    // set cookie to keep the banner dismissed persistently 
-    Cookie.save('showBanner', "no");
+    // set cookie to keep the banner dismissed persistently
+    Cookie.save('showBanner', 'no');
   }
 
   renderButton() {
-    return <Components.NewsletterButton
-              label="newsletter.subscribe"
-              mutationName="addUserNewsletter"
-              successCallback={() => this.successCallbackSubscription()}
-              user={this.props.currentUser}
-            />
+    return (
+        <Components.NewsletterButton
+            label="newsletter.subscribe"
+            mutationName="addUserNewsletter"
+            successCallback={() => this.successCallbackSubscription()}
+            user={this.props.currentUser}
+        />
+    );
   }
 
   renderForm() {
@@ -97,13 +99,13 @@ Newsletter.contextTypes = {
 
 const mutationOptions = {
   name: 'addEmailNewsletter',
-  args: {email: 'String'}
+  args: { email: 'String' }
 }
 
 function showBanner (user) {
   return (
     // showBanner cookie either doesn't exist or is not set to "no"
-    Cookie.load('showBanner') !== "no"
+    Cookie.load('showBanner') !== 'no'
     // and user is not subscribed to the newsletter already (setting either DNE or is not set to false)
     && !Users.getSetting(user, 'newsletter_subscribeToNewsletter', false)
   );

@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { FormattedMessage } from 'react-intl';
 import Posts from 'meteor/vulcan:posts';
 import { withCurrentUser, withList, getSetting, Components, getRawComponent, registerComponent } from 'meteor/vulcan:core';
 
-class PostsDailyList extends Component{
+class PostsDailyList extends PureComponent {
 
   constructor(props) {
     super(props);

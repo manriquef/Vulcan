@@ -1,5 +1,5 @@
 import { registerComponent } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Users from 'meteor/vulcan:users';
 import { Link } from 'react-router';
@@ -10,6 +10,6 @@ UsersName.propTypes = {
   user: PropTypes.object.isRequired,
 }
 
-UsersName.displayName = "UsersName";
+UsersName.displayName = 'UsersName';
 
 registerComponent('UsersName', UsersName);

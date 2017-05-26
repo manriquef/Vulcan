@@ -1,10 +1,10 @@
 import { Components, registerComponent, withCurrentUser, withMessages } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { intlShape, FormattedMessage, FormattedRelative } from 'react-intl';
 import Comments from 'meteor/vulcan:comments';
 
-class CommentsItem extends Component{
+class CommentsItem extends PureComponent {
 
   constructor() {
     super();

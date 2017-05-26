@@ -1,5 +1,5 @@
 import { Components, registerComponent, getFragment, withMessages } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Comments from "meteor/vulcan:comments";
 

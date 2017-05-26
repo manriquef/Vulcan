@@ -1,8 +1,8 @@
 import { Components, registerComponent } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-class CategoriesNode extends Component {
+class CategoriesNode extends PureComponent {
 
   renderCategory(category) {
     return (

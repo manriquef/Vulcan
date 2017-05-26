@@ -1,5 +1,5 @@
 import { Components, registerComponent, withCurrentUser, withMessages } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
 import Users from 'meteor/vulcan:users';
@@ -23,7 +23,7 @@ const UsersEditForm = (props, context) => {
           collection={Users}
           {...props.terms}
           successCallback={user => {
-            props.flash(context.intl.formatMessage({id: "users.edit_success"}, {name: Users.getDisplayName(user)}), 'success')
+            props.flash(context.intl.formatMessage({ id: 'users.edit_success' }, {name: Users.getDisplayName(user)}), 'success')
           }}
           showRemove={true}
         />
@@ -41,6 +41,6 @@ UsersEditForm.contextTypes = {
   intl: intlShape
 };
 
-UsersEditForm.displayName = "UsersEditForm";
+UsersEditForm.displayName = 'UsersEditForm';
 
 registerComponent('UsersEditForm', UsersEditForm, withMessages, withCurrentUser);

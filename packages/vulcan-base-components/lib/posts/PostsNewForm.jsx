@@ -1,11 +1,10 @@
 import { Components, registerComponent, getRawComponent, getFragment, withMessages } from 'meteor/vulcan:core';
-import Posts from 'meteor/vulcan:posts';
+import Posts from "meteor/vulcan:posts";
 import Categories from 'meteor/vulcan:categories';
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
-import { withRouter } from 'react-router';
-import ReactDOM from 'react-dom';
+import { intlShape, FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router'
 
 const PostsNewForm = (props, context) => {
 
@@ -23,7 +22,7 @@ const PostsNewForm = (props, context) => {
   return (
     <Components.ShowIf
       check={Posts.options.mutations.new.check}
-      failureComponent={<Components.AccountsLoginForm/>}
+      failureComponent={<div><p className="posts-new-form-message"><FormattedMessage id="posts.sign_up_or_log_in_first" /></p><Components.AccountsLoginForm /></div>}
     >
       <div className="posts-new-form">
         <Components.SmartForm

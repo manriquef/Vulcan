@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { registerComponent } from 'meteor/vulcan:core';
 
-export class AccountsButton extends React.Component {
+export class AccountsButton extends PureComponent {
   render () {
 
     const {

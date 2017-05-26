@@ -1,6 +1,5 @@
 import { Components, registerComponent, withDocument, withCurrentUser } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Users from 'meteor/vulcan:users';
 import { Link } from 'react-router';

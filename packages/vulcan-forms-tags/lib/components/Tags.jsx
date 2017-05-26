@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
 import FRC from 'formsy-react-components';
 import ReactTagInput from 'react-tag-input';
 
@@ -7,7 +6,7 @@ const ReactTags = ReactTagInput.WithContext;
 
 const Input = FRC.Input;
 
-class Tags extends Component {
+class Tags extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -104,6 +103,6 @@ Tags.propTypes = {
   name: PropTypes.string,
   value: PropTypes.any,
   label: PropTypes.string
-}
+};
 
 export default Tags;

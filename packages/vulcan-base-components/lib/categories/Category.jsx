@@ -1,12 +1,12 @@
 import { ModalTrigger, Components, registerComponent } from 'meteor/vulcan:core';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Button, MenuItem } from 'react-bootstrap';
 import { withRouter } from 'react-router';
 import Categories from 'meteor/vulcan:categories';
 
-class Category extends Component {
+class Category extends PureComponent {
 
   renderEdit() {
     return (

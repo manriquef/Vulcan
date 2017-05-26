@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Formsy from 'formsy-react';
 import FRC from 'formsy-react-components';
@@ -14,7 +14,7 @@ const RadioGroup = FRC.RadioGroup;
 const Select = FRC.Select;
 const Textarea = FRC.Textarea;
 
-class FormComponent extends Component {
+class FormComponent extends PureComponent {
 
   constructor(props) {
     super(props);

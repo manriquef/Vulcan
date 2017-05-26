@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import DateTimePicker from 'react-datetime';
-// import moment from 'moment';
 
-class DateTime extends Component {
+class DateTime extends PureComponent {
 
   constructor(props) {
     super(props);
