@@ -51,6 +51,7 @@ const PostsList = ({className, results, loading, count, totalCount, loadMore, sh
         <div className="posts-list-content">
           <Components.PostsNoResults/>
         </div>
+      </div>
       )
     }
 };
