@@ -205,17 +205,19 @@ class UserMenu extends React.Component {
   }
 
   signIn() {
-    console.log("Toasty");
+    console.log("ng");
+    return (
+     <div>
+       <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} />
+    </div>
+    );
   }
 
-  signOut() {
-    Meteor.logout(() => client.resetStore());
-  }
 // Make into a sign in button
   render() {
-    console.log(this.props.currentUser);
+
     return (
-      <StyledUserMenu onClick={this._toggleMenu} onMouseLeave={this._closeMenu} >
+      <StyledUserMenu onClick={!!this.props.currentUser ? this._toggleMenu : console.log("ng")} onMouseLeave={this._closeMenu} >
         <StyledUserImage src={this.props.image} />
         <StyledUserName>{this.props.name}</StyledUserName>
         <UserDropDown open={this.state.open} >
@@ -224,14 +226,13 @@ class UserMenu extends React.Component {
             <UserMenuHeaderName>{this.props.name}</UserMenuHeaderName>
           </UserMenuHeader>
           <UserFooter>
-            {!!this.props.currentUser ?
               <div style={{ float: 'left' }}>
-                <LinkContainer to={`/p/${this.props.currentUser.slug}`}>
+                <LinkContainer to={!!this.props.currentUser ? `/p/${this.props.currentUser.slug}` : `/`}>
                   <UserFooterButton>Profile</UserFooterButton>
                 </LinkContainer>
-              </div> : null}
+              </div>
               <div style={{ float: 'right' }}>
-                <UserFooterButton>Sign Out</UserFooterButton>
+                <UserFooterButton onClick={() => Meteor.logout(() => this.context.client.resetStore())}>Sign Out</UserFooterButton>
               </div>
           </UserFooter>
         </UserDropDown>
@@ -244,7 +245,10 @@ UserMenu.propTypes = {
   name: PropTypes.string,
   image: PropTypes.string,
   currentUser: PropTypes.object,
-  client: PropTypes.object,
 };
+
+UserMenu.contextTypes = {
+  client: PropTypes.object,
+}
 
 export default UserMenu;

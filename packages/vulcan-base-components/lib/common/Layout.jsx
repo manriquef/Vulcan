@@ -84,18 +84,19 @@ const navMenu = (user) => ([
     title="Github"
   />,
   <Header.UserMenu
-    name={user ? user.username: "Log In"}
-    image={user ? user.avatar: Users.avatar}
+    name={user ? user.username : "Log In"}
+    image={user ? user.avatar : "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y"}
   //  profileAction={() => gotoUrl(user)}
   //  signOutAction={() => Meteor.logout(() => client.resetStore())}
     key="2"
+    currentUser={user}
   />,
 ]);
 
 const sb = (pickTheme, user) => ([
   <Sidebar.UserPanel
-    name={user ? user.username: "Guest"}
-    image={user ? user.avatar: Users.avatar}
+    name={user ? user.username : "Guest"}
+    image={user ? user.avatar : "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y"}
     online
     key="1"
   />,

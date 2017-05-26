@@ -82,7 +82,7 @@ const StyledNavbar = styled.nav`
       sidebarWidth)};
   }
 `;
-
+// this is where i should put search bar...
 const Navbar = props => (
   <StyledNavbar
     topNav={props.topNav}
