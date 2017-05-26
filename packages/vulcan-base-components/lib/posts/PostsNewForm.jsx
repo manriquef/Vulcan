@@ -30,7 +30,7 @@ const PostsNewForm = (props, context) => {
           mutationFragment={getFragment('PostsPage')}
           successCallback={post => {
             props.closeModal();
-            props.router.push({pathname: Posts.getPageUrl(post)});
+            props.router.push({pathname: props.redirect || Posts.getPageUrl(post)});
             props.flash(context.intl.formatMessage({id: "posts.created_message"}), "success");
           }}
         />
@@ -41,9 +41,10 @@ const PostsNewForm = (props, context) => {
 };
 
 PostsNewForm.propTypes = {
-  closeModal: PropTypes.func,
-  router: PropTypes.object,
-  flash: PropTypes.func,
+  closeModal: React.PropTypes.func,
+  router: React.PropTypes.object,
+  flash: React.PropTypes.func,
+  redirect: React.PropTypes.string,
 }
 
 PostsNewForm.contextTypes = {
