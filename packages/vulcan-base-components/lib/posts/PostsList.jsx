@@ -29,7 +29,6 @@ const PostsList = ({className, results, loading, count, totalCount, loadMore, sh
             {hasMore ? (loadingMore ? <Components.PostsLoading/> : <Components.PostsLoadMore loadMore={loadMore} count={count} totalCount={totalCount} />) : <Components.PostsNoMore/>}
           </div> : null}
         </div>
-        {showLoadMore ? hasMore ? (loadingMore ? <Components.PostsLoading/> : <Components.PostsLoadMore loadMore={loadMore} count={count} totalCount={totalCount} />) : <Components.PostsNoMore/> : null}
       </div>
     )
   } else if (loading) {

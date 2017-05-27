@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-filename-extension */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router'
@@ -7,6 +7,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Components, registerComponent, withCurrentUser, ModalTrigger } from 'meteor/vulcan:core';
 import { Meteor } from 'meteor/meteor';
 import { withApollo } from 'react-apollo';
+import { STATES } from 'meteor/vulcan:accounts';
 
 import DropdownMenu from './DropdownMenu';
 import {
@@ -39,7 +40,7 @@ const StyledUserImage = styled.img`
   vertical-align: middle;
   width: ${imageSize};
   height: ${imageSize};
-  border-radius: 50%;
+  /*border-radius: 50%;*/
   margin-right: 10px;
   margin-top: ${imageMarginTop};
   margin-bottom: ${imageMarginBottom};
@@ -182,7 +183,7 @@ const StyledUserMenu = styled.li`
   }
 `;
 
-class UserMenu extends React.Component {
+class UserMenu extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -204,41 +205,54 @@ class UserMenu extends React.Component {
     });
   }
 
-  signIn() {
-    console.log("ng");
-    return (
-     <div>
-       <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} />
-    </div>
-    );
-  }
-
-// Make into a sign in button
   render() {
 
-    return (
-      <StyledUserMenu onClick={!!this.props.currentUser ? this._toggleMenu : console.log("ng")} onMouseLeave={this._closeMenu} >
-        <StyledUserImage src={this.props.image} />
-        <StyledUserName>{this.props.name}</StyledUserName>
-        <UserDropDown open={this.state.open} >
-          <UserMenuHeader>
-            <UserMenuHeaderImage src={this.props.image} />
-            <UserMenuHeaderName>{this.props.name}</UserMenuHeaderName>
-          </UserMenuHeader>
-          <UserFooter>
-              <div style={{ float: 'left' }}>
-                <LinkContainer to={!!this.props.currentUser ? `/p/${this.props.currentUser.slug}` : `/`}>
-                  <UserFooterButton>Profile</UserFooterButton>
-                </LinkContainer>
-              </div>
-              <div style={{ float: 'right' }}>
-                <UserFooterButton onClick={() => Meteor.logout(() => this.context.client.resetStore())}>Sign Out</UserFooterButton>
-              </div>
-          </UserFooter>
-        </UserDropDown>
-      </StyledUserMenu>
-    );
+    if (!!this.props.currentUser) {
+      return (
+        <StyledUserMenu onClick={this._toggleMenu} onMouseLeave={this._closeMenu} >
+          <StyledUserImage src={this.props.image} />
+          <StyledUserName>{this.props.name}</StyledUserName>
+          <UserDropDown open={this.state.open} >
+            <UserMenuHeader>
+              <UserMenuHeaderImage src={this.props.image} />
+              <UserMenuHeaderName>{this.props.name}</UserMenuHeaderName>
+            </UserMenuHeader>
+            <UserFooter>
+                <div style={{ float: 'left' }}>
+                  <LinkContainer to={!!this.props.currentUser ? `/p/${this.props.currentUser.slug}` : `/`}>
+                    <UserFooterButton>Profile</UserFooterButton>
+                  </LinkContainer>
+                  <div style={{ display: 'inline', 'margin-left': '3px'}}>
+                    <LinkContainer to={`/account`}>
+                      <UserFooterButton>Account</UserFooterButton>
+                    </LinkContainer>
+                  </div>
+                </div>
+                <div style={{ float: 'right' }}>
+                  <UserFooterButton onClick={() => Meteor.logout(() => this.context.client.resetStore())}>Sign Out</UserFooterButton>
+                </div>
+                {!!this.props.currentUser.isAdmin ?
+                  <div style={{ 'margin-top': '3px' }}>
+                  <LinkContainer to={`/feeds`}>
+                    <UserFooterButton>Posts Feeds</UserFooterButton>
+                  </LinkContainer>
+                </div> : null }
+            </UserFooter>
+          </UserDropDown>
+        </StyledUserMenu>
+      );
+    } else {
+      return (
+        <StyledUserMenu onClick={this._toggleMenu} >
+          <StyledUserImage src={this.props.image} />
+          <StyledUserName>{this.props.name}</StyledUserName>
+            <UserDropDown open={this.state.open} >
+              <Components.AccountsLoginForm formState={this.state? STATES[this.state] : STATES.SIGN_UP} />
+            </UserDropDown>
+        </StyledUserMenu>
+      );
   }
+ }
 }
 
 UserMenu.propTypes = {
@@ -249,6 +263,6 @@ UserMenu.propTypes = {
 
 UserMenu.contextTypes = {
   client: PropTypes.object,
-}
+};
 
 export default UserMenu;

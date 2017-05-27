@@ -60,9 +60,9 @@ const StyledImage = styled.img`
   float: left!important;
   width: 100%;
   max-width: 45px;
+  height: 100%;
   vertical-align: middle;
-  height: auto;
-  border-radius: 50%;
+/*  border-radius: 50%;*/
   border: 0;
 
   cursor: pointer;
@@ -95,6 +95,7 @@ const StyledPanel = styled.div`
   font-size: ${fontSizeBase};
   box-sizing: border-box;
 
+  min-height: 65px;
   position: relative;
   width: 100%;
   padding: 10px;

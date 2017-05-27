@@ -4,15 +4,15 @@
 */
 
 .posts-list{
-  width: 100%;
+  width: 99%;
 }
 
-.posts-list-content{
-  width: 75%;
+.posts-item-content{
+  //width: 25%;
 
   // padding-top: 15px;
   // margin-top: 15px;
-  margin-bottom: $vmargin;
+//  margin-bottom: $vmargin;
   padding-right: 10px;
 }
 
@@ -100,7 +100,7 @@
   @include medium-large{
     @include flex-center;
   }
-
+  width: 75%;
   border-bottom: $border; // Modified to remove border on posts
   padding: $vmarginPostPadding 10px; // Modified
   margin-bottom: 1px;
