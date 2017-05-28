@@ -57,12 +57,46 @@
 
 .users-account-menu, .users-menu{
   .dropdown-toggle{
-    @include flex-center;
-    padding: 0;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    color: #fff;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    text-align: left;
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight: 400;
+
+    padding: 5px 0;
+    margin: 0;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+
+    float: left;
+    display: block;
+    padding: 0px;
     background: none;
     img{
+      margin-top: -10px;
+      margin-bottom: -5px;
       margin-right: 5px;
+      height: 25px;
+      width: 25px;
     }
+  }
+  .dropdown-menu{
+    margin-top: 15px;
+    border-radius: 0;
+    border-top: 0;
+    right: 0;
+    left: auto;
   }
 }
 

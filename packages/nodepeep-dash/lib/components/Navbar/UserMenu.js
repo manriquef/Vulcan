@@ -8,6 +8,8 @@ import { Components, registerComponent, withCurrentUser, ModalTrigger } from 'me
 import { Meteor } from 'meteor/meteor';
 import { withApollo } from 'react-apollo';
 import { STATES } from 'meteor/vulcan:accounts';
+import { Dropdown } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 
 import DropdownMenu from './DropdownMenu';
 import {
@@ -140,6 +142,10 @@ const UserFooter = styled.li`
 
   background-color: #f9f9f9;
   padding: 10px;
+
+  .modal-trigger {
+    display: inline;
+  }
 `;
 
 const UserDropDown = styled(DropdownMenu)`
@@ -209,7 +215,7 @@ class UserMenu extends PureComponent {
 
     if (!!this.props.currentUser) {
       return (
-        <StyledUserMenu onClick={this._toggleMenu} onMouseLeave={this._closeMenu} >
+        <StyledUserMenu onClick={this._toggleMenu}   >
           <StyledUserImage src={this.props.image} />
           <StyledUserName>{this.props.name}</StyledUserName>
           <UserDropDown open={this.state.open} >
@@ -222,7 +228,7 @@ class UserMenu extends PureComponent {
                   <LinkContainer to={!!this.props.currentUser ? `/p/${this.props.currentUser.slug}` : `/`}>
                     <UserFooterButton>Profile</UserFooterButton>
                   </LinkContainer>
-                  <div style={{ display: 'inline', 'margin-left': '3px'}}>
+                  <div style={{ display: 'inline', 'marginLeft': '3px'}}>
                     <LinkContainer to={`/account`}>
                       <UserFooterButton>Account</UserFooterButton>
                     </LinkContainer>
@@ -231,24 +237,38 @@ class UserMenu extends PureComponent {
                 <div style={{ float: 'right' }}>
                   <UserFooterButton onClick={() => Meteor.logout(() => this.context.client.resetStore())}>Sign Out</UserFooterButton>
                 </div>
-                {!!this.props.currentUser.isAdmin ?
-                  <div style={{ 'margin-top': '3px' }}>
+                {/*!!this.props.currentUser.isAdmin ?
+                  <div style={{ 'marginTop': '37px' }}>
                   <LinkContainer to={`/feeds`}>
                     <UserFooterButton>Posts Feeds</UserFooterButton>
                   </LinkContainer>
-                </div> : null }
+                      <ModalTrigger title={<FormattedMessage id="posts.feeds.new"/>} component={<div style={{ display: 'inline', 'marginLeft': '3px' }}><UserFooterButton>New Feed</UserFooterButton></div>}>
+                        <Components.FeedsNewForm user={this.props.currentUser}/></ModalTrigger>
+                      </div>: null */}
             </UserFooter>
           </UserDropDown>
         </StyledUserMenu>
       );
     } else {
-      return (
+      /* return (
         <StyledUserMenu onClick={this._toggleMenu} >
           <StyledUserImage src={this.props.image} />
           <StyledUserName>{this.props.name}</StyledUserName>
-            <UserDropDown open={this.state.open} >
+          <UserDropDown open={this.state.open} >
               <Components.AccountsLoginForm formState={this.state? STATES[this.state] : STATES.SIGN_UP} />
-            </UserDropDown>
+          </UserDropDown>
+        </StyledUserMenu> */
+        return (
+          <StyledUserMenu onClick={this._toggleMenu} >
+          <Dropdown id="accounts-dropdown" className="users-account-menu">
+            <Dropdown.Toggle>
+              {this.props.currentUser ? <Components.UsersAvatar size="small" user={this.props.currentUser} link={false} /> : <img src='http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y'/>}
+              <FormattedMessage id="users.log_in"/>
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Components.AccountsLoginForm formState={this.state ? STATES[this.state] : STATES.SIGN_UP} />
+            </Dropdown.Menu>
+          </Dropdown>
         </StyledUserMenu>
       );
   }

@@ -36,7 +36,7 @@ class ModalTrigger extends PureComponent {
     const childrenComponent = React.cloneElement(this.props.children, {closeModal: this.closeModal});
 
     return (
-      <div className="modal-trigger">
+      <div className="modal-trigger" style={{ display: 'inline'}}>
         {triggerComponent}
         <Modal className={this.props.className} bsSize={this.props.size} show={this.state.modalIsOpen} onHide={this.closeModal}>
           {this.props.title ? this.renderHeader() : null}

@@ -1,4 +1,4 @@
-import { Components, registerComponent, withCurrentUser, addAction, getActions, addReducer } from 'meteor/vulcan:core';
+import { Components, registerComponent, withCurrentUser, addAction, getActions, addReducer, ModalTrigger  } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -7,6 +7,7 @@ import tinycolor from 'tinycolor2';
 import { Link } from 'react-router'
 import { Dashboard, Header, Sidebar } from 'meteor/nodepeep:dash';
 import Users from 'meteor/vulcan:users';
+import { FormattedMessage, intlShape } from 'react-intl';
 
 /* eslint-disable no-alert */
 
@@ -77,17 +78,12 @@ const navMenu = (user) => ([
     key="1"
     title="Github"
   />,
-  <Header.Item
-    href={`https://github.com/manriquef/vulcanjs`}
-    iconClass="fa fa-github"
-    key="3"
-    title="Github"
-  />,
+  <Components.ModalTrigger title="New Post" component={<Header.Item href={`https://github.com/manriquef/vulcanjs`} iconClass="fa fa-github" key="3" title="New Post"/>}>
+      <Components.PostsNewForm />
+  </Components.ModalTrigger>,
   <Header.UserMenu
-    name={user ? user.username : "Log In"}
+    name={user ? user.username : null}
     image={user ? user.avatar : "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y"}
-  //  profileAction={() => gotoUrl(user)}
-  //  signOutAction={() => Meteor.logout(() => client.resetStore())}
     key="2"
     currentUser={user}
   />,
@@ -181,7 +177,9 @@ const sb = (pickTheme, user) => ([
     <Sidebar.Menu.Item icon={{ className: 'fa-pie-chart' }} title="Charts" >
       <Sidebar.Menu.Item title="ChartJS" />
       <Sidebar.Menu.Item title="Morris" />
-      <Sidebar.Menu.Item title="Flot" />
+      <Components.ModalTrigger title="Bitch" component={<Sidebar.Menu.Item title="Flot" />}>
+       <Components.PostsNewForm />
+      </Components.ModalTrigger>
       <Sidebar.Menu.Item title="Inline Charts" />
     </Sidebar.Menu.Item>
     <Sidebar.Menu.Item icon={{ className: 'fa-laptop' }} title="UI Elements" >
@@ -271,7 +269,7 @@ const Layout = ({currentUser, children, theme, pickTheme}) =>
         >
 
           <Components.HeadTags />
-          <Components.Header />
+
             <div className="main">
               <Components.FlashMessages />
             </div>
@@ -285,6 +283,5 @@ Layout.propTypes = {
     pickTheme: PropTypes.func,
     theme: PropTypes.string,
 };
-
 
 registerComponent('Layout', Layout, withCurrentUser, connect(mapStateToProps, mapDispatchToProps));
