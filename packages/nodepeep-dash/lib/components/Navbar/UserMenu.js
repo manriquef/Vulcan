@@ -170,7 +170,8 @@ const StyledUserMenu = styled.li`
   background-image: none;
   border: none;
   outline: none;
-  padding: ${navbarPaddingVertical} ${navbarPaddingHorizontal};
+  padding-left: ${navbarPaddingHorizontal};
+  padding-right: ${navbarPaddingHorizontal};
   position: relative;
   text-decoration: none;
   cursor: pointer;
