@@ -78,7 +78,7 @@ const navMenu = (user) => ([
     key="1"
     title="Github"
   />,
-  <Components.ModalTrigger title="New Post" component={<Header.Item href={`https://github.com/manriquef/vulcanjs`} iconClass="fa fa-github" key="3" title="New Post"/>}>
+  <Components.ModalTrigger title="New Post" component={<Header.Item href={`https://github.com/manriquef/vulcanjs`} iconClass="fa fa-plus-square" key="3" title="New Post"/>}>
       <Components.PostsNewForm />
   </Components.ModalTrigger>,
   <Header.UserMenu
@@ -90,12 +90,12 @@ const navMenu = (user) => ([
 ]);
 
 const sb = (pickTheme, user) => ([
-  <Sidebar.UserPanel
+  /*<Sidebar.UserPanel
     name={user ? user.username : "Guest"}
     image={user ? user.avatar : "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y"}
     online
     key="1"
-  />,
+  />,*/
   <Sidebar.Menu header="MAIN NAVIGATION" key="2">
     <Sidebar.Menu.Item icon={{ className: 'fa-dashboard' }} title="Dashboard Colors" >
       <Sidebar.Menu.Item
@@ -265,6 +265,7 @@ const Layout = ({currentUser, children, theme, pickTheme}) =>
           footerChildren={footer()}
           sidebarMini
           initialCollapse
+          fixed
           theme={theme}
         >
 

@@ -8,6 +8,7 @@ import ToggleButton from './ToggleButton';
 import {
   transitionSpeed,
   transitionFn,
+  screenXsMin,
   screenSmMin,
   sidebarWidth,
   sidebarMiniWidth,
@@ -36,10 +37,19 @@ const StyledNavbarMenuList = styled.ul`
   }
 `;
 
+// For fixed position menu width is used to set the width
 const StyledNavbarMenu = styled.div`
   box-sizing: border-box;
   display: block;
   float: right;
+
+  /* media queries */
+  @media (max-width: ${screenHeaderCollapse}) {
+    float: left;
+  }
+  @media (min-width: ${screenXsMin}) {
+    float: right;
+  }
 `;
 
 const StyledNavbar = styled.nav`

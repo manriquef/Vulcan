@@ -170,8 +170,7 @@ const StyledUserMenu = styled.li`
   background-image: none;
   border: none;
   outline: none;
-  padding-left: ${navbarPaddingHorizontal};
-  padding-right: ${navbarPaddingHorizontal};
+  padding: ${navbarPaddingVertical} ${navbarPaddingHorizontal};
   position: relative;
   text-decoration: none;
   cursor: pointer;
@@ -230,7 +229,7 @@ class UserMenu extends PureComponent {
                     <UserFooterButton>Profile</UserFooterButton>
                   </LinkContainer>
                   <div style={{ display: 'inline', 'marginLeft': '3px'}}>
-                    <LinkContainer to={`/account`}>
+                    <LinkContainer to={`/account`} key={2}>
                       <UserFooterButton>Account</UserFooterButton>
                     </LinkContainer>
                   </div>
@@ -260,7 +259,6 @@ class UserMenu extends PureComponent {
           </UserDropDown>
         </StyledUserMenu> */
         return (
-          <StyledUserMenu onClick={this._toggleMenu} >
           <Dropdown id="accounts-dropdown" className="users-account-menu">
             <Dropdown.Toggle>
               {this.props.currentUser ? <Components.UsersAvatar size="small" user={this.props.currentUser} link={false} /> : <img src='http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y'/>}
@@ -270,7 +268,6 @@ class UserMenu extends PureComponent {
               <Components.AccountsLoginForm formState={this.state ? STATES[this.state] : STATES.SIGN_UP} />
             </Dropdown.Menu>
           </Dropdown>
-        </StyledUserMenu>
       );
   }
  }

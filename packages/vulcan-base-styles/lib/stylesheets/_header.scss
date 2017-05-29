@@ -58,6 +58,7 @@
 .users-account-menu, .users-menu{
   .btn {
     border: none;
+    padding: 0px;
   }
   .dropdown-toggle {
     height: 50px;
@@ -69,13 +70,11 @@
     -webkit-margin-before: 0px;
     -webkit-margin-after: 0px;
     color: #fff;
-    color: rgba(255, 255, 255, 0.8);
+  //  color: rgba(255, 255, 255, 0.8);
     font-size: 14px;
     text-align: left;
     font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
     font-weight: 400;
-
-    padding: 5px 0;
     margin: 0;
     list-style: none;
     background-color: #fff;
@@ -84,20 +83,20 @@
 
     float: left;
     display: block;
-    padding: 0px;
+    padding-left: 50px; // Set Navbar Login Button
+    padding-right: 35px;
     background: none;
     img{
-      margin-right: 5px;
-      height: 25px;
-      width: 25px;
+      margin-right: 10px;
+      height: 35px;
+      width: 35px;
     }
   }
 
   .dropdown-menu{
     position: absolute;
-    margin-top: 15px;
+    margin-top: 0px;
     border-radius: 0;
-    border-top: 0;
     right: 0;
     left: auto;
   }
@@ -109,7 +108,8 @@
   .buttons{
     .btn{
       display: block;
-      width: 100%;
+      width: 50%;
+      height: 2em;
       text-align: center;
       margin-bottom: $vmargin;
       &:last-child{

@@ -1,4 +1,4 @@
-import { Components, getRawComponent, registerComponent, withList, withCurrentUser } from 'meteor/vulcan:core';
+import { Components, getRawComponent, registerComponent, withList, withCurrentUser, Utils } from 'meteor/vulcan:core';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Posts from 'meteor/vulcan:posts';
