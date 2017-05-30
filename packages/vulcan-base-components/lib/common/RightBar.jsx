@@ -7,7 +7,6 @@ class RightBar extends Component {
   render() {
     return (
       <div className="rightbar" id="rightbar">
-        <Components.SearchForm/>
         <div className="rightbar-categories">
           <Components.CategoriesList />
         </div>

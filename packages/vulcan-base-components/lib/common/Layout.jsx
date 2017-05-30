@@ -72,10 +72,11 @@ const gotoUrl = (user) => {
 
 }
 const navMenu = (user) => ([
+  <Components.SearchForm/>,
   <Header.Item
     href={`https://github.com/manriquef/vulcanjs`}
     iconClass="fa fa-github"
-    key="1"
+    key="2"
     title="Github"
   />,
   <Components.ModalTrigger title="New Post" component={<Header.Item href={`https://github.com/manriquef/vulcanjs`} iconClass="fa fa-plus-square" key="3" title="New Post"/>}>
@@ -84,7 +85,7 @@ const navMenu = (user) => ([
   <Header.UserMenu
     name={user ? user.username : null}
     image={user ? user.avatar : "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y"}
-    key="2"
+    key="3"
     currentUser={user}
   />,
 ]);
@@ -160,13 +161,13 @@ const sb = (pickTheme, user) => ([
       />
     </Sidebar.Menu.Item>
     <Sidebar.Menu.Item
-      icon={{ className: 'fa-files-o' }}
+      icon={{ className: 'fa fa-flag' }}
       labels={[{ key: 1, type: 'primary', text: '4' }]}
-      title="Layout Options"
+      title="Admin View"
     >
-      <Sidebar.Menu.Item title="Top Navigation" />
-      <Sidebar.Menu.Item title="Boxed" href="/boxed" />
-      <Sidebar.Menu.Item title="Fixed" />
+      <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation' }} title="Users Reported"  />
+      <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation' }} title="Posts Reported" href="/boxed" />
+      <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation' }} title="Comments Reported" />
       <Sidebar.Menu.Item title="Collapsed Sidebar" />
     </Sidebar.Menu.Item>
     <Sidebar.Menu.Item
@@ -181,23 +182,6 @@ const sb = (pickTheme, user) => ([
        <Components.PostsNewForm />
       </Components.ModalTrigger>
       <Sidebar.Menu.Item title="Inline Charts" />
-    </Sidebar.Menu.Item>
-    <Sidebar.Menu.Item icon={{ className: 'fa-laptop' }} title="UI Elements" >
-      <Sidebar.Menu.Item title="General" />
-      <Sidebar.Menu.Item title="Icons" />
-      <Sidebar.Menu.Item title="Buttons" />
-      <Sidebar.Menu.Item title="Sliders" />
-      <Sidebar.Menu.Item title="Timeline" />
-      <Sidebar.Menu.Item title="Modals" />
-    </Sidebar.Menu.Item>
-    <Sidebar.Menu.Item icon={{ className: 'fa-edit' }} title="Forms" >
-      <Sidebar.Menu.Item title="General Elements" />
-      <Sidebar.Menu.Item title="Advanced Elements" />
-      <Sidebar.Menu.Item title="Editors" />
-    </Sidebar.Menu.Item>
-    <Sidebar.Menu.Item icon={{ className: 'fa-table' }} title="Tables" >
-      <Sidebar.Menu.Item title="Simple tables" />
-      <Sidebar.Menu.Item title="Data tables" />
     </Sidebar.Menu.Item>
     <Sidebar.Menu.Item
       icon={{ className: 'fa-calendar' }}
@@ -216,12 +200,6 @@ const sb = (pickTheme, user) => ([
       ]}
       title="Mailbox"
     />
-    <Sidebar.Menu.Item icon={{ className: 'fa-folder' }} title="Examples" >
-      <Sidebar.Menu.Item title="Invoice" />
-      <Sidebar.Menu.Item title="Profile" />
-      <Sidebar.Menu.Item title="Blank Page" />
-      <Sidebar.Menu.Item title="Pace Page" />
-    </Sidebar.Menu.Item>
     <Sidebar.Menu.Item icon={{ className: 'fa-share' }} title="Multilevel">
       <Sidebar.Menu.Item title="Level One" />
       <Sidebar.Menu.Item title="Level One" >

@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
 import ToggleButton from './ToggleButton';
 
 import {
@@ -100,7 +99,6 @@ const Navbar = props => (
     collapse={props.collapse}
   >
     <ToggleButton name="sidebar-toggle" className="fa fa-bars" onClick={props.toggle} />
-
     <StyledNavbarMenu>
       <StyledNavbarMenuList name="navbar-menu-wrapper">
         {props.children}

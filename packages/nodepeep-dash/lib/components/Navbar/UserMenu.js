@@ -23,7 +23,7 @@ import {
   screenXsMin,
 } from '../../styles/variables';
 
-const imageSize = `${Math.floor(parseInt(navbarHeight, 10) / 2)}px`;
+const imageSize = `${Math.floor(parseInt(navbarHeight, 10) / 1.1)}px`;
 const imageMarginTop = `-${Math.ceil(
   ((parseInt(imageSize, 10) +
   parseInt(navbarPaddingHorizontal, 10) +

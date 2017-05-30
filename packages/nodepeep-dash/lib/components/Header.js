@@ -7,7 +7,7 @@ import Navbar from './Navbar/Navbar';
 import Logo from './Navbar/Logo';
 import UserMenu from './Navbar/UserMenu';
 import NavItem from './Navbar/NavItem';
-import SearchForm from 'meteor/vulcan:core';
+import SearchForm, { Components } from 'meteor/vulcan:core';
 
 import {
   fontFamilyBase,
@@ -56,7 +56,7 @@ const Header = props => (
       collapse={props.sidebarCollapse}
       sidebarMini={props.sidebarMini}
     >
-
+      
       {props.children}
     </Navbar>
   </StyledHeader>
