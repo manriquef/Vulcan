@@ -35,14 +35,13 @@ Terms object can have the following properties:
 */
 
 import React, { Component } from 'react';
+import { withApollo, graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
-import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import update from 'immutability-helper';
 import { getFragment, getFragmentName } from 'meteor/vulcan:core';
 import Mingo from 'mingo';
 import { compose, withState } from 'recompose';
-import { withApollo } from 'react-apollo';
 
 const withList = (options) => {
 

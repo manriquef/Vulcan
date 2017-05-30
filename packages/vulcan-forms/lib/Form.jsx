@@ -22,7 +22,7 @@ This component expects:
 
 */
 
-import { Components, Utils } from 'meteor/vulcan:core';
+import { Components, Utils, runCallbacks } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, intlShape } from 'react-intl';
@@ -76,6 +76,8 @@ class Form extends Component {
       deletedValues: [],
       currentValues: {}
     };
+
+    this.submitFormCallbacks = [];
   }
 
   // --------------------------------------------------------------------- //
@@ -358,6 +360,11 @@ class Form extends Component {
     }));
   }
 
+  // add a callback to the form submission
+  addToSubmitForm(callback) {
+    this.submitFormCallbacks.push(callback);
+  }
+
   setFormState(fn) {
     this.setState(fn);
   }
@@ -440,6 +447,9 @@ class Form extends Component {
       ...data, // original data generated thanks to Formsy
       ...this.state.currentValues, // ex: can be values from DateTime component
     };
+
+    // run data object through submitForm callbacks
+    data = runCallbacks(this.submitFormCallbacks, data);
 
     const fields = this.getFieldNames();
 
@@ -581,6 +591,7 @@ Form.childContextTypes = {
   autofilledValues: PropTypes.object,
   addToAutofilledValues: PropTypes.func,
   addToDeletedValues: PropTypes.func,
+  addToSubmitForm: PropTypes.func,
   updateCurrentValues: PropTypes.func,
   setFormState: PropTypes.func,
   throwError: PropTypes.func,
