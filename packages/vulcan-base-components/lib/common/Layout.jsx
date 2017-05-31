@@ -4,7 +4,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 import { Dashboard, Header, Sidebar } from 'meteor/nodepeep:dash';
 import Users from 'meteor/vulcan:users';
 import { FormattedMessage, intlShape } from 'react-intl';
@@ -166,8 +167,10 @@ const sb = (pickTheme, user) => ([
       title="Admin View"
     >
       <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation' }} title="Users Reported"  />
-      <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation' }} title="Posts Reported" href="/boxed" />
-      <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation' }} title="Comments Reported" />
+      <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation' }} title="Posts Reported" />
+      <LinkContainer to='/feeds'>
+        <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation' }} title="Comments Reported" />
+      </LinkContainer>
       <Sidebar.Menu.Item title="Collapsed Sidebar" />
     </Sidebar.Menu.Item>
     <Sidebar.Menu.Item
@@ -246,15 +249,11 @@ const Layout = ({currentUser, children, theme, pickTheme}) =>
           fixed
           theme={theme}
         >
-
           <Components.HeadTags />
-
             <div className="main">
               <Components.FlashMessages />
             </div>
-
          {children}
-
          </Dashboard>
   </div>
 
