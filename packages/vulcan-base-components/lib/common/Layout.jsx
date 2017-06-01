@@ -98,6 +98,7 @@ const sb = (pickTheme, user) => ([
     online
     key="1"
   />,*/
+  //const query = _.clone(this.props.router.location.query);
   <Sidebar.Menu header="MAIN NAVIGATION" key="2">
     <Sidebar.Menu.Item icon={{ className: 'fa-dashboard' }} title="Dashboard Colors" >
       <Sidebar.Menu.Item
@@ -245,7 +246,7 @@ const Layout = ({currentUser, children, theme, pickTheme}) =>
           sidebarChildren={sb(pickTheme,currentUser)}
           footerChildren={footer()}
           sidebarMini
-          initialCollapse
+          initialCollapse={false}
           fixed
           theme={theme}
         >
