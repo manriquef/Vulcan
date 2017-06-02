@@ -25,9 +25,13 @@ This component expects:
 import { Components, Utils, runCallbacks } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+<<<<<<< HEAD
 import { FormattedMessage, intlShape } from 'react-intl';
+=======
+import { FormattedMessage, intlShape } from 'meteor/vulcan:i18n';
+>>>>>>> VulcanJS/devel
 import Formsy from 'formsy-react';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
 import Flash from "./Flash.jsx";
 import FormGroup from "./FormGroup.jsx";
 import { flatten, deepValue, getEditableFields, getInsertableFields } from './utils.js';
@@ -60,6 +64,7 @@ class Form extends Component {
     this.mutationErrorCallback = this.mutationErrorCallback.bind(this);
     this.addToAutofilledValues = this.addToAutofilledValues.bind(this);
     this.addToDeletedValues = this.addToDeletedValues.bind(this);
+    this.addToSubmitForm = this.addToSubmitForm.bind(this);
     this.throwError = this.throwError.bind(this);
     this.clearForm = this.clearForm.bind(this);
     this.updateCurrentValues = this.updateCurrentValues.bind(this);
@@ -380,6 +385,7 @@ class Form extends Component {
       updateCurrentValues: this.updateCurrentValues,
       getDocument: this.getDocument,
       setFormState: this.setFormState,
+      addToSubmitForm: this.addToSubmitForm,
     };
   }
 
@@ -529,8 +535,12 @@ class Form extends Component {
         >
           {this.renderErrors()}
           {fieldGroups.map(group => <FormGroup key={group.name} {...group} updateCurrentValues={this.updateCurrentValues} />)}
-          <Button type="submit" bsStyle="primary"><FormattedMessage id="forms.submit"/></Button>
-          {this.props.cancelCallback ? <a className="form-cancel" onClick={this.props.cancelCallback}><FormattedMessage id="forms.cancel"/></a> : null}
+          
+          <div className="form-submit">
+            <Button type="submit" bsStyle="primary">{this.props.submitLabel ? this.props.submitLabel : <FormattedMessage id="forms.submit"/>}</Button>
+            {this.props.cancelCallback ? <a className="form-cancel" onClick={this.props.cancelCallback}>{this.props.cancelLabel ? this.props.cancelLabel : <FormattedMessage id="forms.cancel"/>}</a> : null}
+          </div>
+
         </Formsy.Form>
 
         {
@@ -567,6 +577,8 @@ Form.propTypes = {
   layout: PropTypes.string,
   fields: PropTypes.arrayOf(PropTypes.string),
   showRemove: PropTypes.bool,
+  submitLabel: PropTypes.string,
+  cancelLabel: PropTypes.string,
 
   // callbacks
   submitCallback: PropTypes.func,

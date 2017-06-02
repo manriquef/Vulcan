@@ -5,9 +5,10 @@ Added comment icon next to comment number
 import { Components, registerComponent, ModalTrigger } from 'meteor/vulcan:core';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage, FormattedRelative } from 'react-intl';
+import { FormattedMessage } from 'meteor/vulcan:i18n';
 import { Link } from 'react-router';
 import Posts from "meteor/vulcan:posts";
+import moment from 'moment';
 
 class PostsItem extends PureComponent {
 
@@ -62,14 +63,15 @@ class PostsItem extends PureComponent {
           </div>
 
           <div className="posts-item-meta">
-             {post.sponsored ? <div className="posts-item-sponsored"><FormattedMessage id="posts.sponsored"/></div>
-             : post.user ? <div className="posts-item-user"><Components.UsersAvatar user={post.user} size="small"/>
-             {post.sponsored ? null : <div className="posts-item-date"><FormattedRelative value={post.postedAt}/><Components.UsersName user={post.user}/></div>}
-             </div> : null}
+            {post.sponsored ? <div className="posts-item-sponsored"><FormattedMessage id="posts.sponsored"/></div>
+            {post.user? <div className="posts-item-user"><Components.UsersAvatar user={post.user} size="small"/><Components.UsersName user={post.user}/></div> : null}
+            <div className="posts-item-date">{post.postedAt ? moment(new Date(post.postedAt)).fromNow() : <FormattedMessage id="posts.dateNotDefined"/>}</div>
             <div className="posts-item-comments">
               <Link to={Posts.getPageUrl(post)}>
-                <Components.Icon name="comment" />
-                <FormattedMessage id="comments.count" values={{count: post.commentCount}}/>
+                {!post.commentCount || post.commentCount === 0 ? <FormattedMessage id="comments.count_0"/> :
+                  post.commentCount === 1 ? <FormattedMessage id="comments.count_1" /> :
+                    <FormattedMessage id="comments.count_2" values={{count: post.commentCount}}/>
+                }
               </Link>
             </div>
               {Posts.options.mutations.edit.check(this.props.currentUser, post) ? this.renderActions() : null}

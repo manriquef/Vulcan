@@ -28,12 +28,17 @@ const schema = {
     insertableBy: ['guests'],
     max: 32,
     onInsert: user => {
+<<<<<<< HEAD
       try {
          if (user.services.twitter && user.services.twitter.screenName) {
           return user.services.twitter.screenName;
         }
       } catch(e) {
         console.log("Twitter service not found for this user; probably a dummy user");
+=======
+      if (user.services && user.services.twitter && user.services.twitter.screenName) {
+        return user.services.twitter.screenName;
+>>>>>>> VulcanJS/devel
       }
     }
   },

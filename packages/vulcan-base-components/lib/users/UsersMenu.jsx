@@ -1,9 +1,14 @@
 import { Components, registerComponent, withCurrentUser, ModalTrigger } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'meteor/vulcan:i18n';
 import { Meteor } from 'meteor/meteor';
+<<<<<<< HEAD
 import { Button, Dropdown, MenuItem } from 'react-bootstrap';
+=======
+import Dropdown from 'react-bootstrap/lib/Dropdown';
+import MenuItem from 'react-bootstrap/lib/MenuItem';
+>>>>>>> VulcanJS/devel
 import { LinkContainer } from 'react-router-bootstrap';
 import Users from 'meteor/vulcan:users';
 import { withApollo } from 'react-apollo';
