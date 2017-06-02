@@ -2,13 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/lib/Modal'
 import Users from 'meteor/vulcan:users';
-<<<<<<< HEAD
-import { withDocument, Utils, Components, registerComponent, withMessages } from 'meteor/vulcan:core';
-import { FormattedMessage, intlShape } from 'react-intl';
-=======
 import { withDocument, Components, registerComponent, withMessages } from 'meteor/vulcan:core';
 import { FormattedMessage, intlShape } from 'meteor/vulcan:i18n';
->>>>>>> VulcanJS/devel
 import { gql } from 'react-apollo';
 
 const UsersProfileCheck = ({currentUser, document, loading, flash}, context) => {

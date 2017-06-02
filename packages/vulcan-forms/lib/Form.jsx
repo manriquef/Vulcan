@@ -25,11 +25,7 @@ This component expects:
 import { Components, Utils, runCallbacks } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-<<<<<<< HEAD
-import { FormattedMessage, intlShape } from 'react-intl';
-=======
 import { FormattedMessage, intlShape } from 'meteor/vulcan:i18n';
->>>>>>> VulcanJS/devel
 import Formsy from 'formsy-react';
 import Button from 'react-bootstrap/lib/Button';
 import Flash from "./Flash.jsx";
@@ -535,7 +531,7 @@ class Form extends Component {
         >
           {this.renderErrors()}
           {fieldGroups.map(group => <FormGroup key={group.name} {...group} updateCurrentValues={this.updateCurrentValues} />)}
-          
+
           <div className="form-submit">
             <Button type="submit" bsStyle="primary">{this.props.submitLabel ? this.props.submitLabel : <FormattedMessage id="forms.submit"/>}</Button>
             {this.props.cancelCallback ? <a className="form-cancel" onClick={this.props.cancelCallback}>{this.props.cancelLabel ? this.props.cancelLabel : <FormattedMessage id="forms.cancel"/>}</a> : null}

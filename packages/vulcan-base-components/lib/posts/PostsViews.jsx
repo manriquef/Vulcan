@@ -1,14 +1,9 @@
 import { registerComponent, withCurrentUser } from 'meteor/vulcan:core';
 import React from 'react';
 import PropTypes from 'prop-types';
-<<<<<<< HEAD
-import { FormattedMessage, intlShape } from 'react-intl';
-import { Button, MenuItem } from 'react-bootstrap';
-=======
 import { FormattedMessage, intlShape } from 'meteor/vulcan:i18n';
 import DropdownButton from 'react-bootstrap/lib/DropdownButton';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
->>>>>>> VulcanJS/devel
 import { LinkContainer } from 'react-router-bootstrap';
 import { withRouter } from 'react-router'
 import Users from 'meteor/vulcan:users';
