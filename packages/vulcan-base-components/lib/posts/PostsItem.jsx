@@ -63,7 +63,7 @@ class PostsItem extends PureComponent {
           </div>
 
           <div className="posts-item-meta">
-            {post.sponsored ? <div className="posts-item-sponsored"><FormattedMessage id="posts.sponsored"/></div>
+            {post.sponsored ? <div className="posts-item-sponsored"><FormattedMessage id="posts.sponsored"/></div> : null}
             {post.user? <div className="posts-item-user"><Components.UsersAvatar user={post.user} size="small"/><Components.UsersName user={post.user}/></div> : null}
             <div className="posts-item-date">{post.postedAt ? moment(new Date(post.postedAt)).fromNow() : <FormattedMessage id="posts.dateNotDefined"/>}</div>
             <div className="posts-item-comments">

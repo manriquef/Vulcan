@@ -9,7 +9,7 @@ import { Meteor } from 'meteor/meteor';
 import { withApollo } from 'react-apollo';
 import { STATES } from 'meteor/vulcan:accounts';
 import { Dropdown } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'meteor/vulcan:i18n';
 
 import DropdownMenu from './DropdownMenu';
 import {

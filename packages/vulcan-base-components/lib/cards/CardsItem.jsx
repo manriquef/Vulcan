@@ -1,9 +1,10 @@
 import { Components, registerComponent, Button, ModalTrigger } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage, FormattedRelative } from 'react-intl';
+import { FormattedMessage } from 'meteor/vulcan:i18n';
 import { Link } from 'react-router';
 import Posts from "meteor/vulcan:posts";
+import moment from 'moment';
 
 class CardsItem extends Component {
 
@@ -55,7 +56,7 @@ class CardsItem extends Component {
               </Link>
             </div>
             {post.user? <div className="cards-item-user"><Components.UsersAvatar user={post.user} size="small"/></div> : null}
-            <div className="cards-item-date">{post.postedAt ? <FormattedRelative value={post.postedAt}/> : <FormattedMessage id="posts.dateNotDefined"/>}</div>
+            <div className="cards-item-date">{post.postedAt ? moment(new Date(post.postedAt)).fromNow() : <FormattedMessage id="posts.dateNotDefined"/>}</div>
             {/*<div className="cards-item-comments">
               <Link to={Posts.getPageUrl(post)}>
                 <Components.Icon name="comment" />

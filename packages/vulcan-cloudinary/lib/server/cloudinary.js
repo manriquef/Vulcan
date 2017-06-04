@@ -2,7 +2,6 @@ import cloudinary from 'cloudinary';
 import Posts from 'meteor/vulcan:posts';
 import Users from 'meteor/vulcan:users';
 import { addCallback, Utils, getSetting } from 'meteor/vulcan:core';
-
 const Cloudinary = cloudinary.v2;
 const uploadSync = Meteor.wrapAsync(Cloudinary.uploader.upload);
 const cloudinarySettings = getSetting("cloudinary");
@@ -55,7 +54,7 @@ const CloudinaryUtils = {
 Meteor.methods({
   testCloudinaryUpload: function (thumbnailUrl) {
     if (Users.isAdmin(Meteor.user())) {
-      thumbnailUrl = typeof thumbnailUrl === "undefined" ? "http://www.telescopeapp.org/images/logo.png" : thumbnailUrl;
+      thumbnailUrl = typeof thumbnailUrl === "undefined" ? "http://www.vulcanjs.org/images/logo.png" : thumbnailUrl;
       const data = CloudinaryUtils.uploadImage(thumbnailUrl);
       console.log(data); // eslint-disable-line
     }

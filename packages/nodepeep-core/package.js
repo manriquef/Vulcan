@@ -1,6 +1,7 @@
+
 Package.describe({
   name: "nodepeep:core",
-  version: '1.3.2'
+  version: '1.4.0'
 });
 
 Package.onUse( function(api) {
@@ -8,10 +9,10 @@ Package.onUse( function(api) {
   api.use([
     'fourseven:scss@4.5.0',
 
-    'vulcan:core@1.3.2',
-    'vulcan:base-components@1.3.2',
-    'vulcan:posts@1.3.2',
-    'vulcan:users@1.3.2'
+    'vulcan:core@1.4.0',
+    'vulcan:base-components@1.4.0',
+    'vulcan:posts@1.4.0',
+    'vulcan:users@1.4.0'
   ]);
 
   api.mainModule('server.js', 'server');

@@ -11,18 +11,19 @@ vulcan:users                      # user management and permissions
 ############ Features Packages ############
 
  vulcan:accounts
+ vulcan:categories
  vulcan:cloudinary
- vulcan:email
- vulcan:posts
  vulcan:comments
- vulcan:newsletter
- vulcan:notifications
+ vulcan:email
+ vulcan:embedapi
+ vulcan:events
  vulcan:forms-tags
  vulcan:forms-upload
- vulcan:categories
+ vulcan:i18n
+ vulcan:newsletter
+ vulcan:notifications
+ vulcan:posts
  vulcan:voting
- vulcan:events
- vulcan:embedapi
  #vulcan:embedly
  vulcan:api
  vulcan:rss

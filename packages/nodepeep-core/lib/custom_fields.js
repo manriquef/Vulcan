@@ -3,7 +3,7 @@ import Users from 'meteor/vulcan:users';
 import Categories from 'meteor/vulcan:categories';
 import { getCategoriesAsOptions } from 'meteor/vulcan:categories';
 import Tags from 'meteor/vulcan:forms-tags';
-import { getComponent, getSetting } from 'meteor/vulcan:lib';
+import { getComponent, getSetting } from 'meteor/vulcan:core';
 
 /*
 Modified 18APR2017
@@ -79,7 +79,7 @@ Categories.addField([
       viewableBy: ['guests'],
       form: {
         options: {
-          preset: getSetting('cloudinaryPresets').avatar // this setting refers to the transformation you want to apply to the image
+          preset: getSetting('cloudinary').avatar // this setting refers to the transformation you want to apply to the image
         },
       }
     }
@@ -161,7 +161,7 @@ Users.addField([
     viewableBy: ['guests'],
     form: {
       options: {
-        preset: getSetting('cloudinaryPresets').avatar // this setting refers to the transformation you want to apply to the image
+        preset: getSetting('cloudinary').avatar // this setting refers to the transformation you want to apply to the image
       },
     }
    }

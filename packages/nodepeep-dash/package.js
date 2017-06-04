@@ -1,12 +1,12 @@
 Package.describe({
   name: 'nodepeep:dash',
-  version: '1.3.2'
+  version: '1.4.0'
 });
 
 Package.onUse( function(api) {
 
   api.use([
-    'vulcan:core@1.3.2',
+    'vulcan:core@1.4.0',
   ]);
 
   api.mainModule('server.js', 'server');

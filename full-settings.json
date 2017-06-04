@@ -31,10 +31,11 @@
     "useSegment": false,
     "segmentWriteKey": "456bar",
 
-    "cloudinaryCloudName": "nodepeep",
-    "cloudinaryPresets": {
-    "avatar": "nodepeep-avatar",
-    "posts": "nodepeep-post"
+
+    "cloudinary": {
+      "cloudName": "nodepeep",
+      "avatar": "nodepeep-avatar",
+      "posts": "nodepeep-post"
     }
   },
 

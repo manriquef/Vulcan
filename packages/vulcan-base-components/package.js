@@ -18,9 +18,9 @@ Package.onUse(function (api) {
     'vulcan:accounts@1.4.0',
     'vulcan:categories@1.4.0',
     // Nodepeep packages
-    'nodepeep:dash@1.3.2',
-    'nodepeep:report@1.3.2',
-    'nodepeep:post-by-feed@1.3.2',
+    'nodepeep:dash@1.4.0',
+    'nodepeep:report@1.4.0',
+    'nodepeep:post-by-feed@1.4.0',
     // third party
     'fortawesome:fontawesome@4.7.0',
   ]);
