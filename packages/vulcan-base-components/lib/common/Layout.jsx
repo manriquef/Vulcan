@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Dashboard, Header, Sidebar } from 'meteor/nodepeep:dash';
 import Users from 'meteor/vulcan:users';
@@ -72,7 +72,10 @@ const gotoUrl = (user) => {
   )
 
 }
-const navMenu = (user) => ([
+
+const navMenu = (user) => {
+
+  return ([
   <Components.SearchForm/>,
   <Header.Item
     href={`https://github.com/manriquef/vulcanjs`}
@@ -89,16 +92,26 @@ const navMenu = (user) => ([
     key="3"
     currentUser={user}
   />,
-]);
+])};
 
-const sb = (pickTheme, user) => ([
+const sb = (pickTheme, user, routerIn) => {
+
+  let views = ["top", "new", "best"];
+  const adminViews = ["pending", "rejected", "scheduled", "reported_users", "reported_posts", "reported_comments", "userUpvotedPosts", "userDownvotedPosts"];
+
+  if (Users.canDo(user, "posts.edit.all")) {
+    views = views.concat(adminViews);
+  }
+
+  const query = _.clone(routerIn.location.query);
   /*<Sidebar.UserPanel
     name={user ? user.username : "Guest"}
     image={user ? user.avatar : "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y"}
     online
     key="1"
   />,*/
-  //const query = _.clone(this.props.router.location.query);
+
+  return ([
   <Sidebar.Menu header="MAIN NAVIGATION" key="2">
     <Sidebar.Menu.Item icon={{ className: 'fa-dashboard' }} title="Dashboard Colors" >
       <Sidebar.Menu.Item
@@ -162,17 +175,17 @@ const sb = (pickTheme, user) => ([
         title="Yellow Light"
       />
     </Sidebar.Menu.Item>
-    <Sidebar.Menu.Item
-      icon={{ className: 'fa fa-flag' }}
-      labels={[{ key: 1, type: 'primary', text: '4' }]}
-      title="Admin View"
-    >
-      <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation' }} title="Users Reported"  />
-      <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation' }} title="Posts Reported" />
-      <LinkContainer to='/feeds'>
-        <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation' }} title="Comments Reported" />
+    <Sidebar.Menu.Item icon={{ className: 'fa fa-flag' }} labels={[{ key: 1, type: 'primary', text: '4' }]} title="Admin View">
+      {views.map(view =>
+        <LinkContainer key={view} to={{pathname: "/", query: {...query, view: view}}} className="button-item">
+          <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation-triangle' }} title={<FormattedMessage id={"posts."+view}/>} />
+        </LinkContainer>)}
+      <LinkContainer to='/newfeeds'>
+        <Sidebar.Menu.Item icon={{ className: 'fa fa-plus' }} title="New Post Feeds" />
       </LinkContainer>
-      <Sidebar.Menu.Item title="Collapsed Sidebar" />
+      <LinkContainer to='/feeds'>
+        <Sidebar.Menu.Item icon={{ className: 'fa fa-newspaper-o' }} title="Post Feeds" />
+      </LinkContainer>
     </Sidebar.Menu.Item>
     <Sidebar.Menu.Item
       icon={{ className: 'fa-th' }}
@@ -221,7 +234,7 @@ const sb = (pickTheme, user) => ([
     <Sidebar.Menu.Item icon={{ color: 'warning' }} title="Warning" />
     <Sidebar.Menu.Item icon={{ color: 'information' }} title="Information" />
   </Sidebar.Menu>,
-]);
+])};
 
 const footer = () => ([
   <strong>
@@ -235,15 +248,18 @@ const footer = () => ([
   </div>,
 ]);
 
-const Layout = ({currentUser, children, theme, pickTheme}) =>
+const Layout = ({currentUser, children, theme, pickTheme}) => {
 
+  routerIn = children.props.router;
+  console.log(routerIn);
+  return (
   <div className="wrapper" id="wrapper">
 
     {currentUser ? <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} /> : null}
 
         <Dashboard
           navbarChildren={navMenu(currentUser)}
-          sidebarChildren={sb(pickTheme,currentUser)}
+          sidebarChildren={sb(pickTheme,currentUser, routerIn)}
           footerChildren={footer()}
           sidebarMini
           initialCollapse={false}
@@ -258,9 +274,15 @@ const Layout = ({currentUser, children, theme, pickTheme}) =>
          </Dashboard>
   </div>
 
+)}
+
 Layout.propTypes = {
     pickTheme: PropTypes.func,
     theme: PropTypes.string,
 };
 
-registerComponent('Layout', Layout, withCurrentUser, connect(mapStateToProps, mapDispatchToProps));
+Layout.contextTypes = {
+  currentRoute: PropTypes.object,
+};
+
+registerComponent('Layout', Layout, withCurrentUser, withRouter, connect(mapStateToProps, mapDispatchToProps));

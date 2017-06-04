@@ -116,6 +116,7 @@ Dashboard.propTypes = {
   sidebarMini: PropTypes.bool,
   initialCollapse: PropTypes.bool,
   theme: PropTypes.string,
+  user: PropTypes.string,
 };
 
 Dashboard.defaultProps = {
