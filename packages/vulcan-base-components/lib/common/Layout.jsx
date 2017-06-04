@@ -8,7 +8,7 @@ import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Dashboard, Header, Sidebar } from 'meteor/nodepeep:dash';
 import Users from 'meteor/vulcan:users';
-import { FormattedMessage, intlShape } from 'react-intl';
+import { FormattedMessage, intlShape } from 'meteor/vulcan:i18n';
 
 /* eslint-disable no-alert */
 

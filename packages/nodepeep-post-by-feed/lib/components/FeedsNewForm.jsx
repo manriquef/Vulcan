@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Components, registerComponent, getFragment, withCurrentUser, withList} from 'meteor/vulcan:core';
-import { intlShape } from 'react-intl';
+import { intlShape } from 'meteor/vulcan:i18n';
 import NovaForm from 'meteor/vulcan:forms';
 import Feeds from '../collection.js';
 import Users from 'meteor/vulcan:users';

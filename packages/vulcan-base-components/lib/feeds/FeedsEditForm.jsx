@@ -1,7 +1,7 @@
 import { Components, registerComponent, getFragment, withMessages, withList } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
+import { intlShape } from 'meteor/vulcan:i18n';
 import Feeds from 'meteor/nodepeep:post-by-feed';
 import Users from 'meteor/vulcan:users';
 import { withRouter } from 'react-router'

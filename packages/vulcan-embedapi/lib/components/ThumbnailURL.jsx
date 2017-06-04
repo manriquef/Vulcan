@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'meteor/vulcan:i18n';
 import { getSetting } from 'meteor/vulcan:core';
 // import Formsy from 'formsy-react';
 import FRC from 'formsy-react-components';
