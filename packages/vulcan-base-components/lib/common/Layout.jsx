@@ -76,20 +76,20 @@ const gotoUrl = (user) => {
 const navMenu = (user) => {
 
   return ([
-  <Components.SearchForm/>,
+  <Components.SearchForm key="1"/>,
   <Header.Item
-    href={`https://github.com/manriquef/vulcanjs`}
-    iconClass="fa fa-github"
-    key="2"
-    title="Github"
+      href={`https://github.com/manriquef/vulcanjs`}
+      iconClass="fa fa-github"
+      key="2"
+      title="Github"
   />,
-  <Components.ModalTrigger title="New Post" component={<Header.Item href={`https://github.com/manriquef/vulcanjs`} iconClass="fa fa-plus-square" key="3" title="New Post"/>}>
+  <Components.ModalTrigger title="New Post" key="3" component={<Header.Item href={`https://github.com/manriquef/vulcanjs`} iconClass="fa fa-plus-square" key="4" title="New Post"/>}>
       <Components.PostsNewForm />
   </Components.ModalTrigger>,
   <Header.UserMenu
     name={user ? user.username : null}
     image={user ? user.avatar : "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y"}
-    key="3"
+    key="5"
     currentUser={user}
   />,
 ])};
@@ -178,7 +178,7 @@ const sb = (pickTheme, user, routerIn) => {
     <Sidebar.Menu.Item icon={{ className: 'fa fa-flag' }} labels={[{ key: 1, type: 'primary', text: '4' }]} title="Admin View">
       {views.map(view =>
         <LinkContainer key={view} to={{pathname: "/", query: {...query, view: view}}} className="button-item">
-          <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation-triangle' }} title={<FormattedMessage id={"posts."+view}/>} />
+          <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation-triangle' }} title={<FormattedMessage id={"posts."+view}/>.toString()} />
         </LinkContainer>)}
       <LinkContainer to='/newfeeds'>
         <Sidebar.Menu.Item icon={{ className: 'fa fa-plus' }} title="New Post Feeds" />
@@ -195,7 +195,7 @@ const sb = (pickTheme, user, routerIn) => {
     <Sidebar.Menu.Item icon={{ className: 'fa-pie-chart' }} title="Charts" >
       <Sidebar.Menu.Item title="ChartJS" />
       <Sidebar.Menu.Item title="Morris" />
-      <Components.ModalTrigger title="Bitch" component={<Sidebar.Menu.Item title="Flot" />}>
+      <Components.ModalTrigger title="Fixme" component={<Sidebar.Menu.Item title="Flot" />}>
        <Components.PostsNewForm />
       </Components.ModalTrigger>
       <Sidebar.Menu.Item title="Inline Charts" />
@@ -236,22 +236,24 @@ const sb = (pickTheme, user, routerIn) => {
   </Sidebar.Menu>,
 ])};
 
-const footer = () => ([
-  <strong>
-    <span>Copyright © 2017 </span>
-    <a href="http://www.nodepeep.com">FM</a>
-    <span>. </span>
-  </strong>,
-  <span> All rights reserved.</span>,
-  <div style={{ float: 'right' }}>
-    <b>Version</b><span> 1.0.0</span>
-  </div>,
-]);
+const footer = () => {
+
+  return([
+    <strong key="1">
+      <span>Copyright © 2017 </span>
+      <a href="http://www.nodepeep.com">FM</a>
+      <span>. </span>
+    </strong>,
+    <span key="2"> All rights reserved.</span>,
+    <div key="3" style={{ float: 'right' }}>
+      <b>Version</b><span> 1.0.0</span>
+    </div>
+])};
 
 const Layout = ({currentUser, children, theme, pickTheme}) => {
 
   routerIn = children.props.router;
-  console.log(routerIn);
+
   return (
   <div className="wrapper" id="wrapper">
 
@@ -260,7 +262,7 @@ const Layout = ({currentUser, children, theme, pickTheme}) => {
         <Dashboard
           navbarChildren={navMenu(currentUser)}
           sidebarChildren={sb(pickTheme,currentUser, routerIn)}
-          footerChildren={footer()}
+          footerChildren={footer()} // generates warnings...
           sidebarMini
           initialCollapse={false}
           fixed
@@ -279,10 +281,6 @@ const Layout = ({currentUser, children, theme, pickTheme}) => {
 Layout.propTypes = {
     pickTheme: PropTypes.func,
     theme: PropTypes.string,
-};
-
-Layout.contextTypes = {
-  currentRoute: PropTypes.object,
 };
 
 registerComponent('Layout', Layout, withCurrentUser, withRouter, connect(mapStateToProps, mapDispatchToProps));
