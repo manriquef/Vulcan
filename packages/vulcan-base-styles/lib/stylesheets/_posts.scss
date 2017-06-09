@@ -2,9 +2,12 @@
   Modified: 25MAR2017
   Added Cards Items
 */
-
+.posts-page{
+  padding-left: 5px;
+}
 .posts-list{
   width: 99%;
+  padding-left: 5px;
 }
 
 .posts-item-content{
@@ -251,14 +254,7 @@
   font-size: $smallest-font;
   margin-right: $hmargin;
   position: absolute;
-  top: 15px;
-  left: 40px;
-  .users-name{
-    position: absolute;
-    top: -19px;
-    left: 0px;
-    font-size: $smaller-font;
-  }
+  top: 1.75em;
 }
 
 .posts-item-user{
@@ -435,8 +431,9 @@
   position: relative;
   max-height: 300px;
   top: 20px;
-  text-align: center;
+  text-align: left;
   overflow: hidden;
+  padding-left: 10px;
 }
 
 .cards-item{
@@ -541,9 +538,9 @@
     max-height: 190px;
     .avatar{
       display: inline-block;
-      position: relative;
-      left: -20px;
-      //top: 25px;
+      position: absolute;
+      left: 40px;
+      bottom: 0px;
       //border-radius: 100%;
       height: 25px;
       width: 25px;
@@ -567,12 +564,9 @@
 .cards-item-comments{
 //  display: flex;
   text-align: right;
-  width: 15%;
-  min-width: 200px;
   position: absolute;
-  bottom: 2px;
-  left: -2px;
-  margin-left: -2px;
+  bottom: 10px;
+  left: 70px;
   font-size: $smallest-font;
 }
 

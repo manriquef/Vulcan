@@ -56,13 +56,16 @@ class CardsItem extends Component {
               </Link>
             </div>
             {post.user? <div className="cards-item-user"><Components.UsersAvatar user={post.user} size="small"/></div> : null}
-            <div className="cards-item-date">{post.postedAt ? moment(new Date(post.postedAt)).fromNow() : <FormattedMessage id="posts.dateNotDefined"/>}</div>
-            {/*<div className="cards-item-comments">
+            <div className="cards-item-date">{/*post.postedAt ? moment(new Date(post.postedAt)).fromNow() : <FormattedMessage id="posts.dateNotDefined"/>*/}</div>
+            {<div className="cards-item-comments">
+              <Components.Icon name="comments"/>
               <Link to={Posts.getPageUrl(post)}>
-                <Components.Icon name="comment" />
-                <FormattedMessage id="comments.count" values={{count: post.commentCount}}/>
+                {!post.commentCount || post.commentCount === 0 ? <FormattedMessage id="comments.count_0"/> :
+                  post.commentCount === 1 ? <FormattedMessage id="comments.count_1" /> :
+                    <FormattedMessage id="comments.count_2" values={{count: post.commentCount}}/>
+                }
               </Link>
-            </div>*/}
+            </div>}
 
             <div className="cards-item-vote">
               <Components.Vote collection={Posts} document={post} currentUser={this.props.currentUser}/>

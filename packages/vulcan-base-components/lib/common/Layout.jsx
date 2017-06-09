@@ -77,12 +77,6 @@ const navMenu = (user) => {
 
   return ([
   <Components.SearchForm key="1"/>,
-  <Header.Item
-      href={`https://github.com/manriquef/vulcanjs`}
-      iconClass="fa fa-github"
-      key="2"
-      title="Github"
-  />,
   <Components.ModalTrigger title="New Post" key="3" component={<Header.Item href={`https://github.com/manriquef/vulcanjs`} iconClass="fa fa-plus-square" key="4" title="New Post"/>}>
       <Components.PostsNewForm />
   </Components.ModalTrigger>,

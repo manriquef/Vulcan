@@ -15,7 +15,7 @@ const PostsList = ({className, results, loading, count, totalCount, loadMore, sh
   if (results && results.length) {
 
     const hasMore = totalCount > results.length;
-    const topCards = 5;
+    const topCards = 4;
 
     return (
       <div className={classNames(className, 'posts-list')}>
@@ -25,9 +25,13 @@ const PostsList = ({className, results, loading, count, totalCount, loadMore, sh
           results.map(post => <Components.PostsItem post={post} key={post._id} currentUser={currentUser} terms={terms} />)}
         <div className="posts-list-content">
           <Components.RightBar/>
-          {totalCount >=5 ? <div className="posts-list-content">{results.slice(topCards, results.length).map(post => <Components.PostsItem post={post} key={post._id} currentUser={currentUser} terms={terms} />)}
-            {showLoadMore ? hasMore ?  <Components.PostsLoadMore loading={loadingMore} loadMore={loadMore} count={count} totalCount={totalCount} />) : <Components.PostsNoMore/>}
-          </div> : null}
+          <div className="posts-list-content">
+            {totalCount >=5 ? results.slice(topCards, results.length).map(post => <Components.PostsItem post={post} key={post._id} currentUser={currentUser} terms={terms} />) : null}
+          </div>
+            {showLoadMore ?
+              hasMore ?
+                <Components.PostsLoadMore loading={loadingMore} loadMore={loadMore} count={count} totalCount={totalCount} /> :
+                <Components.PostsNoMore/> : null}
         </div>
       </div>
     )
