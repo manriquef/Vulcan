@@ -178,7 +178,7 @@ const sb = (pickTheme, user, routerIn) => {
     <Sidebar.Menu.Item icon={{ className: 'fa fa-flag' }} labels={[{ key: 1, type: 'primary', text: '4' }]} title="Admin View">
       {views.map(view =>
         <LinkContainer key={view} to={{pathname: "/", query: {...query, view: view}}} className="button-item">
-          <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation-triangle' }} title={<FormattedMessage id={"posts."+view}/>.toString()} />
+          <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation-triangle' }} title={<FormattedMessage id={"posts."+view}/>} />
         </LinkContainer>)}
       <LinkContainer to='/newfeeds'>
         <Sidebar.Menu.Item icon={{ className: 'fa fa-plus' }} title="New Post Feeds" />
