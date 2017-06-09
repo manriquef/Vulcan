@@ -174,9 +174,9 @@ const sb = (pickTheme, user, routerIn) => {
         <LinkContainer key={view} to={{pathname: "/", query: {...query, view: view}}} className="button-item">
           <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation-triangle' }} title={<FormattedMessage id={"posts."+view}/>} />
         </LinkContainer>)}
-      <LinkContainer to='/newfeeds'>
-        <Sidebar.Menu.Item icon={{ className: 'fa fa-plus' }} title="New Post Feeds" />
-      </LinkContainer>
+      <Components.ModalTrigger component={<Sidebar.Menu.Item icon={{ className: 'fa fa-plus' }} title="New Post Feeds" parentHover={true} />}>
+        <Components.FeedsNewForm/>
+      </Components.ModalTrigger>
       <LinkContainer to='/feeds'>
         <Sidebar.Menu.Item icon={{ className: 'fa fa-newspaper-o' }} title="Post Feeds" />
       </LinkContainer>
