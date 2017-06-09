@@ -65,15 +65,17 @@ class PostsItem extends PureComponent {
           <div className="posts-item-meta">
             {post.sponsored ? <div className="posts-item-sponsored"><FormattedMessage id="posts.sponsored"/></div> : null}
             {post.user? <div className="posts-item-user"><Components.UsersAvatar user={post.user} size="small"/><div className="posts-item-date">{post.postedAt ? moment(new Date(post.postedAt)).fromNow() : <FormattedMessage id="posts.dateNotDefined"/>}</div>
-            <Components.UsersName user={post.user}/></div> : null}
+            <Components.UsersName user={post.user}/>
             <div className="posts-item-comments">
               <Link to={Posts.getPageUrl(post)}>
+                {<Components.Icon name="comments"/>}
                 {!post.commentCount || post.commentCount === 0 ? <FormattedMessage id="comments.count_0"/> :
                   post.commentCount === 1 ? <FormattedMessage id="comments.count_1" /> :
                     <FormattedMessage id="comments.count_2" values={{count: post.commentCount}}/>
                 }
               </Link>
             </div>
+          </div> : null}
               {Posts.options.mutations.edit.check(this.props.currentUser, post) ? this.renderActions() : null}
               {this.props.currentUser && this.props.currentUser.isAdmin ? <Components.PostsStats post={post} /> : null}
             </div>

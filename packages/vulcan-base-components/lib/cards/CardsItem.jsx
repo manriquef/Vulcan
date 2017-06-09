@@ -58,8 +58,8 @@ class CardsItem extends Component {
             {post.user? <div className="cards-item-user"><Components.UsersAvatar user={post.user} size="small"/></div> : null}
             <div className="cards-item-date">{/*post.postedAt ? moment(new Date(post.postedAt)).fromNow() : <FormattedMessage id="posts.dateNotDefined"/>*/}</div>
             {<div className="cards-item-comments">
-              <Components.Icon name="comments"/>
               <Link to={Posts.getPageUrl(post)}>
+                {<Components.Icon name="comments"/>}
                 {!post.commentCount || post.commentCount === 0 ? <FormattedMessage id="comments.count_0"/> :
                   post.commentCount === 1 ? <FormattedMessage id="comments.count_1" /> :
                     <FormattedMessage id="comments.count_2" values={{count: post.commentCount}}/>
