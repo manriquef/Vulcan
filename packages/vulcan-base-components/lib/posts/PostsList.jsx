@@ -26,7 +26,7 @@ const PostsList = ({className, results, loading, count, totalCount, loadMore, sh
         <div className="posts-list-content">
           <Components.RightBar/>
           {totalCount >=5 ? <div className="posts-list-content">{results.slice(topCards, results.length).map(post => <Components.PostsItem post={post} key={post._id} currentUser={currentUser} terms={terms} />)}
-            {hasMore ? (loadingMore ? <Components.PostsLoading/> : <Components.PostsLoadMore loadMore={loadMore} count={count} totalCount={totalCount} />) : <Components.PostsNoMore/>}
+            {showLoadMore ? hasMore ?  <Components.PostsLoadMore loading={loadingMore} loadMore={loadMore} count={count} totalCount={totalCount} />) : <Components.PostsNoMore/>}
           </div> : null}
         </div>
       </div>
