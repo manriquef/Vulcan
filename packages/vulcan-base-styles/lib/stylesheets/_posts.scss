@@ -274,11 +274,12 @@
   color: $medium-text;
   .icon{
     font-size: 2rem;
-    color: #0000FF;
+    color: $iconColor;
   }
   position: absolute;
-  left: 120px;
-  top: 5px;
+  left: 140px;
+  top: 2px;
+  width: 10em;
 }
 
 .posts-item-sponsored{
@@ -431,9 +432,10 @@
   position: relative;
   max-height: 300px;
   top: 20px;
-  text-align: left;
+  text-align: center;
   overflow: hidden;
   padding-left: 10px;
+  width: 75%;
 }
 
 .cards-item{
@@ -570,7 +572,7 @@
   font-size: $smallest-font;
   .icon{
     font-size: 1.5rem;
-    color: #0000FF;
+    color: $iconColor;
   }
 }
 

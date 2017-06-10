@@ -77,9 +77,18 @@ const navMenu = (user) => {
 
   return ([
   <Components.SearchForm key="1"/>,
-  <Components.ModalTrigger title="New Post" key="3" component={<Header.Item href={`https://github.com/manriquef/vulcanjs`} iconClass="fa fa-plus-square" key="4" title="New Post"/>}>
+  <Components.ModalTrigger title="New Post" key="2" component={<Header.Item href={`https://github.com/manriquef/vulcanjs`} iconClass="fa fa-plus-square" key="3" title="New Post"/>}>
       <Components.PostsNewForm />
   </Components.ModalTrigger>,
+  <Header.Item
+    href={`https://github.com/manriquef/vulcanjs`}
+    iconClass="fa fa-envelope-o"
+    key="4"
+    title=""
+    labels={[
+      { key: 1, type: 'danger', text: '50000' },
+    ]}
+  />,
   <Header.UserMenu
     name={user ? user.username : null}
     image={user ? user.avatar : "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y"}

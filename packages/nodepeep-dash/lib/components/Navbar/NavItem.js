@@ -13,7 +13,66 @@ import {
   navbarPaddingHorizontal,
   navbarPaddingVertical,
   screenXsMin,
+  lightBlue,
+  green,
+  yellow,
+  red,
+  aqua,
 } from '../../styles/variables';
+
+const NavLabel = styled.div`
+  /* shared */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: ${fontFamilyBase};
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently not supported by any browser */
+
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  display: inline;
+  padding: .2em .6em .3em .6em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  float: left!important;
+  color: #fff;
+
+  /* ----- color ----- */
+  background-color: ${(props) => {
+    switch (props.type) {
+      case 'primary':
+        return lightBlue;
+      case 'success':
+        return green;
+      case 'danger':
+        return red;
+      case 'warning':
+        return yellow;
+      case 'information':
+        return aqua;
+      default:
+        return lightBlue;
+    }
+  }};
+
+  /* ----- collapse ----- */
+  ${props => props.collapse && `
+    display: ${props.hover ? 'block' : 'none'};
+    float: right;
+  `}
+`;
 
 const imageSize = `${Math.floor(parseInt(navbarHeight, 10) / 2)}px`;
 const imageMarginTop = `-${Math.ceil(
@@ -94,7 +153,7 @@ const StyledLink = styled.a`
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently not supported by any browser */
-
+  height: 100%;
   color: inherit;
   display: block;
   padding: ${navbarPaddingVertical} ${navbarPaddingHorizontal};
@@ -120,7 +179,7 @@ const StyledItem = styled.li`
   font-size: ${fontSizeBase};
   line-height: ${lineHeightBase};
   box-sizing: border-box;
-
+  height: 50px;
   float: left;
   display: block;
   background-color: transparent;
@@ -144,6 +203,14 @@ const StyledItem = styled.li`
   }
 `;
 
+const MsgSpan = styled.span`
+  position: absolute;
+  right: 0px;
+  margin-top: -7px;
+  float: right;
+
+`;
+
 const displayImage = (src, icon) => {
   if (src) {
     return <StyledImage src={src} />;
@@ -153,16 +220,45 @@ const displayImage = (src, icon) => {
   return null;
 };
 
-const NavItem = ({ title, onClick, href, image, iconClass }) => (
+const renderLabels = (labels) => (
+  labels.map((l) => {
+    if (l.key && l.type && l.text) {
+      if (l.key === 1) {
+        return (<NavLabel
+          key={l.key.toString()}
+          type={l.type}
+        >
+          {l.text}
+        </NavLabel>);
+      } else {
+        return (<NavLabel
+          key={l.key.toString()}
+          type={l.type}
+        >
+          {l.text}
+        </NavLabel>);
+      }
+    }
+    return null;
+  })
+);
+
+const NavItem = ({ title, onClick, href, image, iconClass, labels }) => (
   <StyledItem>
     {onClick &&
       <StyledLink onClick={onClick} href={null}>
         {displayImage(image, iconClass)}
+        <MsgSpan>
+          {(labels ? renderLabels(labels) : null )}
+        </MsgSpan>
         <StyledSpan>{title}</StyledSpan>
       </StyledLink>
     }
     {(!onClick && href) &&
       <StyledLink href={href}>
+        <MsgSpan>
+          {(labels ? renderLabels(labels) : null )}
+        </MsgSpan>
         {displayImage(image, iconClass)}
         <StyledSpan>{title}</StyledSpan>
       </StyledLink>
@@ -176,6 +272,7 @@ NavItem.propTypes = {
   href: PropTypes.string,
   image: PropTypes.string,
   iconClass: PropTypes.string,
+  labels: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default NavItem;

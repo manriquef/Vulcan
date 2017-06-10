@@ -40,14 +40,15 @@ const StyledNavbarMenuList = styled.ul`
 const StyledNavbarMenu = styled.div`
   box-sizing: border-box;
   display: block;
-  float: right;
+  float: left;
+  width: 100%
 
   /* media queries */
   @media (max-width: ${screenHeaderCollapse}) {
     float: left;
   }
   @media (min-width: ${screenXsMin}) {
-    float: right;
+    float: left;
   }
 `;
 
