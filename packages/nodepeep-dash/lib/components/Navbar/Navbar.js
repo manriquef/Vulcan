@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ToggleButton from './ToggleButton';
+import { Components } from 'meteor/vulcan:core';
 
 import {
   transitionSpeed,
@@ -41,7 +42,6 @@ const StyledNavbarMenu = styled.div`
   box-sizing: border-box;
   display: block;
   float: left;
-  width: 100%
 
   /* media queries */
   @media (max-width: ${screenHeaderCollapse}) {
@@ -100,6 +100,7 @@ const Navbar = props => (
     collapse={props.collapse}
   >
     <ToggleButton name="sidebar-toggle" className="fa fa-bars" onClick={props.toggle} />
+    <Components.SearchForm key="1"/>
     <StyledNavbarMenu>
       <StyledNavbarMenuList name="navbar-menu-wrapper">
         {props.children}

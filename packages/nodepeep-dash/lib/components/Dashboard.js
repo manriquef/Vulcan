@@ -48,13 +48,23 @@ class Dashboard extends React.Component {
 
     this.state = {
       sidebarCollapse: this.props.initialCollapse,
+      loading: true
     };
+  }
+
+  componentWillMount(){
+    this.setState({loading: true}); //optional
+  }
+
+  componentDidMount(){
+    this.setState({loading: false})
   }
 
   sidebarToggle() { this.setState({ sidebarCollapse: !this.state.sidebarCollapse }); }
 
   render() {
     const theme = themes[this.props.theme];
+
     return (
       <StyledDashboard>
         <ThemeProvider theme={theme}>

@@ -76,7 +76,7 @@ const gotoUrl = (user) => {
 const navMenu = (user) => {
 
   return ([
-  <Components.SearchForm key="1"/>,
+
   <Components.ModalTrigger title="New Post" key="2" component={<Header.Item href={`https://github.com/manriquef/vulcanjs`} iconClass="fa fa-plus-square" key="3" title="New Post"/>}>
       <Components.PostsNewForm />
   </Components.ModalTrigger>,
@@ -183,7 +183,7 @@ const sb = (pickTheme, user, routerIn) => {
         <LinkContainer key={view} to={{pathname: "/", query: {...query, view: view}}} className="button-item">
           <Sidebar.Menu.Item icon={{ className: 'fa fa-exclamation-triangle' }} title={<FormattedMessage id={"posts."+view}/>} />
         </LinkContainer>)}
-      <Components.ModalTrigger component={<Sidebar.Menu.Item icon={{ className: 'fa fa-plus' }} title="New Post Feeds" parentHover={true} />}>
+      <Components.ModalTrigger component={<Sidebar.Menu.Item level='1' icon={{ className: 'fa fa-plus' }} title="New Post Feeds" parentHover={true} />}>
         <Components.FeedsNewForm/>
       </Components.ModalTrigger>
       <LinkContainer to='/feeds'>
