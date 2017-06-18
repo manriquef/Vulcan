@@ -13,7 +13,7 @@ export { Components, registerComponent, replaceComponent, getRawComponent, getCo
 export { Collections, createCollection } from './collections.js';
 export { Callbacks, addCallback, removeCallback, runCallbacks, runCallbacksAsync } from './callbacks.js';
 export { GraphQLSchema, addGraphQLSchema, addGraphQLQuery, addGraphQLMutation, addGraphQLResolvers, removeGraphQLResolver, addToGraphQLContext } from './graphql.js';
-export { Routes, addRoute, addAsChildRoute, getRoute, populateRoutesApp } from './routes.js';
+export { Routes, RoutesTable, addRoute, addAsChildRoute, getRoute, populateRoutesApp } from './routes.js';
 export { Utils } from './utils.js';
 export { getSetting } from './settings.js';
 export { Strings, addStrings } from './strings.js';
@@ -21,3 +21,4 @@ export { configureStore, getActions, addAction, getReducers, addReducer, getMidd
 export { Headtags } from './headtags.js';
 export { Fragments, registerFragment, getFragment, getFragmentName, extendFragment, removeFromFragment } from './fragments.js';
 export { createApolloClient } from './apollo.js';
+export { dynamicLoader } from './dynamic_loader.js';

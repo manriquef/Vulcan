@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Components, registerComponent, withCurrentUser, addAction, getActions, addReducer, ModalTrigger  } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
@@ -9,7 +10,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Dashboard, Header, Sidebar } from 'meteor/nodepeep:dash';
 import Users from 'meteor/vulcan:users';
 import { FormattedMessage, intlShape } from 'meteor/vulcan:i18n';
-
+import classNames from 'classnames';
 /* eslint-disable no-alert */
 
 /*
@@ -253,12 +254,13 @@ const footer = () => {
     </div>
 ])};
 
-const Layout = ({currentUser, children, theme, pickTheme}) => {
+
+const Layout = ({currentUser, children, currentRoute, theme, pickTheme}) => {
 
   routerIn = children.props.router;
 
   return (
-  <div className="wrapper" id="wrapper">
+  <div className={classNames('wrapper', `wrapper-${currentRoute.name.replace('.', '-')}`)} id="wrapper">
 
     {currentUser ? <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} /> : null}
 
