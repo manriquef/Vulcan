@@ -12,7 +12,8 @@ import Comments from 'meteor/vulcan:comments';
 
 const PostsCommentsThread = (props, /* context*/) => {
 
-  const {loading, terms: { postId }, results, totalCount} = props;
+
+  const {loading, terms: { postId }, results, totalCount, currentUser} = props;
 
   if (loading) {
 
@@ -26,8 +27,8 @@ const PostsCommentsThread = (props, /* context*/) => {
     return (
       <div className="posts-comments-thread">
         <div className="posts-comments-thread-title"><FormattedMessage id="comments.comments"/></div>
-        <Components.CommentsList comments={nestedComments} commentCount={totalCount}/>
-        {!!props.currentUser ?
+        <Components.CommentsList currentUser={currentUser} comments={nestedComments} commentCount={totalCount}/>
+        {!!currentUser ?
           <div className="posts-comments-thread-new">
             <FormattedMessage id="comments.new"/>
             <Components.CommentsNewForm

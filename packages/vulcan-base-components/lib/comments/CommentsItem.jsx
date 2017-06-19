@@ -1,4 +1,4 @@
-import { Components, registerComponent, withCurrentUser, withMessages } from 'meteor/vulcan:core';
+import { Components, registerComponent, withMessages } from 'meteor/vulcan:core';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { intlShape, FormattedMessage } from 'meteor/vulcan:i18n';
@@ -133,4 +133,4 @@ CommentsItem.contextTypes = {
   intl: intlShape
 };
 
-registerComponent('CommentsItem', CommentsItem, withCurrentUser, withMessages);
+registerComponent('CommentsItem', CommentsItem);
