@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Components, registerComponent, withCurrentUser, addAction, getActions, addReducer, ModalTrigger  } from 'meteor/vulcan:core';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
